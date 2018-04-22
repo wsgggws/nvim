@@ -10,6 +10,7 @@
 ```
 # for macOS
 brew install vim
+vim --version | grep +clipboard  # check 
 # for Linux
 apt-get install vim vim-gnome, vim-athena vim-gtx  
 ```
@@ -24,9 +25,13 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 #### YoucompleteMe
 
 ```
-git clone https://github.com/Valloric/YouCompleteMe ~/.vim/bundle/
+# It takes at least three minutes.
+cd ~/.vim/bundle/
+git clone https://github.com/Valloric/YouCompleteMe 
 cd ~/.vim/bundle/YoucompleteMe
 ./install.py --clang-completer
+git submodule update --init --recursive  # clone all submodule
+./install.py --clang-completer  # again install it
 ```
 
 #### vimrc
