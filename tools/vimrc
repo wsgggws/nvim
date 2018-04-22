@@ -29,7 +29,7 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'pangloss/vim-javascript'
 Plugin 'rizzatti/dash.vim'
-" Plugin 'Valloric/YouCompleteMe'  " tab
+Plugin 'Valloric/YouCompleteMe'  " tab
 Plugin 'python-mode/python-mode'
 
 call vundle#end()
