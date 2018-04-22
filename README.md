@@ -1,11 +1,25 @@
 # cmdtools
-some cmdtools which run in macOS or Linux
+some useful-tools which run in macOS or Linux
 
 ## Cmds
+- zsh
+- git
 - ps
 - htop
+- ag
+- ccat
+- autojump
 
 ## Tools
 - vim
-- zsh
 - docker
+
+## Plugins for Chrome
+- Adblock
+- Googel translate
+- Vimium
+- 1Password
+- Fireshot
+
+## App
+- Postmen
