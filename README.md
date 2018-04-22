@@ -1,5 +1,5 @@
-# cmdtools
-some useful-tools which run in macOS or Linux
+# Useful-tools
+Some useful-tools which run in MacOS or Linux
 
 ## Cmds
 - zsh
@@ -21,5 +21,5 @@ some useful-tools which run in macOS or Linux
 - 1Password
 - Fireshot
 
-## App
+## Apps
 - Postmen
