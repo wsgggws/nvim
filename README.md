@@ -11,7 +11,7 @@ Some useful-tools which run in MacOS or Linux
 - autojump
 
 ## Tools
-- vim
+- [vim](./tools/vim.md)
 - docker
 
 ## Plugins for Chrome
