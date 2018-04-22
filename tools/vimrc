@@ -130,7 +130,7 @@ let g:pymode_rope_goto_definition_bind = "<C-]>"
 let g:pymode_lint = 1
 let g:pymode_lint_checkers = ['pyflakes', 'pep8']
 let g:pymode_rope = 0
-let g:pymode_folding = 0
+let g:pymode_folding = 1
 
 nnoremap <Leader>jd :YcmCompleter GoTo<CR>
 let g:acp_enableAtStartup = 0
