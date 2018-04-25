@@ -2,15 +2,15 @@
 Some useful-tools which run in MacOS or Linux
 
 ## Cmds
-- [zsh, autojump](./tools/zsh_autojump.md)
-- git
 - ps
 - htop
 - ag
 - ccat
 
 ## Tools
+- [zsh, autojump](./tools/zsh_autojump.md)
 - [vim](./tools/vim.md)
+- git
 - docker
 
 ## Plugins for Chrome
