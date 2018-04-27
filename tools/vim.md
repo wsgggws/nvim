@@ -41,5 +41,11 @@ cp vimrc ~/.vimrc
 vim ~/vimrc # :PluginInstall :qa
 ```
 
+#### ctags
+
+```
+brew install ctags
+```
+
 ## How To Use
 - pass
