@@ -7,7 +7,7 @@
 
 ## Install autojump
 - `brew install autojump`
-- `vim ~.zshrc`
+- `vim ~./zshrc`
 
 ```
 plugins=(git autojump) # old is plugins=(git)
