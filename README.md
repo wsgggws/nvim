@@ -11,7 +11,7 @@ Some useful-tools which run in MacOS or Linux
 - [zsh, autojump](./tools/zsh_autojump.md)
 - [vim](./tools/vim.md)
 - git
-- docker
+- [docker](./tools/docker.md)
 
 ## Plugins for Chrome
 - Adblock
