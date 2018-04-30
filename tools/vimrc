@@ -37,8 +37,7 @@ filetype plugin indent on " 开启根据文件类型自动判别缩进
 filetype plugin on
 syntax enable
 syntax on
-" set background=dark
-" colorscheme monokai
+set background=dark
 colorscheme dracula
 
 let mapleader=","
@@ -129,10 +128,9 @@ let g:bufExplorerUseCurrentWindow=1 " <leader>be, <leader>bv, <leader>bs
 
 let g:pymode_rope_goto_definition_bind = "<C-]>"
 let g:pymode_lint = 1
-let g:pymode_lint_ignore = "E501"
 let g:pymode_lint_checkers = ['pyflakes', 'pep8']
 let g:pymode_rope = 0
-let g:pymode_folding = 0
+let g:pymode_folding = 1
 
 nnoremap <Leader>jd :YcmCompleter GoTo<CR>
 let g:acp_enableAtStartup = 0
@@ -202,3 +200,4 @@ nnoremap <C-S-J> :resize +3<CR>
 nnoremap <C-S-K> :resize -3<CR>
 nnoremap <leader>lc :cclose<bar>lclose<cr> " 关闭quickfix窗口
 au BufRead *.py map <buffer> <F5> :w<CR>:!/usr/bin/env python % <CR>
+
