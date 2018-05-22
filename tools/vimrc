@@ -81,6 +81,7 @@ set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 set showmatch       " “设置匹配模式，类似当输入一个左括号时会匹配相应的那个右括号
 set smartcase       " Case insensitive searches become sensitive with capitals
+set relativenumber  " 设置相对显示number
 
 set ignorecase
 set incsearch       " Incremental search
@@ -129,10 +130,9 @@ let g:bufExplorerUseCurrentWindow=1 " <leader>be, <leader>bv, <leader>bs
 
 let g:pymode_rope_goto_definition_bind = "<C-]>"
 let g:pymode_lint = 1
-let g:pymode_lint_ignore = "E501"
 let g:pymode_lint_checkers = ['pyflakes', 'pep8']
 let g:pymode_rope = 0
-let g:pymode_folding = 0
+let g:pymode_folding = 1
 
 nnoremap <Leader>jd :YcmCompleter GoTo<CR>
 let g:acp_enableAtStartup = 0
