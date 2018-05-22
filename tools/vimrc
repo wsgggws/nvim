@@ -37,8 +37,7 @@ filetype plugin indent on " 开启根据文件类型自动判别缩进
 filetype plugin on
 syntax enable
 syntax on
-" set background=dark
-" colorscheme monokai
+set background=dark
 colorscheme dracula
 
 let mapleader=","
@@ -202,3 +201,4 @@ nnoremap <C-S-J> :resize +3<CR>
 nnoremap <C-S-K> :resize -3<CR>
 nnoremap <leader>lc :cclose<bar>lclose<cr> " 关闭quickfix窗口
 au BufRead *.py map <buffer> <F5> :w<CR>:!/usr/bin/env python % <CR>
+
