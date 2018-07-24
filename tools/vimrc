@@ -25,8 +25,6 @@ Plugin 'rking/ag.vim'
 Plugin 'honza/vim-snippets'  " ctrl+j, ctrl+k, Esc
 Plugin 'terryma/vim-multiple-cursors'  " ctrl+n, ctrl+p, ctrl+x, Esc
 
-Plugin 'godlygeek/tabular'
-Plugin 'plasticboy/vim-markdown'
 Plugin 'pangloss/vim-javascript'
 Plugin 'rizzatti/dash.vim'
 Plugin 'Valloric/YouCompleteMe'  " tab
@@ -37,8 +35,8 @@ filetype plugin indent on " 开启根据文件类型自动判别缩进
 filetype plugin on
 syntax enable
 syntax on
-set background=dark
-colorscheme dracula
+" colorscheme monokai
+" colorscheme dracula
 
 let mapleader=","
 let g:mapleader=","
@@ -97,7 +95,7 @@ set autowrite       " Automatically save before commands like :next and :make
 set history=1000         " remember more commands and search history
 set undolevels=1000      " use many muchos levels of undo
 
-set visualbell           " don't beep
+set novisualbell           " don't beep
 set noerrorbells         " don't beep
 set mouse=a              " 启动所有模式, vim接管了鼠标的控制
 set mousehide            " "输入隐藏鼠标
@@ -124,14 +122,14 @@ let g:bufExplorerShowRelativePath=1 " Show relative paths.
 let g:bufExplorerSortBy='mru' " Sort by most recently used.
 let g:bufExplorerUseCurrentWindow=1 " <leader>be, <leader>bv, <leader>bs 
 
-" let g:vim_markdown_folding_disabled = 1
-" let g:vim_markdown_frontmatter=1
-
+let g:pymode_python = 'python3'
 let g:pymode_rope_goto_definition_bind = "<C-]>"
-let g:pymode_lint = 1
+" let g:pymode_lint = 1
+let g:pymode_init = 0
+let g:pymode_lint = 0
 let g:pymode_lint_checkers = ['pyflakes', 'pep8']
 let g:pymode_rope = 0
-let g:pymode_folding = 1
+let g:pymode_folding = 0
 
 nnoremap <Leader>jd :YcmCompleter GoTo<CR>
 let g:acp_enableAtStartup = 0
@@ -201,4 +199,3 @@ nnoremap <C-S-J> :resize +3<CR>
 nnoremap <C-S-K> :resize -3<CR>
 nnoremap <leader>lc :cclose<bar>lclose<cr> " 关闭quickfix窗口
 au BufRead *.py map <buffer> <F5> :w<CR>:!/usr/bin/env python % <CR>
-
