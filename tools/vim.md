@@ -1,7 +1,7 @@
 # VIM
 
 ## Purpose
-    I will share vimrc file, and talk some plugins about vim that look like a Python IDE.
+    I will share vimrc file, and talk some plugins about vim that look likes a Python IDE.
 
 ## Install
 
@@ -10,9 +10,9 @@
 ```
 # for macOS
 brew install vim
-vim --version | grep +clipboard  # check 
+vim --version | grep +clipboard  # check
 # for Linux
-apt-get install vim vim-gnome, vim-athena vim-gtx  
+apt-get install vim vim-gnome, vim-athena vim-gtx
 ```
 
 #### vundle
@@ -27,7 +27,7 @@ git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 ```
 # It takes at least three minutes.
 cd ~/.vim/bundle/
-git clone https://github.com/Valloric/YouCompleteMe 
+git clone https://github.com/Valloric/YouCompleteMe
 cd ~/.vim/bundle/YoucompleteMe
 ./install.py --clang-completer
 git submodule update --init --recursive  # clone all submodule
@@ -46,6 +46,11 @@ vim ~/vimrc # :PluginInstall :qa
 ```
 brew install ctags
 ```
+
+## Improve Key by [karabiner](https://pqrs.org/osx/karabiner/)
+- exchange esc and Caps
+- set left arrow to Ctrl
+- set right option to left arrow
 
 ## How To Use
 - pass
