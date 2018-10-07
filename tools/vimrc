@@ -9,7 +9,6 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'bling/vim-airline'
-Plugin 'sickill/vim-monokai'
 Plugin 'crusoexia/vim-dracula'
 
 Plugin 'jiangmiao/auto-pairs'
@@ -28,7 +27,7 @@ Plugin 'terryma/vim-multiple-cursors'  " ctrl+n, ctrl+p, ctrl+x, Esc
 Plugin 'pangloss/vim-javascript'
 Plugin 'rizzatti/dash.vim'
 Plugin 'Valloric/YouCompleteMe'  " tab
-Plugin 'python-mode/python-mode'
+" Plugin 'python-mode/python-mode'
 
 call vundle#end()
 filetype plugin indent on " 开启根据文件类型自动判别缩进
@@ -122,11 +121,9 @@ let g:bufExplorerShowRelativePath=1 " Show relative paths.
 let g:bufExplorerSortBy='mru' " Sort by most recently used.
 let g:bufExplorerUseCurrentWindow=1 " <leader>be, <leader>bv, <leader>bs 
 
-let g:pymode_python = 'python3'
+" let g:pymode_python = 'python3'
 let g:pymode_rope_goto_definition_bind = "<C-]>"
 " let g:pymode_lint = 1
-let g:pymode_init = 0
-let g:pymode_lint = 0
 let g:pymode_lint_checkers = ['pyflakes', 'pep8']
 let g:pymode_rope = 0
 let g:pymode_folding = 0
