@@ -27,27 +27,30 @@ Plugin 'terryma/vim-multiple-cursors'  " ctrl+n, ctrl+p, ctrl+x, Esc
 Plugin 'pangloss/vim-javascript'
 Plugin 'rizzatti/dash.vim'
 Plugin 'Valloric/YouCompleteMe'  " tab
-" Plugin 'python-mode/python-mode'
+Plugin 'python-mode/python-mode'
+Plugin 'phonzia/cppSyntaxCheck'
 
 call vundle#end()
 filetype plugin indent on " 开启根据文件类型自动判别缩进
 filetype plugin on
 syntax enable
 syntax on
-" colorscheme monokai
-" colorscheme dracula
+
+let g:dracula_terminal_italics = 0
+colorscheme dracula
+highlight Normal ctermbg=None
 
 let mapleader=","
 let g:mapleader=","
 map <Leader>v :so ~/.vimrc<CR>
 
-if has('clipboard')
-  if has('unnamedplus')  " When possible use + register for copy-paste
-    set clipboard=unnamed,unnamedplus
-  else         " On mac and Windows, use * register for copy-paste
-    set clipboard=unnamed
-  endif
-endif
+" if has('clipboard')
+  " if has('unnamedplus')  " When possible use + register for copy-paste
+    " set clipboard=unnamed,unnamedplus
+  " else         " On mac and Windows, use * register for copy-paste
+    " set clipboard=unnamed
+  " endif
+" endif
 
 scriptencoding utf-8
 set autoindent
@@ -64,11 +67,25 @@ set backspace=2     " 解决插入模式下delete/backspce键失效问题
 set backspace=indent,eol,start  " “缩进位置”，“行结束符”，“段首”。这样设置可以使得 backspace 键在这三个特殊的位置也能进行回删动作。
 set shiftround
 set cursorline
+set textwidth=127
+set nowrap
+set linebreak
+set wrapmargin=1
+set ruler
+
+" edit
+" set spell spelllang=en_us
+set nobackup
+set noswapfile
+set undofile
+set undodir=~/.vim/.undo//
+set autochdir
 
 set foldmethod=syntax
 set foldopen+=jump
 set foldlevelstart=99
 nnoremap <space> za " zr zR zm zM
+filetype indent on
 
 set nu
 set title                " change the terminal's title
@@ -121,9 +138,8 @@ let g:bufExplorerShowRelativePath=1 " Show relative paths.
 let g:bufExplorerSortBy='mru' " Sort by most recently used.
 let g:bufExplorerUseCurrentWindow=1 " <leader>be, <leader>bv, <leader>bs 
 
-" let g:pymode_python = 'python3'
 let g:pymode_rope_goto_definition_bind = "<C-]>"
-" let g:pymode_lint = 1
+let g:pymode_lint = 1
 let g:pymode_lint_checkers = ['pyflakes', 'pep8']
 let g:pymode_rope = 0
 let g:pymode_folding = 0
@@ -145,6 +161,12 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 set completeopt-=preview
+
+let g:include_path=":../include:./include:./tinyxml"
+let g:compile_flag="-D_LINUX_"
+let g:cpp_compiler="/usr/bin/g++"
+let g:enable_warning=1
+let g:cpp_compiler="LANG=C g++ -Wall"
 
 
 let g:airline_left_sep=''
