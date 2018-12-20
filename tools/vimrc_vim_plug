@@ -1,0 +1,234 @@
+call plug#begin('~/.vim/plugged')
+Plug 'junegunn/vim-plug'
+
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'majutsushi/tagbar'
+Plug 'bling/vim-airline'
+Plug 'crusoexia/vim-dracula'
+
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'  "cs.., ds., ys..
+Plug 'tpope/vim-repeat'
+Plug 'easymotion/vim-easymotion'  " <leader><leader>f,t <leader><leader>j,k,e,w <leader><leader>s
+Plug 'scrooloose/nerdcommenter'  " [count]<leader>cc, [count]<leader>cu, [count]<leader>c<space>, [count]<leader>cy, <leader>cA, <leader>c$
+Plug 'jlanzarotta/bufexplorer'  " <leader>be, <leader>bv, <leader>bs
+
+Plug 'SirVer/ultisnips', { 'on': [] }
+Plug 'kien/ctrlp.vim'  " ctrl+p, ctrl+j, ctrl+k, ctrl+t, t, Return
+Plug 'rking/ag.vim'
+Plug 'honza/vim-snippets'  " ctrl+j, ctrl+k, Esc
+Plug 'terryma/vim-multiple-cursors'  " ctrl+n, ctrl+p, ctrl+x, Esc
+
+Plug 'pangloss/vim-javascript'
+Plug 'rizzatti/dash.vim'
+Plug 'python-mode/python-mode', { 'branch': 'develop' }
+Plug 'Valloric/YouCompleteMe', { 'on': [] }
+Plug 'Konfekt/FastFold'
+Plug 'iamcco/mathjax-support-for-mkdp'
+Plug 'iamcco/markdown-preview.vim'
+
+call plug#end()
+" http://www.skywind.me/blog/archives/2084
+
+let g:dracula_terminal_italics = 0
+colorscheme dracula
+highlight Normal ctermbg=None
+
+let mapleader=","
+let g:mapleader=","
+map <Leader>v :so ~/.vimrc<CR>
+
+
+augroup load_us_ycm
+  autocmd!
+  autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
+                     \| autocmd! load_us_ycm
+augroup END
+
+scriptencoding utf-8
+set autoindent
+set smartindent
+set smarttab        " 根据文件中其他地方的缩进空格个数来确定一个 tab 是多少个空格
+set tabstop=4
+set expandtab
+set shiftwidth=4
+set softtabstop=4
+set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
+set list  " 开启对于制表符（tab）、行尾空格符（trail）、行结束符（eol）等等特殊符号的回显
+set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
+set backspace=2     " 解决插入模式下delete/backspce键失效问题
+set backspace=indent,eol,start  " “缩进位置”，“行结束符”，“段首”。这样设置可以使得 backspace 键在这三个特殊的位置也能进行回删动作。
+set shiftround
+set cursorline
+set textwidth=127
+set nowrap
+set linebreak
+set wrapmargin=1
+set ruler
+
+" edit
+" set spell spelllang=en_us
+set nobackup
+set noswapfile
+set undofile
+set undodir=~/.vim/.undo//
+set autochdir
+
+" set foldmethod=syntax
+set foldmethod=indent
+set foldopen+=jump
+set foldlevelstart=99
+nnoremap <space> za " zr zR zm zM
+filetype indent on
+
+set nu
+set title                " change the terminal's title
+set showcmd         " 在屏幕右下角显示未完成的指令输入
+set wildmenu                    " Show list instead of just completing
+set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
+set showmatch       " “设置匹配模式，类似当输入一个左括号时会匹配相应的那个右括号
+set smartcase       " Case insensitive searches become sensitive with capitals
+set relativenumber  " 设置相对显示number
+
+set ignorecase
+set incsearch       " Incremental search
+set hlsearch        " High light search
+
+set scrolloff=8
+set sidescrolloff=15
+set sidescroll=1
+set cmdheight=2          " 命令行（在状态行下）的高度，默认为1，这里是2
+set laststatus=2         " 总是显示状态行
+
+set autoread
+set autowrite       " Automatically save before commands like :next and :make
+set history=1000         " remember more commands and search history
+set undolevels=1000      " use many muchos levels of undo
+
+set novisualbell           " don't beep
+set noerrorbells         " don't beep
+set mouse=a              " 启动所有模式, vim接管了鼠标的控制
+set mousehide            " "输入隐藏鼠标
+set ttimeout             " 完整的按键码的超时时间
+set ttimeoutlen=100
+
+nmap <leader>tt :Tagbar<CR>
+
+map <leader>te :NERDTreeToggle<CR> " t, T, s,gs, i,gi, p, P, I, q, <ctrl>+w+w, m, :help
+let NERDTreeShowBookmarks=1
+let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
+let NERDTreeChDirMode=0
+let NERDTreeQuitOnOpen=1
+let NERDTreeMouseMode=2
+let NERDTreeShowHidden=0
+let NERDTreeKeepTreeInNewTab=1
+let g:nerdtree_tabs_open_on_gui_startup=0
+
+
+let g:NERDSpaceDelims=1
+
+let g:bufExplorerDefaultHelp=0 " Do not show default help.
+let g:bufExplorerShowRelativePath=1 " Show relative paths.
+let g:bufExplorerSortBy='mru' " Sort by most recently used.
+let g:bufExplorerUseCurrentWindow=1 " <leader>be, <leader>bv, <leader>bs 
+
+" let g:pymode_python = 'python3'
+let g:pymode_rope_goto_definition_bind = "<C-]>"
+let g:pymode_lint = 1
+let g:pymode_lint_checkers = ['pyflakes', 'pep8']
+let g:pymode_rope = 0
+let g:pymode_folding = 0
+
+nmap zuz <Plug>(FastFoldUpdate)
+let g:fastfold_savehook = 1
+let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
+let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
+
+let g:markdown_folding = 1
+let g:tex_fold_enabled = 1
+let g:vimsyn_folding = 'af'
+let g:xml_syntax_folding = 1
+let g:javaScript_fold = 1
+let g:sh_fold_enabled= 7
+let g:ruby_fold = 1
+let g:perl_fold = 1
+let g:perl_fold_blocks = 1
+let g:r_syntax_folding = 1
+let g:rust_fold = 1
+let g:php_folding = 1
+let g:python_folding = 1
+
+nnoremap <Leader>jd :YcmCompleter GoTo<CR>
+let g:acp_enableAtStartup = 0
+" enable completion from tags
+let g:ycm_collect_identifiers_from_tags_files = 1
+" 对于ultisnips的补全不在使用tab,而是使用ctrl-j,ctrl-k
+let g:UltiSnipsExpandTrigger = '<C-j>'
+let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+set completeopt-=preview
+
+let g:include_path=":../include:./include:./tinyxml"
+let g:compile_flag="-D_LINUX_"
+let g:cpp_compiler="/usr/bin/g++"
+let g:enable_warning=1
+let g:cpp_compiler="LANG=C g++ -Wall"
+
+
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+
+let g:ctrlp_working_path_mode = 'ra'
+nnoremap <silent> <D-t> :CtrlP<CR>
+nnoremap <silent> <D-r> :CtrlPMRU<CR>
+let g:ctrlp_custom_ignore = {
+      \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+      \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
+if executable('ag')
+    let s:ctrlp_fallback = 'ag %s --nocolor -l -g ""'
+elseif executable('ack-grep')
+    let s:ctrlp_fallback = 'ack-grep %s --nocolor -f'
+elseif executable('ack')
+    let s:ctrlp_fallback = 'ack %s --nocolor -f'
+else
+    let s:ctrlp_fallback = 'find %s -type f'
+endif
+if exists("g:ctrlp_user_command")
+    unlet g:ctrlp_user_command
+endif
+let g:ctrlp_user_command = {
+    \ 'types': {
+    \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
+    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+    \ },
+    \ 'fallback': s:ctrlp_fallback
+    \ }
+let g:ctrlp_extensions = ['funky']
+nnoremap <Leader>fu :CtrlPFunky<Cr>
+
+set pastetoggle=<F4>
+nnoremap Y y$
+noremap j gj
+noremap k gk
+vnoremap < <gv
+vnoremap > >gv
+nmap <silent> <leader>/ :nohlsearch<CR>
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+map <leader>ew :e %%
+map <leader>es :sp %%
+map <leader>ev :vsp %%
+map <leader>et :tabe %%
+nnoremap <C-S-L> :vertical resize +3<CR>  " 行动分屏窗口的大小，以左上角为参考hjkl
+nnoremap <C-S-H> :vertical resize -3<CR>
+nnoremap <C-S-J> :resize +3<CR>
+nnoremap <C-S-K> :resize -3<CR>
+nnoremap <leader>lc :cclose<bar>lclose<cr> " 关闭quickfix窗口
+au BufRead *.py map <buffer> <F5> :w<CR>:!/usr/bin/env python % <CR>
