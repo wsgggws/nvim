@@ -38,6 +38,16 @@ let mapleader=","
 let g:mapleader=","
 map <Leader>v :so ~/.vimrc<CR>
 
+set clipboard=unnamed,autoselect
+set guioptions+=a
+set virtualedit=all
+packadd! matchit
+autocmd FileType python let b:match_words = '\<if\>:\<elif\>:\<else\>'
+
+autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
 
 augroup load_us_ycm
   autocmd!
@@ -107,6 +117,7 @@ set undolevels=1000      " use many muchos levels of undo
 
 set novisualbell           " don't beep
 set noerrorbells         " don't beep
+set t_vb=
 set mouse=a              " 启动所有模式, vim接管了鼠标的控制
 set mousehide            " "输入隐藏鼠标
 set ttimeout             " 完整的按键码的超时时间
@@ -132,7 +143,6 @@ let g:bufExplorerShowRelativePath=1 " Show relative paths.
 let g:bufExplorerSortBy='mru' " Sort by most recently used.
 let g:bufExplorerUseCurrentWindow=1 " <leader>be, <leader>bv, <leader>bs 
 
-" let g:pymode_python = 'python3'
 let g:pymode_rope_goto_definition_bind = "<C-]>"
 let g:pymode_lint = 1
 let g:pymode_lint_checkers = ['pyflakes', 'pep8']
@@ -232,3 +242,24 @@ nnoremap <C-S-J> :resize +3<CR>
 nnoremap <C-S-K> :resize -3<CR>
 nnoremap <leader>lc :cclose<bar>lclose<cr> " 关闭quickfix窗口
 au BufRead *.py map <buffer> <F5> :w<CR>:!/usr/bin/env python % <CR>
+
+nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
+nnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>
+nnoremap [<space>  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
+nnoremap ]<space>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
+autocmd BufLeave *.{c,cpp} mark C
+autocmd BufLeave *.h       mark H
+autocmd BufLeave *.py      mark P
+
+if empty($TMUX)
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+else
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+  let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+endif
+
+set complete-=i   " disable scanning included files
+set complete-=t   " disable searching tags
