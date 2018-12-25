@@ -42,8 +42,8 @@ Plug 'Shougo/echodoc.vim'
 call plug#end()
 " http://www.skywind.me/blog/archives/2084
 
-let g:dracula_terminal_italics = 0
 colorscheme dracula
+let g:dracula_terminal_italics = 0
 highlight Normal ctermbg=None
 
 let mapleader=","
@@ -339,3 +339,5 @@ hi! SpellRare gui=undercurl guisp=magenta
 
 highlight Lf_hl_match gui=bold guifg=Blue cterm=bold ctermfg=21
 highlight Lf_hl_matchRefine  gui=bold guifg=Magenta cterm=bold ctermfg=201
+
+let g:signify_disable_by_default=1
