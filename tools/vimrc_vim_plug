@@ -37,10 +37,8 @@ Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-syntax'
 Plug 'kana/vim-textobj-function', { 'for':['c', 'cpp', 'vim', 'java'] }
 Plug 'sgur/vim-textobj-parameter'
-Plug 'Shougo/echodoc.vim'
 
 call plug#end()
-" http://www.skywind.me/blog/archives/2084
 
 colorscheme dracula
 let g:dracula_terminal_italics = 0
@@ -50,11 +48,16 @@ let mapleader=","
 let g:mapleader=","
 map <Leader>v :so ~/.vimrc<CR>
 
-set clipboard=unnamed,autoselect
+if has('clipboard')
+  if has('unnamedplus')  " When possible use + register for copy-paste
+    set clipboard=unnamed,unnamedplus
+  else         " On mac and Windows, use * register for copy-paste
+    set clipboard=unnamed
+  endif
+endif
+
 set guioptions+=a
 set virtualedit=all
-packadd! matchit
-autocmd FileType python let b:match_words = '\<if\>:\<elif\>:\<else\>'
 
 autocmd BufReadPost *
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
@@ -89,14 +92,12 @@ set wrapmargin=1
 set ruler
 
 " edit
-" set spell spelllang=en_us
 set nobackup
 set noswapfile
 set undofile
 set undodir=~/.vim/.undo//
 set autochdir
 
-" set foldmethod=syntax
 set foldmethod=indent
 set foldopen+=jump
 set foldlevelstart=99
@@ -340,4 +341,17 @@ hi! SpellRare gui=undercurl guisp=magenta
 highlight Lf_hl_match gui=bold guifg=Blue cterm=bold ctermfg=21
 highlight Lf_hl_matchRefine  gui=bold guifg=Magenta cterm=bold ctermfg=201
 
+" For Signify
 let g:signify_disable_by_default=1
+map <leader>se :SignifyEnable<CR>
+map <leader>st :SignifyToggle<CR>
+
+" http://www.skywind.me/blog/archives/2084
+" and
+" brew install neovim
+" pip3 install neovim --upgrade
+" ln -s ~/.vim ~/.config/nvim
+" ln -s ~/.vimrc ~/.config/nvim/init.vim
+" alias vim='nvim'
+" alias vi='nvim'
+" alias v='nvim'
