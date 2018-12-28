@@ -1,12 +1,3 @@
-" Recommand install neovim
-" brew install neovim
-" pip3 install neovim --upgrade
-" ln -s ~/.vim ~/.config/nvim
-" ln -s ~/.vimrc ~/.config/nvim/init.vim
-" alias vim='nvim'
-" alias vi='nvim'
-" alias v='nvim'
-" http://www.skywind.me/blog/archives/2084
 call plug#begin('~/.vim/plugged')
 
 " For help vim-plug
@@ -35,10 +26,6 @@ Plug 'Valloric/YouCompleteMe', { 'on': [] }
 
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'mhinz/vim-signify' " Just for git
-Plug 'jlanzarotta/bufexplorer'  " <leader>be, <leader>bv, <leader>bs
-Plug 'kien/ctrlp.vim'  " ctrl+p, ctrl+j, ctrl+k, ctrl+t, t, Return
-Plug 'rking/ag.vim'
-Plug 'majutsushi/tagbar'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 
@@ -51,15 +38,34 @@ Plug 'iamcco/markdown-preview.vim'
 
 call plug#end()
 
+" ------------------------------------------------
+" For init leader key
+" ------------------------------------------------
+filetype indent on
+scriptencoding utf-8
+let mapleader=","
+let g:mapleader=","
+map <Leader>v :so ~/.vimrc<CR>
+
+" ------------------------------------------------
+" For Beautiful
+" ------------------------------------------------
 colorscheme dracula
 let g:dracula_terminal_italics = 0
 highlight Normal ctermbg=None
 highlight Lf_hl_match gui=bold guifg=Blue cterm=bold ctermfg=21
 highlight Lf_hl_matchRefine  gui=bold guifg=Magenta cterm=bold ctermfg=201
+autocmd ColorScheme * highlight StatusLine ctermbg=darkgray cterm=NONE guibg=darkgray gui=NONE
 
-let mapleader=","
-let g:mapleader=","
-map <Leader>v :so ~/.vimrc<CR>
+if empty($TMUX)
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+else
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+  let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+endif
 
 if has('clipboard')
   if has('unnamedplus')  " When possible use + register for copy-paste
@@ -68,19 +74,18 @@ if has('clipboard')
     set clipboard=unnamed
   endif
 endif
-
+autocmd InsertLeave,WinEnter * set cursorline
+autocmd InsertEnter,WinLeave * set nocursorline
 autocmd BufReadPost *
     \ if line("'\"") > 1 && line("'\"") <= line("$") |
     \   exe "normal! g`\"" |
     \ endif
 
-augroup load_us_ycm
-  autocmd!
-  autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
-                     \| autocmd! load_us_ycm
-augroup END
-
-scriptencoding utf-8
+" ------------------------------------------------
+" For handsome
+" ------------------------------------------------
+set complete-=i   " disable scanning included files
+set complete-=t   " disable searching tags
 set autoindent
 set smartindent
 set smarttab        " 根据文件中其他地方的缩进空格个数来确定一个 tab 是多少个空格
@@ -108,12 +113,6 @@ set undofile
 set undodir=~/.vim/.undo//
 set autochdir
 
-set foldmethod=indent
-set foldopen+=jump
-set foldlevelstart=99
-nnoremap <space> za " zr zR zm zM
-filetype indent on
-
 set nu
 set title                " change the terminal's title
 set showcmd         " 在屏幕右下角显示未完成的指令输入
@@ -140,15 +139,16 @@ set undolevels=1000      " use many muchos levels of undo
 
 set novisualbell           " don't beep
 set noerrorbells         " don't beep
-" set t_vb=
+set t_vb=
 set mouse=a              " 启动所有模式, vim接管了鼠标的控制
 set mousehide            " "输入隐藏鼠标
 set ttimeout             " 完整的按键码的超时时间
 set ttimeoutlen=100
 
-nmap <leader>tt :Tagbar<CR>
+" ------------------------------------------------
+" For NerdTree
+" ------------------------------------------------
 nmap <leader>te :NERDTreeToggle<CR> " t, T, s,gs, i,gi, p, P, I, q, <ctrl>+w+w, m, :help
-
 let g:NERDSpaceDelims=1
 let g:nerdtree_tabs_open_on_gui_startup=0
 let NERDTreeShowBookmarks=1
@@ -159,18 +159,24 @@ let NERDTreeMouseMode=2
 let NERDTreeShowHidden=0
 let NERDTreeKeepTreeInNewTab=1
 
-let g:bufExplorerDefaultHelp=0 " Do not show default help.
-let g:bufExplorerShowRelativePath=1 " Show relative paths.
-let g:bufExplorerSortBy='mru' " Sort by most recently used.
-let g:bufExplorerUseCurrentWindow=1 " <leader>be, <leader>bv, <leader>bs 
 
-let g:pymode_rope_goto_definition_bind = "<C-]>"
+" ------------------------------------------------
+" For python-mode
+" ------------------------------------------------
 let g:pymode_lint = 1
+let g:pymode_breakpoint = 0
 let g:pymode_lint_checkers = ['pyflakes', 'pep8']
 let g:pymode_rope = 0
 let g:pymode_folding = 0
 
+" ------------------------------------------------
 " For Fastflod
+" ------------------------------------------------
+set foldmethod=indent
+set foldopen+=jump
+set foldlevelstart=99
+nnoremap <space> za " zr zR zm zM
+
 nmap zuz <Plug>(FastFoldUpdate)
 let g:fastfold_savehook = 1
 let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
@@ -190,11 +196,18 @@ let g:rust_fold = 1
 let g:php_folding = 1
 let g:python_folding = 1
 
+" ------------------------------------------------
+" For YoucompleteMe
+" ------------------------------------------------
+augroup load_us_ycm
+  autocmd!
+  autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
+                     \| autocmd! load_us_ycm
+augroup END
 nnoremap <Leader>jd :YcmCompleter GoTo<CR>
 let g:acp_enableAtStartup = 0
 " enable completion from tags
 let g:ycm_collect_identifiers_from_tags_files = 1
-let g:ycm_python_binary_path = 'python'
 " 对于ultisnips的补全不在使用tab,而是使用ctrl-j,ctrl-k
 let g:UltiSnipsExpandTrigger = '<C-j>'
 let g:UltiSnipsJumpForwardTrigger = '<C-j>'
@@ -209,70 +222,11 @@ autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 set completeopt-=preview
 
-let g:ctrlp_working_path_mode = 'ra'
-nnoremap <silent> <D-t> :CtrlP<CR>
-nnoremap <silent> <D-r> :CtrlPMRU<CR>
-let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-      \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
-if executable('ag')
-    let s:ctrlp_fallback = 'ag %s --nocolor -l -g ""'
-elseif executable('ack-grep')
-    let s:ctrlp_fallback = 'ack-grep %s --nocolor -f'
-elseif executable('ack')
-    let s:ctrlp_fallback = 'ack %s --nocolor -f'
-else
-    let s:ctrlp_fallback = 'find %s -type f'
-endif
-if exists("g:ctrlp_user_command")
-    unlet g:ctrlp_user_command
-endif
-let g:ctrlp_user_command = {
-    \ 'types': {
-    \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
-    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-    \ },
-    \ 'fallback': s:ctrlp_fallback
-    \ }
-let g:ctrlp_extensions = ['funky']
-nnoremap <Leader>fu :CtrlPFunky<Cr>
 
-set pastetoggle=<F4>
-nnoremap Y y$
-noremap j gj
-noremap k gk
-vnoremap < <gv
-vnoremap > >gv
-nmap <silent> <leader>/ :nohlsearch<CR>
-cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
-map <leader>ew :e %%
-map <leader>es :sp %%
-map <leader>ev :vsp %%
-map <leader>et :tabe %%
-nnoremap <C-S-L> :vertical resize +3<CR>  " 行动分屏窗口的大小，以左上角为参考hjkl
-nnoremap <C-S-H> :vertical resize -3<CR>
-nnoremap <C-S-J> :resize +3<CR>
-nnoremap <C-S-K> :resize -3<CR>
-
-nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
-nnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>
-nnoremap [<space>  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
-nnoremap ]<space>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
-
-if empty($TMUX)
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-  let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-else
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-  let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
-endif
-
+" ------------------------------------------------
+" For gutentags
+" ------------------------------------------------
 set tags=./.tags;,.tags
-xnoremap < <gv
-xnoremap > >gv
-
 " gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
 let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
 " 所生成的数据文件的名称
@@ -285,18 +239,86 @@ let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
 let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
-" For Signify
+
+" ------------------------------------------------
+" For Signify see :help Signify
+" ------------------------------------------------
 let g:signify_disable_by_default=1
-map <leader>se :SignifyEnable<CR>
-map <leader>st :SignifyToggle<CR>
-map <leader>sd :SignifyDiff<CR>
+nmap <leader>se :SignifyEnable<CR>
+nmap <leader>st :SignifyToggle<CR>
+nmap <leader>sd :SignifyDiff<CR>
 
-au VimLeave let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 
-autocmd InsertLeave,WinEnter * set cursorline
-autocmd InsertEnter,WinLeave * set nocursorline
-set complete-=i   " disable scanning included files
-set complete-=t   " disable searching tags
-autocmd ColorScheme * highlight StatusLine ctermbg=darkgray cterm=NONE guibg=darkgray gui=NONE
+" ------------------------------------------------
+" For LeaderF see https://github.com/Yggdroot/LeaderF/blob/master/doc/leaderf.txt#L189-L349
+" ------------------------------------------------
+let g:Lf_WindowHeight = 0.4
+let g:Lf_PreviewCode = 1
+let g:Lf_WildIgnore = {
+            \ 'dir': ['.svn','.git','.hg'],
+            \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+            \}
+let g:Lf_MruFileExclude = ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+let g:Lf_Ctags = "/usr/local/bin/ctags"
+let g:Lf_CtagsFuncOpts = {
+            \ 'c': '--c-kinds=fp',
+            \ 'rust': '--rust-kinds=f',
+            \ }
+map <leader>fm :LeaderfMru<CR>
+map <leader>ff :LeaderfFunction<CR>
+map <leader>fw :LeaderfLine<CR>
+" search word under cursor, the pattern is treated as regex, and enter normal mode directly
+map <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
+" search word under cursor, the pattern is treated as regex,
+" append the result to previous search results.
+noremap <C-G> :<C-U><C-R>=printf("Leaderf! rg --append -e %s ", expand("<cword>"))<CR>
+" search word under cursor literally only in current buffer
+noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg -F --current-buffer -e %s ", expand("<cword>"))<CR>
+" search visually selected text literally, don't quit LeaderF after accepting an entry
+xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F --stayOpen -e %s ", leaderf#Rg#visual())<CR>
+" recall last search. If the result window is closed, reopen it.
+noremap go :<C-U>Leaderf! rg --stayOpen --recall<CR>
 
+
+" ------------------------------------------------
+" For Others
+" ------------------------------------------------
+nnoremap <C-S-L> :vertical resize +3<CR>  " 行动分屏窗口的大小，以左上角为参考hjkl
+nnoremap <C-S-H> :vertical resize -3<CR>
+nnoremap <C-S-J> :resize +3<CR>
+nnoremap <C-S-K> :resize -3<CR>
+nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
+nnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>
+nnoremap [<space>  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
+nnoremap ]<space>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
+nnoremap Y y$
+noremap j gj
+noremap k gk
+
+nmap <silent> <leader>/ :nohlsearch<CR>
+nmap <leader>ew :e %%
+nmap <leader>es :sp %%
+nmap <leader>ev :vsp %%
+nmap <leader>et :tabe %%
 nmap <leader>jj :%!python -m json.tool<CR>
+
+vnoremap < <gv
+vnoremap > >gv
+
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+
+" ------------------------------------------------
+" For recommand and suggestion
+" ------------------------------------------------
+" Recommand install neovim
+" brew install neovim
+" pip3 install neovim --upgrade
+" ln -s ~/.vim ~/.config/nvim
+" ln -s ~/.vimrc ~/.config/nvim/init.vim
+" alias vim='nvim'
+" alias vi='nvim'
+" alias v='nvim'
+
+" see http://www.skywind.me/blog/archives/2084
+" https://github.com/wsdjeg/vim-galore-zh_cn
+" ----------------END---------------------------------
