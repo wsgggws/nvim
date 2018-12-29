@@ -254,10 +254,14 @@ nmap <leader>sd :SignifyDiff<CR>
 " ------------------------------------------------
 let g:Lf_WildIgnore = {
             \ 'dir': ['.svn','.git','.hg'],
-            \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]', '__init__.py', '.gitignore']
+            \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
             \}
 let g:Lf_MruFileExclude = ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+let g:Lf_WindowHeight = 0.4
 let g:Lf_Ctags = "/usr/local/bin/ctags"
+let g:Lf_WorkingDirectoryMode = 'Ac' 
+let g:Lf_HideHelp = 1
+let g:Lf_ExternalCommand = 'find "%s" -type f'
 let g:Lf_CtagsFuncOpts = {
             \ 'c': '--c-kinds=fp',
             \ 'rust': '--rust-kinds=f',
