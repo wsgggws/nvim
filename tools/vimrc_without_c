@@ -6,6 +6,7 @@ Plug 'junegunn/vim-plug'
 " For beautiful themes
 Plug 'bling/vim-airline'
 Plug 'crusoexia/vim-dracula'
+Plug 'jonathanfilip/vim-lucius'
 
 " For fast automatic edit or move
 Plug 'Konfekt/FastFold'
@@ -149,7 +150,7 @@ set ttimeoutlen=100
 " For NerdTree
 " ------------------------------------------------
 nmap <leader>te :NERDTreeToggle<CR> " t, T, s,gs, i,gi, p, P, I, q, <ctrl>+w+w, m, :help
-let g:NERDSpaceDelims=1
+" let g:NERDSpaceDelims=1
 let g:nerdtree_tabs_open_on_gui_startup=0
 let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
@@ -254,10 +255,14 @@ nmap <leader>sd :SignifyDiff<CR>
 " ------------------------------------------------
 let g:Lf_WildIgnore = {
             \ 'dir': ['.svn','.git','.hg'],
-            \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]', '__init__.py', '.gitignore']
+            \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
             \}
 let g:Lf_MruFileExclude = ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+let g:Lf_WindowHeight = 0.4
 let g:Lf_Ctags = "/usr/local/bin/ctags"
+let g:Lf_WorkingDirectoryMode = 'Ac' 
+let g:Lf_HideHelp = 1
+let g:Lf_ExternalCommand = 'find "%s" -type f'
 let g:Lf_CtagsFuncOpts = {
             \ 'c': '--c-kinds=fp',
             \ 'rust': '--rust-kinds=f',
