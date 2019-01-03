@@ -150,7 +150,6 @@ set ttimeoutlen=100
 " For NerdTree
 " ------------------------------------------------
 nmap <leader>te :NERDTreeToggle<CR> " t, T, s,gs, i,gi, p, P, I, q, <ctrl>+w+w, m, :help
-" let g:NERDSpaceDelims=1
 let g:nerdtree_tabs_open_on_gui_startup=0
 let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
@@ -260,7 +259,7 @@ let g:Lf_WildIgnore = {
 let g:Lf_MruFileExclude = ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
 let g:Lf_WindowHeight = 0.4
 let g:Lf_Ctags = "/usr/local/bin/ctags"
-let g:Lf_WorkingDirectoryMode = 'Ac' 
+let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_HideHelp = 1
 let g:Lf_ExternalCommand = 'find "%s" -type f'
 let g:Lf_CtagsFuncOpts = {
