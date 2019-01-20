@@ -51,13 +51,6 @@ map <Leader>v :so ~/.vimrc<CR>
 " ------------------------------------------------
 " For Beautiful
 " ------------------------------------------------
-colorscheme dracula
-let g:dracula_terminal_italics = 0
-highlight Normal ctermbg=None
-highlight Lf_hl_match gui=bold guifg=Blue cterm=bold ctermfg=21
-highlight Lf_hl_matchRefine  gui=bold guifg=Magenta cterm=bold ctermfg=201
-autocmd ColorScheme * highlight StatusLine ctermbg=darkgray cterm=NONE guibg=darkgray gui=NONE
-
 if empty($TMUX)
   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
@@ -257,7 +250,7 @@ let g:Lf_WildIgnore = {
             \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
             \}
 let g:Lf_MruFileExclude = ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
-let g:Lf_WindowHeight = 0.4
+let g:Lf_WindowHeight = 0.33
 let g:Lf_Ctags = "/usr/local/bin/ctags"
 let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_HideHelp = 1
@@ -309,6 +302,15 @@ vnoremap < <gv
 vnoremap > >gv
 
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+
+
+colorscheme dracula
+highlight Normal ctermbg=None
+
+"let g:lucius_style="dark"
+"let g:lucius_contrast="high"
+"colorscheme lucius
+"highlight Normal ctermbg=None
 
 " ------------------------------------------------
 " For recommand and suggestion
