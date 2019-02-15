@@ -7,6 +7,8 @@ Plug 'junegunn/vim-plug'
 Plug 'bling/vim-airline'
 Plug 'crusoexia/vim-dracula'
 Plug 'jonathanfilip/vim-lucius'
+Plug 'tomasr/molokai'
+Plug '/altercation/vim-colors-solarized'
 
 " For fast automatic edit or move
 Plug 'Konfekt/FastFold'
@@ -161,6 +163,10 @@ let g:pymode_breakpoint = 0
 let g:pymode_lint_checkers = ['pyflakes', 'pep8']
 let g:pymode_rope = 0
 let g:pymode_folding = 0
+" temp change it to 120
+let g:pymode_options_max_line_length = 120
+let g:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_length}
+let g:pymode_options_colorcolumn = 1
 
 " ------------------------------------------------
 " For Fastflod
@@ -304,12 +310,22 @@ vnoremap > >gv
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 
 
-colorscheme dracula
-highlight Normal ctermbg=None
+"colorscheme dracula
+"highlight Normal ctermbg=None
 
 "let g:lucius_style="dark"
 "let g:lucius_contrast="high"
 "colorscheme lucius
+"highlight Normal ctermbg=None
+
+colorscheme molokai
+let g:molokai_original = 1
+let g:rehash256 = 1
+highlight Normal ctermbg=None
+
+"set background=dark
+"colorscheme solarized
+"let g:solarized_termcolors=256
 "highlight Normal ctermbg=None
 
 " ------------------------------------------------
