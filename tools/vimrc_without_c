@@ -19,6 +19,7 @@ Plug 'easymotion/vim-easymotion'  " <leader><leader>f,t <leader><leader>j,k,e,w 
 Plug 'terryma/vim-multiple-cursors'  " ctrl+n, ctrl+p, ctrl+x, Esc
 Plug 'honza/vim-snippets'  " ctrl+j, ctrl+k, Esc
 Plug 'scrooloose/nerdcommenter'  " [count]<leader>cc, [count]<leader>cu, [count]<leader>c<space>, [count]<leader>cy, <leader>cA, <leader>c$
+Plug 'tpope/vim-commentary'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-indent'
 Plug 'kana/vim-textobj-syntax'
@@ -308,6 +309,7 @@ vnoremap < <gv
 vnoremap > >gv
 
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+autocmd FileType apache setlocal commentstring=#\ %s
 
 
 "colorscheme dracula
@@ -318,9 +320,9 @@ cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 "colorscheme lucius
 "highlight Normal ctermbg=None
 
-colorscheme molokai
 let g:molokai_original = 1
 let g:rehash256 = 1
+colorscheme molokai
 highlight Normal ctermbg=None
 
 "set background=dark
