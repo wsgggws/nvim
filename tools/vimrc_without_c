@@ -154,6 +154,7 @@ let NERDTreeQuitOnOpen=1
 let NERDTreeMouseMode=2
 let NERDTreeShowHidden=0
 let NERDTreeKeepTreeInNewTab=1
+autocmd FileType apache setlocal commentstring=#\ %s
 
 
 " ------------------------------------------------
@@ -309,26 +310,22 @@ vnoremap < <gv
 vnoremap > >gv
 
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
-autocmd FileType apache setlocal commentstring=#\ %s
 
 
-"colorscheme dracula
-"highlight Normal ctermbg=None
+" let g:rehash256 = 1
+" colorscheme dracula
+" highlight Normal ctermbg=None
 
-"let g:lucius_style="dark"
-"let g:lucius_contrast="high"
-"colorscheme lucius
-"highlight Normal ctermbg=None
+" let g:rehash256 = 1
+" let g:lucius_style="dark"
+" let g:lucius_contrast="high"
+" colorscheme lucius
+" highlight Normal ctermbg=None
 
-let g:molokai_original = 1
 let g:rehash256 = 1
+let g:molokai_original = 1
 colorscheme molokai
 highlight Normal ctermbg=None
-
-"set background=dark
-"colorscheme solarized
-"let g:solarized_termcolors=256
-"highlight Normal ctermbg=None
 
 " ------------------------------------------------
 " For recommand and suggestion
