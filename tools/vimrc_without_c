@@ -9,6 +9,7 @@ Plug 'crusoexia/vim-dracula'
 Plug 'jonathanfilip/vim-lucius'
 Plug 'tomasr/molokai'
 Plug '/altercation/vim-colors-solarized'
+Plug 'liuchengxu/space-vim-theme'
 
 " For fast automatic edit or move
 Plug 'Konfekt/FastFold'
@@ -258,7 +259,7 @@ let g:Lf_WildIgnore = {
             \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
             \}
 let g:Lf_MruFileExclude = ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
-let g:Lf_WindowHeight = 0.33
+" let g:Lf_WindowHeight = 0.33
 let g:Lf_Ctags = "/usr/local/bin/ctags"
 let g:Lf_WorkingDirectoryMode = 'Ac'
 let g:Lf_HideHelp = 1
@@ -312,9 +313,9 @@ vnoremap > >gv
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 
 
-" let g:rehash256 = 1
-" colorscheme dracula
-" highlight Normal ctermbg=None
+let g:rehash256 = 1
+colorscheme dracula
+highlight Normal ctermbg=None
 
 " let g:rehash256 = 1
 " let g:lucius_style="dark"
@@ -322,10 +323,13 @@ cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 " colorscheme lucius
 " highlight Normal ctermbg=None
 
-let g:rehash256 = 1
-let g:molokai_original = 1
-colorscheme molokai
-highlight Normal ctermbg=None
+" let g:rehash256 = 1
+" let g:molokai_original = 1
+" colorscheme molokai
+" highlight Normal ctermbg=None
+
+" colorscheme space_vim_theme
+" highlight Normal ctermbg=None
 
 " ------------------------------------------------
 " For recommand and suggestion
