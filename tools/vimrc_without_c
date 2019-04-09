@@ -8,6 +8,8 @@ Plug 'bling/vim-airline'
 Plug 'crusoexia/vim-dracula'
 Plug 'jonathanfilip/vim-lucius'
 Plug 'tomasr/molokai'
+Plug 'sickill/vim-monokai'
+Plug 'morhetz/gruvbox'
 Plug '/altercation/vim-colors-solarized'
 Plug 'liuchengxu/space-vim-theme'
 
@@ -40,6 +42,7 @@ Plug 'rizzatti/dash.vim'
 Plug 'python-mode/python-mode', { 'branch': 'develop' }
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
+Plug 'iandingx/leetcode.vim'
 
 call plug#end()
 
@@ -284,6 +287,12 @@ xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F --stayOpen -e %s ", leaderf#Rg#vi
 " recall last search. If the result window is closed, reopen it.
 noremap go :<C-U>Leaderf! rg --stayOpen --recall<CR>
 
+" For LeetCode
+nnoremap <leader>ll :LeetCodeList<cr>
+nnoremap <leader>lt :LeetCodeTest<cr>
+nnoremap <leader>ls :LeetCodeSubmit<cr>
+nnoremap <leader>li :LeetCodeSignIn<cr>
+
 
 " ------------------------------------------------
 " For Others
@@ -299,6 +308,7 @@ nnoremap ]<space>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
 nnoremap Y y$
 noremap j gj
 noremap k gk
+nmap <silent> <leader>d <Plug>DashSearch
 
 nmap <silent> <leader>/ :nohlsearch<CR>
 nmap <leader>ew :e %%
@@ -313,9 +323,18 @@ vnoremap > >gv
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 
 
+" let g:rehash256 = 1
+" colorscheme dracula
+" highlight Normal ctermbg=None
+
+
 let g:rehash256 = 1
-colorscheme dracula
+colorscheme gruvbox
 highlight Normal ctermbg=None
+
+" let g:rehash256 = 1
+" colorscheme monokai
+" highlight Normal ctermbg=None
 
 " let g:rehash256 = 1
 " let g:lucius_style="dark"
