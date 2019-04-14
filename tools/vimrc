@@ -1,61 +1,91 @@
-" ~/.vimrc
+call plug#begin('~/.vim/plugged')
 
-set nocompatible " 必须使用非兼容模式，才能够使用vi Improved.
-filetype off
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" For help vim-plug
+Plug 'junegunn/vim-plug'
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'majutsushi/tagbar'
-Plugin 'bling/vim-airline'
-Plugin 'crusoexia/vim-dracula'
+" For beautiful themes
+Plug 'bling/vim-airline'
+Plug 'crusoexia/vim-dracula'
+Plug 'jonathanfilip/vim-lucius'
+Plug 'tomasr/molokai'
+Plug 'sickill/vim-monokai'
+Plug 'morhetz/gruvbox'
 
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'tpope/vim-surround'  "cs.., ds., ys..
-Plugin 'tpope/vim-repeat'
-Plugin 'easymotion/vim-easymotion'  " <leader><leader>f,t <leader><leader>j,k,e,w <leader><leader>s
-Plugin 'scrooloose/nerdcommenter'  " [count]<leader>cc, [count]<leader>cu, [count]<leader>c<space>, [count]<leader>cy, <leader>cA, <leader>c$
-Plugin 'jlanzarotta/bufexplorer'  " <leader>be, <leader>bv, <leader>bs
+" For fast automatic edit or move
+Plug 'Konfekt/FastFold'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'  "cs.., ds., ys..
+Plug 'tpope/vim-repeat'
+Plug 'easymotion/vim-easymotion'  " <leader><leader>f,t <leader><leader>j,k,e,w <leader><leader>s
+Plug 'terryma/vim-multiple-cursors'  " ctrl+n, ctrl+p, ctrl+x, Esc
+Plug 'honza/vim-snippets'  " ctrl+j, ctrl+k, Esc
+Plug 'scrooloose/nerdcommenter'  " [count]<leader>cc, [count]<leader>cu, [count]<leader>c<space>, [count]<leader>cy, <leader>cA, <leader>c$
+Plug 'tpope/vim-commentary'
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-indent'
+Plug 'kana/vim-textobj-syntax'
+Plug 'kana/vim-textobj-function', { 'for':['c', 'cpp', 'vim'] }
+Plug 'sgur/vim-textobj-parameter'
+Plug 'SirVer/ultisnips', { 'on': [] }
+Plug 'Valloric/YouCompleteMe', { 'on': [] }
 
-Plugin 'SirVer/ultisnips'
-Plugin 'kien/ctrlp.vim'  " ctrl+p, ctrl+j, ctrl+k, ctrl+t, t, Return
-Plugin 'rking/ag.vim'
-Plugin 'honza/vim-snippets'  " ctrl+j, ctrl+k, Esc
-Plugin 'terryma/vim-multiple-cursors'  " ctrl+n, ctrl+p, ctrl+x, Esc
+Plug 'mhinz/vim-startify'
+Plug 'scrooloose/nerdtree' ", { 'on':  'NERDTreeToggle' }
+Plug 'mhinz/vim-signify' " Just for git
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 
-Plugin 'pangloss/vim-javascript'
-Plugin 'rizzatti/dash.vim'
-Plugin 'Valloric/YouCompleteMe'  " tab
-Plugin 'python-mode/python-mode'
-Plugin 'Konfekt/FastFold'
-Plugin 'phonzia/cppSyntaxCheck'
-Plugin 'iamcco/mathjax-support-for-mkdp'
-Plugin 'iamcco/markdown-preview.vim'
+" For supporting language
+Plug 'pangloss/vim-javascript'
+Plug 'rizzatti/dash.vim'
+Plug 'python-mode/python-mode', { 'branch': 'develop' }
+Plug 'iamcco/mathjax-support-for-mkdp'
+Plug 'iamcco/markdown-preview.vim'
+Plug 'iandingx/leetcode.vim'
 
-call vundle#end()
-filetype plugin indent on " 开启根据文件类型自动判别缩进
-filetype plugin on
-syntax enable
-syntax on
+call plug#end()
 
-let g:dracula_terminal_italics = 0
-colorscheme dracula
-highlight Normal ctermbg=None
-
+" ------------------------------------------------
+" For init leader key
+" ------------------------------------------------
+filetype indent on
+scriptencoding utf-8
 let mapleader=","
 let g:mapleader=","
 map <Leader>v :so ~/.vimrc<CR>
 
-" if has('clipboard')
-  " if has('unnamedplus')  " When possible use + register for copy-paste
-    " set clipboard=unnamed,unnamedplus
-  " else         " On mac and Windows, use * register for copy-paste
-    " set clipboard=unnamed
-  " endif
-" endif
+" ------------------------------------------------
+" For Beautiful
+" ------------------------------------------------
+if empty($TMUX)
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+else
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+  let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+endif
 
-scriptencoding utf-8
+if has('clipboard')
+  if has('unnamedplus')  " When possible use + register for copy-paste
+    set clipboard=unnamed,unnamedplus
+  else         " On mac and Windows, use * register for copy-paste
+    set clipboard=unnamed
+  endif
+endif
+autocmd InsertLeave,WinEnter * set cursorline
+autocmd InsertEnter,WinLeave * set nocursorline
+autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+
+" ------------------------------------------------
+" For handsome
+" ------------------------------------------------
+set complete-=i   " disable scanning included files
+set complete-=t   " disable searching tags
 set autoindent
 set smartindent
 set smarttab        " 根据文件中其他地方的缩进空格个数来确定一个 tab 是多少个空格
@@ -77,19 +107,11 @@ set wrapmargin=1
 set ruler
 
 " edit
-" set spell spelllang=en_us
 set nobackup
 set noswapfile
 set undofile
 set undodir=~/.vim/.undo//
 set autochdir
-
-" set foldmethod=syntax
-set foldmethod=indent
-set foldopen+=jump
-set foldlevelstart=99
-nnoremap <space> za " zr zR zm zM
-filetype indent on
 
 set nu
 set title                " change the terminal's title
@@ -117,14 +139,18 @@ set undolevels=1000      " use many muchos levels of undo
 
 set novisualbell           " don't beep
 set noerrorbells         " don't beep
+set t_vb=
 set mouse=a              " 启动所有模式, vim接管了鼠标的控制
 set mousehide            " "输入隐藏鼠标
 set ttimeout             " 完整的按键码的超时时间
 set ttimeoutlen=100
 
-nmap <leader>tt :Tagbar<CR>
-
-map <leader>te :NERDTreeToggle<CR> " t, T, s,gs, i,gi, p, P, I, q, <ctrl>+w+w, m, :help
+" ------------------------------------------------
+" For NerdTree
+" ------------------------------------------------
+nmap <leader>te :NERDTreeToggle<CR> " t, T, s,gs, i,gi, p, P, I, q, <ctrl>+w+w, m, :help
+nmap <leader>gt :NERDTreeFind<CR>
+let g:nerdtree_tabs_open_on_gui_startup=0
 let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
 let NERDTreeChDirMode=0
@@ -132,21 +158,29 @@ let NERDTreeQuitOnOpen=1
 let NERDTreeMouseMode=2
 let NERDTreeShowHidden=0
 let NERDTreeKeepTreeInNewTab=1
-let g:nerdtree_tabs_open_on_gui_startup=0
+autocmd FileType apache setlocal commentstring=#\ %s
 
 
-let g:NERDSpaceDelims=1
-
-let g:bufExplorerDefaultHelp=0 " Do not show default help.
-let g:bufExplorerShowRelativePath=1 " Show relative paths.
-let g:bufExplorerSortBy='mru' " Sort by most recently used.
-let g:bufExplorerUseCurrentWindow=1 " <leader>be, <leader>bv, <leader>bs 
-
-let g:pymode_rope_goto_definition_bind = "<C-]>"
+" ------------------------------------------------
+" For python-mode
+" ------------------------------------------------
 let g:pymode_lint = 1
+let g:pymode_breakpoint = 0
 let g:pymode_lint_checkers = ['pyflakes', 'pep8']
 let g:pymode_rope = 0
 let g:pymode_folding = 0
+" temp change it to 120
+let g:pymode_options_max_line_length = 120
+let g:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_length}
+let g:pymode_options_colorcolumn = 1
+
+" ------------------------------------------------
+" For Fastflod
+" ------------------------------------------------
+set foldmethod=indent
+set foldopen+=jump
+set foldlevelstart=99
+nnoremap <space> za " zr zR zm zM
 
 nmap zuz <Plug>(FastFoldUpdate)
 let g:fastfold_savehook = 1
@@ -167,6 +201,14 @@ let g:rust_fold = 1
 let g:php_folding = 1
 let g:python_folding = 1
 
+" ------------------------------------------------
+" For YoucompleteMe
+" ------------------------------------------------
+augroup load_us_ycm
+  autocmd!
+  autocmd InsertEnter * call plug#load('ultisnips', 'YouCompleteMe')
+                     \| autocmd! load_us_ycm
+augroup END
 nnoremap <Leader>jd :YcmCompleter GoTo<CR>
 let g:acp_enableAtStartup = 0
 " enable completion from tags
@@ -185,59 +227,141 @@ autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 set completeopt-=preview
 
-let g:include_path=":../include:./include:./tinyxml"
-let g:compile_flag="-D_LINUX_"
-let g:cpp_compiler="/usr/bin/g++"
-let g:enable_warning=1
-let g:cpp_compiler="LANG=C g++ -Wall"
+
+" ------------------------------------------------
+" For gutentags
+" ------------------------------------------------
+set tags=./.tags;,.tags
+" gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
+let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
+" 所生成的数据文件的名称
+let g:gutentags_ctags_tagfile = '.tags'
+" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
+let s:vim_tags = expand('~/.cache/tags')
+let g:gutentags_cache_dir = s:vim_tags
+" 配置 ctags 的参数
+let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
+let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
+let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
 
-let g:airline_left_sep=''
-let g:airline_right_sep=''
+" ------------------------------------------------
+" For Signify see :help Signify
+" ------------------------------------------------
+let g:signify_disable_by_default=1
+nmap <leader>se :SignifyEnable<CR>
+nmap <leader>st :SignifyToggle<CR>
+nmap <leader>sd :SignifyDiff<CR>
 
-let g:ctrlp_working_path_mode = 'ra'
-nnoremap <silent> <D-t> :CtrlP<CR>
-nnoremap <silent> <D-r> :CtrlPMRU<CR>
-let g:ctrlp_custom_ignore = {
-      \ 'dir':  '\.git$\|\.hg$\|\.svn$',
-      \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
-if executable('ag')
-    let s:ctrlp_fallback = 'ag %s --nocolor -l -g ""'
-elseif executable('ack-grep')
-    let s:ctrlp_fallback = 'ack-grep %s --nocolor -f'
-elseif executable('ack')
-    let s:ctrlp_fallback = 'ack %s --nocolor -f'
-else
-    let s:ctrlp_fallback = 'find %s -type f'
-endif
-if exists("g:ctrlp_user_command")
-    unlet g:ctrlp_user_command
-endif
-let g:ctrlp_user_command = {
-    \ 'types': {
-    \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
-    \ 2: ['.hg', 'hg --cwd %s locate -I .'],
-    \ },
-    \ 'fallback': s:ctrlp_fallback
-    \ }
-let g:ctrlp_extensions = ['funky']
-nnoremap <Leader>fu :CtrlPFunky<Cr>
 
-set pastetoggle=<F4>
-nnoremap Y y$
-noremap j gj
-noremap k gk
-vnoremap < <gv
-vnoremap > >gv
-nmap <silent> <leader>/ :nohlsearch<CR>
-cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
-map <leader>ew :e %%
-map <leader>es :sp %%
-map <leader>ev :vsp %%
-map <leader>et :tabe %%
+" ------------------------------------------------
+" For LeaderF see https://github.com/Yggdroot/LeaderF/blob/master/doc/leaderf.txt#L189-L349
+" ------------------------------------------------
+let g:Lf_WildIgnore = {
+            \ 'dir': ['.svn','.git','.hg'],
+            \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+            \}
+let g:Lf_MruFileExclude = ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
+" let g:Lf_WindowHeight = 0.33
+let g:Lf_Ctags = "/usr/local/bin/ctags"
+let g:Lf_WorkingDirectoryMode = 'Ac'
+let g:Lf_HideHelp = 1
+let g:Lf_ExternalCommand = 'find "%s" -type f'
+let g:Lf_CtagsFuncOpts = {
+            \ 'c': '--c-kinds=fp',
+            \ 'rust': '--rust-kinds=f',
+            \ }
+let g:Lf_ShortcutF = '<C-P>'
+map <leader>fm :LeaderfMru<CR>
+map <leader>ff :LeaderfFunction<CR>
+map <leader>fw :LeaderfLine<CR>
+" search word under cursor, the pattern is treated as regex, and enter normal mode directly
+map <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
+" search word under cursor, the pattern is treated as regex,
+" append the result to previous search results.
+noremap <C-G> :<C-U><C-R>=printf("Leaderf! rg --append -e %s ", expand("<cword>"))<CR>
+" search word under cursor literally only in current buffer
+noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg -F --current-buffer -e %s ", expand("<cword>"))<CR>
+" search visually selected text literally, don't quit LeaderF after accepting an entry
+xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F --stayOpen -e %s ", leaderf#Rg#visual())<CR>
+" recall last search. If the result window is closed, reopen it.
+noremap go :<C-U>Leaderf! rg --stayOpen --recall<CR>
+
+" For LeetCode
+nnoremap <leader>ll :LeetCodeList<cr>
+nnoremap <leader>lt :LeetCodeTest<cr>
+nnoremap <leader>ls :LeetCodeSubmit<cr>
+nnoremap <leader>li :LeetCodeSignIn<cr>
+
+
+" ------------------------------------------------
+" For Others
+" ------------------------------------------------
 nnoremap <C-S-L> :vertical resize +3<CR>  " 行动分屏窗口的大小，以左上角为参考hjkl
 nnoremap <C-S-H> :vertical resize -3<CR>
 nnoremap <C-S-J> :resize +3<CR>
 nnoremap <C-S-K> :resize -3<CR>
-nnoremap <leader>lc :cclose<bar>lclose<cr> " 关闭quickfix窗口
-au BufRead *.py map <buffer> <F5> :w<CR>:!/usr/bin/env python % <CR>
+nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
+nnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>
+nnoremap [<space>  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
+nnoremap ]<space>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
+nnoremap Y y$
+noremap j gj
+noremap k gk
+nmap <silent> <leader>d <Plug>DashSearch
+
+nmap <silent> <leader>/ :nohlsearch<CR>
+nmap <leader>ew :e %%
+nmap <leader>es :sp %%
+nmap <leader>ev :vsp %%
+nmap <leader>et :tabe %%
+nmap <leader>jj :%!python -m json.tool<CR>
+
+vnoremap < <gv
+vnoremap > >gv
+
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+
+
+" let g:rehash256 = 1
+" colorscheme dracula
+" highlight Normal ctermbg=None
+
+
+let g:rehash256 = 1
+colorscheme gruvbox
+highlight Normal ctermbg=None
+
+" let g:rehash256 = 1
+" colorscheme monokai
+" highlight Normal ctermbg=None
+
+" let g:rehash256 = 1
+" let g:lucius_style="dark"
+" let g:lucius_contrast="high"
+" colorscheme lucius
+" highlight Normal ctermbg=None
+
+" let g:rehash256 = 1
+" let g:molokai_original = 1
+" colorscheme molokai
+" highlight Normal ctermbg=None
+
+" colorscheme space_vim_theme
+" highlight Normal ctermbg=None
+
+" ------------------------------------------------
+" For recommand and suggestion
+" ------------------------------------------------
+" Recommand install neovim
+" brew install neovim
+" pip3 install neovim --upgrade
+" ln -s ~/.vim ~/.config/nvim
+" ln -s ~/.vimrc ~/.config/nvim/init.vim
+" alias vim='nvim'
+" alias vi='nvim'
+" alias v='nvim'
+
+" see http://www.skywind.me/blog/archives/2084
+" https://github.com/wsdjeg/vim-galore-zh_cn
+" ----------------END---------------------------------
