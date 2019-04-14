@@ -5,10 +5,7 @@ Plug 'junegunn/vim-plug'
 
 " For beautiful themes
 Plug 'bling/vim-airline'
-Plug 'crusoexia/vim-dracula'
-Plug 'jonathanfilip/vim-lucius'
-Plug 'tomasr/molokai'
-Plug 'sickill/vim-monokai'
+" Plug 'crusoexia/vim-dracula'
 Plug 'morhetz/gruvbox'
 
 " For fast automatic edit or move
@@ -34,6 +31,9 @@ Plug 'scrooloose/nerdtree' ", { 'on':  'NERDTreeToggle' }
 Plug 'mhinz/vim-signify' " Just for git
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
+Plug 'majutsushi/tagbar'
+Plug 'lfv89/vim-interestingwords'
+" Plug 'lyokha/vim-xkbswitch'
 
 " For supporting language
 Plug 'pangloss/vim-javascript'
@@ -66,6 +66,8 @@ else
   let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
   let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
 endif
+" Refrence to https://zhuanlan.zhihu.com/p/49411224  解决中文输入问题
+" let g:XkbSwitchEnabled = 1
 
 if has('clipboard')
   if has('unnamedplus')  " When possible use + register for copy-paste
@@ -154,10 +156,11 @@ let g:nerdtree_tabs_open_on_gui_startup=0
 let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
 let NERDTreeChDirMode=0
-let NERDTreeQuitOnOpen=1
+let NERDTreeQuitOnOpen=0
 let NERDTreeMouseMode=2
 let NERDTreeShowHidden=0
 let NERDTreeKeepTreeInNewTab=1
+autocmd BufEnter * if 0 == len(filter(range(1, winnr('$')), 'empty(getbufvar(winbufnr(v:val), "&bt"))')) | qa! | endif
 autocmd FileType apache setlocal commentstring=#\ %s
 
 
@@ -181,6 +184,9 @@ set foldmethod=indent
 set foldopen+=jump
 set foldlevelstart=99
 nnoremap <space> za " zr zR zm zM
+inoremap <leader>w <Esc>:w<cr>
+noremap <leader>w :w<cr>
+cnoremap w!! w !sudo tee % >/dev/null
 
 nmap zuz <Plug>(FastFoldUpdate)
 let g:fastfold_savehook = 1
@@ -253,6 +259,8 @@ nmap <leader>se :SignifyEnable<CR>
 nmap <leader>st :SignifyToggle<CR>
 nmap <leader>sd :SignifyDiff<CR>
 
+" For startify
+let g:startify_change_to_dir = 0
 
 " ------------------------------------------------
 " For LeaderF see https://github.com/Yggdroot/LeaderF/blob/master/doc/leaderf.txt#L189-L349
@@ -287,6 +295,10 @@ xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F --stayOpen -e %s ", leaderf#Rg#vi
 " recall last search. If the result window is closed, reopen it.
 noremap go :<C-U>Leaderf! rg --stayOpen --recall<CR>
 
+" For tagbar
+inoremap <leader>tt <Esc>:TagbarToggle<CR>
+nnoremap <leader>tt :TagbarToggle<CR>
+
 " For LeetCode
 nnoremap <leader>ll :LeetCodeList<cr>
 nnoremap <leader>lt :LeetCodeTest<cr>
@@ -315,40 +327,25 @@ nmap <leader>ew :e %%
 nmap <leader>es :sp %%
 nmap <leader>ev :vsp %%
 nmap <leader>et :tabe %%
-nmap <leader>jj :%!python -m json.tool<CR>
+nmap <leader>js :%!python -m json.tool<CR>
+com! FormatJSONPy2Utf8 %!python -c "import json, sys, collections; print json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), ensure_ascii=False, indent=2)"
+noremap <leader>hh <C-w>h
+noremap <leader>jj  <C-w>j
+noremap <leader>kk <C-w>k
+noremap <leader>ll <C-w>l
 
 vnoremap < <gv
 vnoremap > >gv
 
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 
-
 " let g:rehash256 = 1
 " colorscheme dracula
 " highlight Normal ctermbg=None
 
-
 let g:rehash256 = 1
 colorscheme gruvbox
 highlight Normal ctermbg=None
-
-" let g:rehash256 = 1
-" colorscheme monokai
-" highlight Normal ctermbg=None
-
-" let g:rehash256 = 1
-" let g:lucius_style="dark"
-" let g:lucius_contrast="high"
-" colorscheme lucius
-" highlight Normal ctermbg=None
-
-" let g:rehash256 = 1
-" let g:molokai_original = 1
-" colorscheme molokai
-" highlight Normal ctermbg=None
-
-" colorscheme space_vim_theme
-" highlight Normal ctermbg=None
 
 " ------------------------------------------------
 " For recommand and suggestion
