@@ -20,6 +20,21 @@ Some useful-tools which run in MacOS
         - WiFi
         - Audio Recording
         - Display Brightness
+        - Search
+        - Add Reminders
+        - Audio Recording
+        - Caffeinate
+        - Colors
+        - Faker
+        - IP Address
+        - Kill Process
+        - Launch in 3 browsers
+        - Mail
+        - NewFile
+        - Show Desktop
+        - Sublime Text
+        - TerminalFinder
+
 - Item2 + zsh + oh-my-zsh + autosuggestion + autojump + themes(dracula)
 - [Neovim](./tools/vim.md) (for coding Python or editing text)
 - [git](./tools/git.md)
@@ -32,14 +47,13 @@ Some useful-tools which run in MacOS
     - octotree (github, gitlab project目录树)
     - RSS Feed Reader (RSS 管理)
     - Vimium (使用vim方式操作网页)
-    - Vanilla Dashboard(新标签页面，非常炫酷)
-    - 1Password (管理一个密码，其它的由它保管)
+    - Momentum(新标签页面，非常炫酷)
+    - LastPass(管理一个密码，其它的由它保管)
     - Fireshot (截图)
     - chrono (下载管理)
     - Loom (Video Recorder)
     - Tampermonkey (浏览器开挂)
     - WhatRuns (网站分析)
-- 1 Password (for password manage)
 - Karabiner (for remapping keys)
 - Moom (for resizing and removing windows)
 - Fork (for GUI git)
@@ -47,6 +61,10 @@ Some useful-tools which run in MacOS
 - Zoom (for meeting)
 - Dash (for documentation)
 - NetWorker (for network status)
+- Caffeine (for NOT sleeping)
+- TeamViewer (for remote controling and helping)
+- Typore (for editing MarkDown documentation)
+- CheatSheet (for showing shortcuts quickly)
 - Outline, ShadowsocksX, Doutai (for overing wall)
 
 ## Normal Cmds
@@ -60,5 +78,3 @@ Some useful-tools which run in MacOS
 - ag
 - grep
 - Perl
-
-
