@@ -4,7 +4,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'junegunn/vim-plug'
 
 " For beautiful themes
-Plug 'bling/vim-airline'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 Plug 'crusoexia/vim-dracula'
 Plug 'morhetz/gruvbox'
 
@@ -33,7 +34,6 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' }
 Plug 'majutsushi/tagbar'
 Plug 'lfv89/vim-interestingwords'
-" Plug 'lyokha/vim-xkbswitch'
 
 " For supporting language
 Plug 'pangloss/vim-javascript'
@@ -66,8 +66,6 @@ else
   let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
   let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
 endif
-" Refrence to https://zhuanlan.zhihu.com/p/49411224  解决中文输入问题
-" let g:XkbSwitchEnabled = 1
 
 if has('clipboard')
   if has('unnamedplus')  " When possible use + register for copy-paste
@@ -147,6 +145,12 @@ set mousehide            " "输入隐藏鼠标
 set ttimeout             " 完整的按键码的超时时间
 set ttimeoutlen=100
 
+
+" ------------------------------------------------
+" For vim-airline
+" ------------------------------------------------
+" let g:airline#extensions#tabline#enabled = 1
+
 " ------------------------------------------------
 " For NerdTree
 " ------------------------------------------------
@@ -173,8 +177,8 @@ let g:pymode_lint_checkers = ['pyflakes', 'pep8']
 let g:pymode_rope = 0
 let g:pymode_folding = 0
 " temp change it to 120
-let g:pymode_options_max_line_length = 120
-let g:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_length}
+" let g:pymode_options_max_line_length = 120
+" let g:pymode_lint_options_pep8 = {'max_line_length': g:pymode_options_max_line_length}
 let g:pymode_options_colorcolumn = 1
 noremap <leader>pe :PymodeLintAuto<CR>
 
@@ -351,6 +355,7 @@ cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 " highlight Normal ctermbg=None
 
 let g:rehash256 = 1
+let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 highlight Normal ctermbg=None
 
