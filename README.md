@@ -1,8 +1,8 @@
 # Useful-tools
-Some useful-tools which run in MacOS
+Some useful-tools which run on MacOS
 
 ## MacOS Apps
-- Alfred3
+- [Alfred3](https://github.com/hjtianvip/alfred3-workflows)
     - Features
         - Web Search
         - Clipboard
@@ -21,13 +21,10 @@ Some useful-tools which run in MacOS
         - Audio Recording
         - Display Brightness
         - Search
-        - Add Reminders
-        - Audio Recording
         - Caffeinate
         - Colors
         - Faker
         - IP Address
-        - Kill Process
         - Launch in 3 browsers
         - Mail
         - NewFile
@@ -35,7 +32,7 @@ Some useful-tools which run in MacOS
         - Sublime Text
         - TerminalFinder
 
-- Item2 + zsh + oh-my-zsh + autosuggestion + autojump + themes(dracula)
+- Item2 + zsh + oh-my-zsh + autosuggestion + autojump + themes
 - [Neovim](./tools/vim.md) (for coding Python or editing text)
 - [git](./tools/git.md)
 - [docker](./tools/docker.md)
@@ -65,7 +62,11 @@ Some useful-tools which run in MacOS
 - TeamViewer (for remote controling and helping)
 - Typore (for editing MarkDown documentation)
 - CheatSheet (for showing shortcuts quickly)
-- Outline, ShadowsocksX, Doutai (for overing wall)
+- LICEcap (for recording gif)
+- Keycastr (for recording keyword)
+- The Unarchiver (for unraring unziping \*.zip \*.rar files)
+- Docker-CE (for running docker container)
+- Outline, ShadowsocksX, Doutai (for surfing the Internet scientifically)
 
 ## Normal Cmds
 - ps
