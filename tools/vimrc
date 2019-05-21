@@ -39,6 +39,7 @@ Plug 'lfv89/vim-interestingwords'
 Plug 'pangloss/vim-javascript'
 Plug 'rizzatti/dash.vim'
 Plug 'python-mode/python-mode', { 'branch': 'develop' }
+Plug 'Yggdroot/indentLine'
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'iandingx/leetcode.vim'
