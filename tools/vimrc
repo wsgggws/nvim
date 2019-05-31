@@ -43,6 +43,7 @@ Plug 'Yggdroot/indentLine'
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'iandingx/leetcode.vim'
+Plug 'joonty/vim-do'
 
 call plug#end()
 
@@ -113,6 +114,9 @@ set noswapfile
 set undofile
 set undodir=~/.vim/.undo//
 set autochdir
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+set termencoding=utf-8
+set encoding=utf-8
 
 set nu
 set title                " change the terminal's title
@@ -150,7 +154,8 @@ set ttimeoutlen=100
 " ------------------------------------------------
 " For vim-airline
 " ------------------------------------------------
-" let g:airline#extensions#tabline#enabled = 1
+let g:airline_left_sep=''
+let g:airline_right_sep=''
 
 " ------------------------------------------------
 " For NerdTree
@@ -277,14 +282,14 @@ let g:startify_change_to_dir = 0
 " ------------------------------------------------
 " For LeaderF see https://github.com/Yggdroot/LeaderF/blob/master/doc/leaderf.txt#L189-L349
 " ------------------------------------------------
+let g:Lf_RootMarker = ['.git', '.hg', '.svn', '~/']
 let g:Lf_WildIgnore = {
-            \ 'dir': ['.svn','.git','.hg'],
+            \ 'dir': ['.svn','.git','.hg', '__pycache__'],
             \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
             \}
 let g:Lf_MruFileExclude = ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
-" let g:Lf_WindowHeight = 0.33
 let g:Lf_Ctags = "/usr/local/bin/ctags"
-let g:Lf_WorkingDirectoryMode = 'Ac'
+let g:Lf_WorkingDirectoryMode = 'A'
 let g:Lf_HideHelp = 1
 let g:Lf_ExternalCommand = 'find "%s" -type f'
 let g:Lf_CtagsFuncOpts = {
@@ -306,6 +311,9 @@ noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg -F --current-buffer -e %s ", expan
 xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F --stayOpen -e %s ", leaderf#Rg#visual())<CR>
 " recall last search. If the result window is closed, reopen it.
 noremap go :<C-U>Leaderf! rg --stayOpen --recall<CR>
+highlight Lf_hl_match gui=bold guifg=Blue cterm=bold ctermfg=21
+highlight Lf_hl_matchRefine  gui=bold guifg=Magenta cterm=bold ctermfg=201
+
 
 " For tagbar
 " inoremap <leader>tt <Esc>:TagbarToggle<CR>
