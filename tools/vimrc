@@ -21,6 +21,8 @@ Plug 'honza/vim-snippets'  " ctrl+j, ctrl+k, Esc
 Plug 'tpope/vim-commentary'
 Plug 'w0rp/ale'
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'}
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " For tools
 Plug 'scrooloose/nerdtree' ", { 'on':  'NERDTreeToggle' }
@@ -251,11 +253,8 @@ let g:python_folding = 1
 
 
 nnoremap <space> za " zr zR zm zM
-" inoremap <leader>w <Esc>:w<cr>
 noremap <leader>w :w<cr>
-" inoremap <leader>wq <Esc>:wq<cr>
 noremap <leader>wq :wq<cr>
-" inoremap <leader>qu <Esc>:q!<cr>
 noremap <leader>qu :q!<cr>
 cnoremap w!! w !sudo tee % >/dev/null
 
@@ -328,8 +327,12 @@ let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
 
 " For tagbar
-" inoremap <leader>tt <Esc>:TagbarToggle<CR>
 nnoremap <leader>tt :TagbarToggle<CR>
+
+"For ultisnips and coc-ultisnips
+let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " For LeetCode
 nnoremap <leader>ll :LeetCodeList<cr>
