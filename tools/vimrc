@@ -10,6 +10,8 @@ Plug 'mhinz/vim-startify'
 Plug 'Yggdroot/indentLine'
 Plug 'Konfekt/FastFold'
 Plug 'morhetz/gruvbox'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'w0ng/vim-hybrid'
 
 " For fast automatic edit or move
 Plug 'jiangmiao/auto-pairs'
@@ -35,7 +37,6 @@ Plug 'brooth/far.vim'
 Plug 'rizzatti/dash.vim'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'fatih/vim-go'
-Plug 'iandingx/leetcode.vim'
 
 call plug#end()
 
@@ -128,6 +129,7 @@ set sidescrolloff=15
 set sidescroll=1
 set cmdheight=2          " 命令行（在状态行下）的高度，默认为1，这里是2
 set laststatus=2         " 总是显示状态行
+au BufRead,BufNewFile *.py set cc=80
 
 set autoread
 set autowrite       " Automatically save before commands like :next and :make
@@ -199,7 +201,7 @@ let g:ale_linters_explicit = 1 "除g:ale_linters指定，其他不可用
 let g:ale_linters = {
 \   'cpp': ['cppcheck','clang','gcc'],
 \   'c': ['cppcheck','clang', 'gcc'],
-\   'python': ['pylint'],
+\   'python': ['flake8'],
 \   'bash': ['shellcheck'],
 \   'go': ['golint'],
 \   'javascript': ['eslint'],
@@ -209,23 +211,26 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
 \}
-let g:ale_sign_column_always = 1
-let g:ale_completion_delay = 500
+let g:ale_set_hightlights = 0
+let g:ale_change_sign_column_color = 0
 let g:ale_echo_delay = 20
 let g:ale_lint_delay = 500
 let g:ale_echo_msg_format = '[%linter%] %code: %%s'
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_enter = 0
-let g:airline#extensions#ale#enabled = 1
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 1 "打开quitfix对话框
 let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
 let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
 let g:ale_c_cppcheck_options = ''
 let g:ale_cpp_cppcheck_options = ''
-let g:ale_sign_error = "EE"
-let g:ale_sign_warning = "WW"
-nnoremap <leader>pe :ALEFix<cr>
+nmap sp <Plug>(ale_previous_wrap)
+nmap sn <Plug>(ale_next_wrap)
+"<Leader>lc 触发/关闭语法检查
+nnoremap <leader>lc :ALEToggle<CR>
+"<Leader>d查看错误或警告的详细信息
+nnoremap <leader>ld :ALEDetail<CR>
+nnoremap <leader>lf :ALEFix<cr>
 
 " ------------------------------------------------
 " For Fastflod
@@ -335,10 +340,10 @@ let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " For LeetCode
-nnoremap <leader>ll :LeetCodeList<cr>
-nnoremap <leader>lt :LeetCodeTest<cr>
-nnoremap <leader>ls :LeetCodeSubmit<cr>
-nnoremap <leader>li :LeetCodeSignIn<cr>
+" nnoremap <leader>ll :LeetCodeList<cr>
+" nnoremap <leader>lt :LeetCodeTest<cr>
+" nnoremap <leader>ls :LeetCodeSubmit<cr>
+" nnoremap <leader>li :LeetCodeSignIn<cr>
 
 
 " ------------------------------------------------
@@ -375,13 +380,17 @@ vnoremap > >gv
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 
 " let g:rehash256 = 1
-" colorscheme dracula
+colorscheme dracula
+highlight Normal ctermbg=None
+
+" set background=dark
+" colorscheme hybrid
 " highlight Normal ctermbg=None
 
-let g:rehash256 = 1
-let g:gruvbox_contrast_dark = 'hard'
-colorscheme gruvbox
-highlight Normal ctermbg=None
+" let g:rehash256 = 1
+" let g:gruvbox_contrast_dark = 'hard'
+" colorscheme gruvbox
+" highlight Normal ctermbg=None
 
 " ------------------------------------------------
 " For recommand and suggestion
