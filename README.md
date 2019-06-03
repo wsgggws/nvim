@@ -1,81 +1,79 @@
-# Useful-tools
-Some useful-tools which run on MacOS
+# nvim-plugs
+Some vim plugs on neovim and its show on MacOS
 
-## MacOS Apps
-- [Alfred3](https://github.com/hjtianvip/alfred3-workflows)
-    - Features
-        - Web Search
-        - Clipboard
-        - Snippets
-        - System Control
-        - Terminal Control
-    - Workflows
-        - GitHub
-        - Gitmoji
-        - YouDao
-        - Stack Overflow
-        - Chrome Bookmarks
-        - V2EX
-        - Dash
-        - WiFi
-        - Audio Recording
-        - Display Brightness
-        - Search
-        - Caffeinate
-        - Colors
-        - Faker
-        - IP Address
-        - Launch in 3 browsers
-        - Mail
-        - NewFile
-        - Show Desktop
-        - Sublime Text
-        - TerminalFinder
 
-- Item2 + zsh + oh-my-zsh + autosuggestion + autojump + themes
-- [Neovim](./tools/vim.md) (for coding Python or editing text)
-- [git](./tools/git.md)
-- [docker](./tools/docker.md)
-- Google Chrome (for search and over wall)
-    - Adblock (广告过滤)
-    - Googel translate (谷歌翻译)
-    - Checker Plus for Gmail (Gmail收件箱)
-    - JSONView (JSON格式化查看)
-    - octotree (github, gitlab project目录树)
-    - RSS Feed Reader (RSS 管理)
-    - Vimium (使用vim方式操作网页)
-    - Momentum(新标签页面，非常炫酷)
-    - LastPass(管理一个密码，其它的由它保管)
-    - Fireshot (截图)
-    - chrono (下载管理)
-    - Loom (Video Recorder)
-    - Tampermonkey (浏览器开挂)
-    - WhatRuns (网站分析)
-- Karabiner (for remapping keys)
-- Moom (for resizing and removing windows)
-- Fork (for GUI git)
-- Postmen (for requests)
-- Zoom (for meeting)
-- Dash (for documentation)
-- NetWorker (for network status)
-- Caffeine (for NOT sleeping)
-- TeamViewer (for remote controling and helping)
-- Typore (for editing MarkDown documentation)
-- CheatSheet (for showing shortcuts quickly)
-- LICEcap (for recording gif)
-- Keycastr (for recording keyword)
-- The Unarchiver (for unraring unziping \*.zip \*.rar files)
-- Docker-CE (for running docker container)
-- Outline, ShadowsocksX, Doutai (for surfing the Internet scientifically)
+## Purpose
+I will share vimrc file, then talk and show some plugs about nvim on MacOS, so that it look likes a compute language(Python) IDE.
 
-## Normal Cmds
-- ps
-- htop
-- find
-- xargs
-- ccat
-- sed
-- awk
-- ag
-- grep
-- Perl
+## Plugs List
+```
+call plug#begin('~/.vim/plugged')
+
+Plug 'junegunn/vim-plug'
+
+" About themes
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'mhinz/vim-startify' " just command vim
+Plug 'Yggdroot/indentLine'
+Plug 'Konfekt/FastFold'
+Plug 'morhetz/gruvbox'
+Plug 'dracula/vim', { 'as': 'dracula' }
+Plug 'w0ng/vim-hybrid'
+Plug 'tomasr/molokai'
+
+" About efficiency
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'  "cs.., ds., ys..
+Plug 'tpope/vim-repeat' " 使得'.' 操作能重复上次的 cs.., ds., ys..
+Plug 'easymotion/vim-easymotion'  " <leader><leader>f,t <leader><leader>j,k,e,w <leader><leader>s
+Plug 'terryma/vim-multiple-cursors'  " ctrl+n, ctrl+p, ctrl+x, Esc
+Plug 'honza/vim-snippets'  " ctrl+j, ctrl+k, Esc
+Plug 'SirVer/ultisnips' " 代码片段 配合vim-snippets and coc-nvim
+Plug 'tpope/vim-commentary' " gcc 注释单行，gc 注释选中的行
+Plug 'w0rp/ale' " 代码静态检查，代码格式修正
+Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'} " 代码补全
+Plug 'fatih/vim-go' " 写go语言各种操作...
+
+" About assistance
+Plug 'scrooloose/nerdtree' " 代码目录树，及结点的增删改查
+Plug 'mhinz/vim-signify' " Just for git, <leader>se <leader>sd <leader>st
+Plug 'ludovicchabant/vim-gutentags' "ctag
+Plug 'Yggdroot/LeaderF', { 'do': './install.sh' } " 异步文件糊糊搜索及类似文本搜索与跳转
+Plug 'majutsushi/tagbar' " 代码函数变量预览
+Plug 'lfv89/vim-interestingwords' " 高亮感兴趣的当前单词
+Plug 'brooth/far.vim' " 批量修改
+Plug 'rizzatti/dash.vim' " 静态文档工具Dash查询当前单词
+Plug 'iamcco/markdown-preview.vim' " Vim写MarkDown并在浏览器同步并查看文档
+Plug 'iandingx/leetcode.vim' " vim 登录leetcode愉快的刷题吧
+
+call plug#end()
+```
+
+## Install Neovim
+See [Neovim Install](https://github.com/neovim/neovim/wiki/Installing-Neovim)
+```
+brew install --HEAD neovim
+pip3 install neovim --upgrade
+ln -s ~/.vim ~/.config/nvim
+ln -s ~/.vimrc ~/.config/nvim/init.vim
+alias vim='nvim'
+alias vi='nvim'
+alias v='nvim'
+```
+
+## Install dependence software or python package
+- ctags or universal-ctags # For install plug targar, `brew install ctags` or `brew install --HEAD universal-ctags/universal-ctags/universal-ctags`
+- nodejs, yarn # For installing plug coc-nvim, `brew install nodejs` and  `brew install yarn`
+- flake8, pylint # for checking python code , `pip3 install flake8 pylint`
+- autopepe8, isort, black, yaps # For fixing python code to meet PEP8, `pip3 install autopepe8 isort black yapf`
+
+## Install Plugs
+- curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+- [vimrc](./vimrc) # cp vimrc ~/.vimrc
+- :PlugInstall
+- :CocInstall coc-python # coc-gocode ...
+
+## Show it
+![Show it](./gifs/nvim.gif)
