@@ -12,6 +12,7 @@ Plug 'Konfekt/FastFold'
 Plug 'morhetz/gruvbox'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'w0ng/vim-hybrid'
+Plug 'tomasr/molokai'
 
 " For fast automatic edit or move
 Plug 'jiangmiao/auto-pairs'
@@ -201,18 +202,20 @@ let g:ale_linters_explicit = 1 "除g:ale_linters指定，其他不可用
 let g:ale_linters = {
 \   'cpp': ['cppcheck','clang','gcc'],
 \   'c': ['cppcheck','clang', 'gcc'],
-\   'python': ['flake8'],
+\   'python': ['flake8', 'pylint'],
 \   'bash': ['shellcheck'],
 \   'go': ['golint'],
 \   'javascript': ['eslint'],
 \}
+let g:ale_linters_ignore = {'python': ['pylint']}
 let g:ale_fixers = {
 \   'python': ['autopep8', 'black', 'isort', 'yapf'],
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
 \}
-let g:ale_set_hightlights = 0
-let g:ale_change_sign_column_color = 0
+let g:ale_set_hightlights = 1
+let g:ale_change_sign_column_color = 1
+let g:ale_linters_explicit = 1
 let g:ale_echo_delay = 20
 let g:ale_lint_delay = 500
 let g:ale_echo_msg_format = '[%linter%] %code: %%s'
@@ -222,6 +225,7 @@ let g:ale_set_quickfix = 1
 let g:ale_open_list = 1 "打开quitfix对话框
 let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
 let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
+let g:airline#extensions#ale#enabled = 1
 let g:ale_c_cppcheck_options = ''
 let g:ale_cpp_cppcheck_options = ''
 nmap sp <Plug>(ale_previous_wrap)
@@ -229,8 +233,7 @@ nmap sn <Plug>(ale_next_wrap)
 "<Leader>lc 触发/关闭语法检查
 nnoremap <leader>lc :ALEToggle<CR>
 "<Leader>d查看错误或警告的详细信息
-nnoremap <leader>ld :ALEDetail<CR>
-nnoremap <leader>lf :ALEFix<cr>
+nnoremap <leader>pe :ALEFix<cr>
 
 " ------------------------------------------------
 " For Fastflod
@@ -379,9 +382,15 @@ vnoremap > >gv
 
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 
-" let g:rehash256 = 1
+let g:rehash256 = 1
 colorscheme dracula
 highlight Normal ctermbg=None
+
+" let g:rehash256 = 1
+" let g:molokai_original = 1
+" colorscheme molokai
+" highlight Normal ctermbg=None
+
 
 " set background=dark
 " colorscheme hybrid
