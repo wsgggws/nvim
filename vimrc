@@ -36,7 +36,7 @@ Plug 'lfv89/vim-interestingwords' " 高亮感兴趣的当前单词
 Plug 'brooth/far.vim' " 批量修改
 Plug 'rizzatti/dash.vim' " 静态文档工具Dash查询当前单词
 Plug 'iamcco/markdown-preview.vim' " Vim写MarkDown并在浏览器同步并查看文档
-Plug 'iandingx/leetcode.vim' " vim ‰πüÂèØ‰ª•ÁôªÂΩïleetcodeÊù•Âà∑È¢ò
+Plug 'iandingx/leetcode.vim' " Vim愉快地在leetcode刷题吧
 
 call plug#end()
 
@@ -45,12 +45,15 @@ call plug#end()
 " ------------------------------------------------
 filetype indent on
 scriptencoding utf-8
-let mapleader=","
+let mapleader=","  " 使用','替换默认的'\'作为leader键
 let g:mapleader=","
-map <Leader>v :so ~/.vimrc<CR>
+map <Leader>v :so ~/.vimrc<CR> 
 
 " ------------------------------------------------
-" For Beautiful
+" For brightly
+" 在Insert, Visula, Normal模式下有不同的光标
+" 使用系统粘贴板替换neovim的unnamepdplus
+" 重新进入vim后重新回到上次光标位置
 " ------------------------------------------------
 if empty($TMUX)
   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
@@ -78,6 +81,7 @@ autocmd BufReadPost *
 
 " ------------------------------------------------
 " For handsome
+" 有点小多，直接拿来用
 " ------------------------------------------------
 set complete-=i   " disable scanning included files
 set complete-=t   " disable searching tags
@@ -147,9 +151,12 @@ set ttimeoutlen=100
 
 " ------------------------------------------------
 " For NerdTree
+" ,te  打开或者关闭目录树, 使用m键可以 增删改查 文件目录结点：）
+" ,gt 快速定位该文件所有目录树结点
+" more see :help NerdTree
 " ------------------------------------------------
-nmap <leader>te :NERDTreeToggle<CR> " t, T, s,gs, i,gi, p, P, I, q, <ctrl>+w+w, m, :help
-nmap <leader>gt :NERDTreeFind<CR>
+nnoremap <leader>te :NERDTreeToggle<CR> " t, T, s,gs, i,gi, p, P, I, q, <ctrl>+w+w, m, :help
+nnoremap <leader>gt :NERDTreeFind<CR>
 let g:nerdtree_tabs_open_on_gui_startup=0
 let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
@@ -162,7 +169,13 @@ autocmd BufEnter * if 0 == len(filter(range(1, winnr('$')), 'empty(getbufvar(win
 autocmd FileType apache setlocal commentstring=#\ %s
 
 
-" For coc
+" ------------------------------------------------
+" For coc.nvim
+" Ctrl+n, <TAB>, <S-TAB> 进行显示
+" normal下 gd, gy, gi, gr 分别定位到definition, ...
+" normal 下 K 查阅documentation
+" more see :help coc
+" ------------------------------------------------
 set hidden
 set nobackup
 set nowritebackup
@@ -170,10 +183,11 @@ set cmdheight=2
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
+set completeopt-=preview
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 function! s:check_back_space() abort
   let col = col('.') - 1
@@ -181,7 +195,7 @@ function! s:check_back_space() abort
 endfunction
 
 " Remap keys for gotos
-nmap <silent> [d <Plug>(coc-definition)
+nmap <silent> gd <Plug>(coc-definition)
 nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
@@ -196,7 +210,13 @@ function! s:show_documentation()
 endfunction
 
 
+" ------------------------------------------------
 " For ale
+" 使用 flake8 做python3的代码检查，pylint检查太严格
+" 使用 autopep8, yapf等做代码修正，快捷键定义为 ,pe
+" normal下sp, sn跳转到上一个，下一个错误，lc关闭或者打开错误列表
+" more see :help ale
+" ------------------------------------------------
 let g:ale_linters_explicit = 1 "除g:ale_linters指定，其他不可用
 let g:ale_linters = {
 \   'cpp': ['cppcheck','clang','gcc'],
@@ -260,15 +280,6 @@ let g:php_folding = 1
 let g:python_folding = 1
 
 
-nnoremap <space> za " zr zR zm zM
-noremap <leader>w :w<cr>
-noremap <leader>wq :wq<cr>
-noremap <leader>qu :q!<cr>
-cnoremap w!! w !sudo tee % >/dev/null
-
-
-" set completeopt-=preview
-
 " ------------------------------------------------
 " For Signify see :help Signify
 " ------------------------------------------------
@@ -282,6 +293,13 @@ let g:startify_change_to_dir = 0
 
 " ------------------------------------------------
 " For LeaderF see https://github.com/Yggdroot/LeaderF/blob/master/doc/leaderf.txt#L189-L349
+" Ctrl+p 进行模糊搜索文件
+" ,fm 
+" ,ff 搜索函数，像targar效果一样
+" ,fw 搜索单词
+" ,b 搜索并打开已经打开过的文件
+" gf 在当前目录或者工程下搜索光标下的单词
+" more see :help leaderf
 " ------------------------------------------------
 let g:Lf_RootMarker = ['.git', '.hg', '.svn', '~/']
 let g:Lf_WildIgnore = {
@@ -317,6 +335,7 @@ highlight Lf_hl_matchRefine  gui=bold guifg=Magenta cterm=bold ctermfg=201
 
 " ------------------------------------------------
 " For gutentags
+" more see :help gutentags
 " ------------------------------------------------
 set tags=./.tags;,.tags
 let g:gutentags_modules = ['ctags', 'gtags_cscope']
@@ -334,66 +353,96 @@ let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
 let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
 
 
+" ------------------------------------------------
 " For tagbar
+" 使用 ,tt 打开或者关闭代码函数关键字等预览
+" more see :help tagbar
+" ------------------------------------------------
 nnoremap <leader>tt :TagbarToggle<CR>
 
-"For ultisnips and coc-ultisnips
+" ------------------------------------------------
+" For dash.vim
+" 使用 ,ds 在Dash中搜索当前光标下的关键字
+" more see :help dash
+" ------------------------------------------------
+nmap <silent> <leader>ds <Plug>DashSearch
+
+" ------------------------------------------------
+" For ultisnips and coc-ultisnips and vim-snippets
+" 使用Ctrl+j, Ctrl+k 作为snippets时的跳转键
+" more see :help ultisnips and :help vim-snippets
+" ------------------------------------------------
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 
 " ------------------------------------------------
-" For Others
+" For others shortcuts
 " ------------------------------------------------
+nnoremap <space> za " zr zR zm zM
+noremap <leader>w :w<cr>
+noremap <leader>wq :wq<cr>
+noremap <leader>qu :q!<cr>
+cnoremap w!! w !sudo tee % >/dev/null
+
 nnoremap <C-S-L> :vertical resize +3<CR>  " 行动分屏窗口的大小，以左上角为参考hjkl
 nnoremap <C-S-H> :vertical resize -3<CR>
 nnoremap <C-S-J> :resize +3<CR>
 nnoremap <C-S-K> :resize -3<CR>
-nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
-nnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>
-
-nnoremap [<space>  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
-nnoremap ]<space>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
-nnoremap Y y$
-noremap j gj
-noremap k gk
-nmap <silent> <leader>ds <Plug>DashSearch
-
-nmap <silent> <leader>/ :nohlsearch<CR>
-nmap <leader>ew :e %%
-nmap <leader>es :sp %%
-nmap <leader>ev :vsp %%
-nmap <leader>et :tabe %%
-com! FormatJSONPy2Utf8 %!python -c "import json, sys, collections; print json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), ensure_ascii=False, indent=2)"
 noremap <leader>hh <C-w>h
 noremap <leader>jj  <C-w>j
 noremap <leader>kk <C-w>k
 noremap <leader>ll <C-w>l
 
+nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
+nnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>
+nnoremap [<space>  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
+nnoremap ]<space>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
+nnoremap Y y$
+noremap j gj
+noremap k gk
+
 vnoremap < <gv
 vnoremap > >gv
+nmap <leader>ew :e %%
+nmap <leader>es :sp %%
+nmap <leader>ev :vsp %%
+nmap <leader>et :tabe %%
 
+nnoremap <silent> <leader>/ :nohlsearch<CR>
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+com! FormatJSONPy2Utf8 %!python -c "import json, sys, collections; print json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), ensure_ascii=False, indent=2)"
 
-let g:rehash256 = 1
-colorscheme dracula
-highlight Normal ctermbg=None
+
+" ------------------------------------------------
+" For themes
+" 如果主题等写成前面效果不一致，那就写到最后面吧
+" highlight Normal ctermbg=None 可以去除灰层
+" higtlight clear SignColumn 可以使得SignColumn颜色主题与使用主题一致
+" ------------------------------------------------
+" let g:rehash256 = 1
+" colorscheme dracula
+" highlight Normal ctermbg=None
+" highlight clear SignColumn
 
 " let g:rehash256 = 1
 " let g:molokai_original = 1
 " colorscheme molokai
 " highlight Normal ctermbg=None
-
+" highlight clear SignColumn
 
 " set background=dark
 " colorscheme hybrid
 " highlight Normal ctermbg=None
+" highlight clear SignColumn
 
-" let g:rehash256 = 1
-" let g:gruvbox_contrast_dark = 'hard'
-" colorscheme gruvbox
-" highlight Normal ctermbg=None
+let g:rehash256 = 1
+let g:gruvbox_contrast_dark = 'hard'
+colorscheme gruvbox
+highlight Normal ctermbg=None
+highlight clear SignColumn
+
 
 " ------------------------------------------------
 " For recommand and suggestion
@@ -409,4 +458,5 @@ highlight Normal ctermbg=None
 
 " see http://www.skywind.me/blog/archives/2084
 " https://github.com/wsdjeg/vim-galore-zh_cn
+" https://stackoverflow.com/questions/15277241/changing-vim-gutter-color for 'highlight clear SignColumn'
 " ----------------END---------------------------------
