@@ -166,7 +166,6 @@ let NERDTreeMouseMode=2
 let NERDTreeShowHidden=0
 let NERDTreeKeepTreeInNewTab=1
 autocmd BufEnter * if 0 == len(filter(range(1, winnr('$')), 'empty(getbufvar(winbufnr(v:val), "&bt"))')) | qa! | endif
-autocmd FileType apache setlocal commentstring=#\ %s
 
 
 " ------------------------------------------------
@@ -288,8 +287,16 @@ nnoremap <leader>se :SignifyEnable<CR>
 nnoremap <leader>st :SignifyToggle<CR>
 nnoremap <leader>sd :SignifyDiff<CR>
 
+" ------------------------------------------------
 " For startify
+" ------------------------------------------------
 let g:startify_change_to_dir = 0
+
+" ------------------------------------------------
+"  For commentary
+" ------------------------------------------------
+autocmd FileType apache setlocal commentstring=#\ %s
+
 
 " ------------------------------------------------
 " For LeaderF see https://github.com/Yggdroot/LeaderF/blob/master/doc/leaderf.txt#L189-L349
