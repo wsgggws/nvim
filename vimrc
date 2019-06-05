@@ -24,7 +24,9 @@ Plug 'SirVer/ultisnips' " 代码片段 配合vim-snippets and coc-nvim
 Plug 'tpope/vim-commentary' " gcc 注释单行，gc 注释选中的行
 Plug 'w0rp/ale' " 代码静态检查，代码格式修正
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'} " 代码补全
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' } "写python语言的各种操作
 Plug 'fatih/vim-go' " 写go语言各种操作...
+
 
 " About assistance
 Plug 'scrooloose/nerdtree' " 代码目录树，及结点的增删改查
@@ -207,6 +209,24 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+
+" ------------------------------------------------
+" For python-mode
+" 使用python模式编写python代码，并禁用lint, flod, rope功能
+" motion定义 [[, ]], [M, ]M 跳转到前后类，函数
+" motion定义新文本对象 aM, aC, iM, iC, 如yaM,diC分表表示复制一个method, 删除一个Class
+" 使用,r 运行当前python代码 (建议不要运行有输入的，或者超长时间超多输出的代码)
+" more see :help pymode
+" ------------------------------------------------
+let g:pymode_python = 'python3'
+let g:pymode_indent = 1
+let g:pymode_motion = 1
+let g:pymode_lint = 0
+let g:pymode_folding = 0
+let g:pymode_rope = 0
+let g:pymode_run = 1
+let g:pymode_run_bind = '<Leader>r'
 
 
 " ------------------------------------------------
