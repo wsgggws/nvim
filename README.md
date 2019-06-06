@@ -36,6 +36,7 @@ Plug 'fatih/vim-go' " 写go语言各种操作...
 " About assistance
 Plug 'scrooloose/nerdtree' " 代码目录树，及结点的增删改查
 Plug 'Konfekt/FastFold' "代码折叠
+Plug 'vim-scripts/TaskList.vim' ",td 中转到TODO, XXX等关键词所在的行
 Plug 'mhinz/vim-signify' " Just for git, <leader>se <leader>sd <leader>st
 Plug 'ludovicchabant/vim-gutentags' "ctag
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' } " 异步文件糊糊搜索及类似文本搜索与跳转
@@ -51,8 +52,9 @@ Plug 'iandingx/leetcode.vim' " vim 登录leetcode愉快的刷题吧
 - TODO
 
 
-## Install dependence software or python package
+## Install dependence software or python3 package
 - [python3.6+](https://www.python.org/ftp/python/3.6.8/python-3.6.8-macosx10.9.pkg)
+- git # `brew install git`
 - ctags or universal-ctags # For install plug targar, `brew install ctags` or `brew install --HEAD universal-ctags/universal-ctags/universal-ctags`
 - nodejs, yarn # For installing plug coc-nvim, `brew install nodejs` and  `brew install yarn`
 - flake8, pylint # for checking python code , `pip3 install flake8 pylint`

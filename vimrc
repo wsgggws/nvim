@@ -1,13 +1,12 @@
 call plug#begin('~/.vim/plugged')
 
-Plug 'junegunn/vim-plug'
+Plug 'junegunn/vim-plug' "for :hlep vim-plug
 
 " About themes
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'mhinz/vim-startify' " just command vim
-Plug 'Yggdroot/indentLine'
-Plug 'Konfekt/FastFold'
+Plug 'mhinz/vim-startify' " cowsay and 数字键打开历史文件
+Plug 'Yggdroot/indentLine' "缩进层次性感线条
 Plug 'morhetz/gruvbox'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'w0ng/vim-hybrid'
@@ -30,6 +29,8 @@ Plug 'fatih/vim-go' " 写go语言各种操作...
 
 " About assistance
 Plug 'scrooloose/nerdtree' " 代码目录树，及结点的增删改查
+Plug 'Konfekt/FastFold' " 代码折叠
+Plug 'vim-scripts/TaskList.vim' ",td 中转到TODO, XXX等关键词所在的行
 Plug 'mhinz/vim-signify' " Just for git, <leader>se <leader>sd <leader>st
 Plug 'ludovicchabant/vim-gutentags' "ctag
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' } " 异步文件糊糊搜索及类似文本搜索与跳转
@@ -49,7 +50,7 @@ filetype indent on
 scriptencoding utf-8
 let mapleader=","  " 使用','替换默认的'\'作为leader键
 let g:mapleader=","
-map <Leader>v :so ~/.vimrc<CR> 
+nmap <Leader>v :so ~/.vimrc<CR>
 
 " ------------------------------------------------
 " For brightly
@@ -135,7 +136,6 @@ set sidescrolloff=15
 set sidescroll=1
 set cmdheight=2          " 命令行（在状态行下）的高度，默认为1，这里是2
 set laststatus=2         " 总是显示状态行
-au BufRead,BufNewFile *.py set cc=80
 
 set autoread
 set autowrite       " Automatically save before commands like :next and :make
@@ -343,9 +343,9 @@ let g:Lf_CtagsFuncOpts = {
             \ 'rust': '--rust-kinds=f',
             \ }
 let g:Lf_ShortcutF = '<C-P>'
-map <leader>fm :LeaderfMru<CR>
-map <leader>ff :LeaderfFunction<CR>
-map <leader>fw :LeaderfLine<CR>
+nmap <leader>fm :LeaderfMru<CR>
+nmap <leader>ff :LeaderfFunction<CR>
+nmap <leader>fw :LeaderfLine<CR>
 " search word under cursor, the pattern is treated as regex, and enter normal mode directly
 map <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
 " search word under cursor, the pattern is treated as regex,
@@ -393,6 +393,14 @@ nnoremap <leader>tt :TagbarToggle<CR>
 " more see :help dash
 " ------------------------------------------------
 nmap <silent> <leader>ds <Plug>DashSearch
+
+" ------------------------------------------------
+" For dash.vim
+" 使用 ,td 快速浏览及跳转TODO, XXX等关键词所在的行
+" more see :help dash
+" ------------------------------------------------
+nmap <leader>td <Plug>TaskList
+
 
 " ------------------------------------------------
 " For ultisnips and coc-ultisnips and vim-snippets
