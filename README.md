@@ -29,13 +29,14 @@ Plug 'tpope/vim-commentary' " gcc 注释单行，gc 注释选中的行
 Plug 'w0rp/ale' " 代码静态检查，代码格式修正
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'} " 代码补全
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' } "写python语言的各种操作
-Plug 'fatih/vim-go' " 写go语言各种操作...
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " 写go语言各种操作...
 ```
 
 ```
 " About assistance
 Plug 'scrooloose/nerdtree' " 代码目录树，及结点的增删改查
 Plug 'Konfekt/FastFold' "代码折叠
+Plug 'MattesGroeger/vim-bookmarks' " 书签
 Plug 'vim-scripts/TaskList.vim' ",td 中转到TODO, XXX等关键词所在的行
 Plug 'mhinz/vim-signify' " Just for git, <leader>se <leader>sd <leader>st
 Plug 'ludovicchabant/vim-gutentags' "ctag

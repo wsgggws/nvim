@@ -24,12 +24,12 @@ Plug 'tpope/vim-commentary' " gcc 注释单行，gc 注释选中的行
 Plug 'w0rp/ale' " 代码静态检查，代码格式修正
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'} " 代码补全
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' } "写python语言的各种操作
-Plug 'fatih/vim-go' " 写go语言各种操作...
-
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " 写go语言各种操作...
 
 " About assistance
 Plug 'scrooloose/nerdtree' " 代码目录树，及结点的增删改查
 Plug 'Konfekt/FastFold' " 代码折叠
+Plug 'MattesGroeger/vim-bookmarks' " 书签
 Plug 'vim-scripts/TaskList.vim' ",td 中转到TODO, XXX等关键词所在的行
 Plug 'mhinz/vim-signify' " Just for git, <leader>se <leader>sd <leader>st
 Plug 'ludovicchabant/vim-gutentags' "ctag
@@ -95,7 +95,7 @@ set tabstop=4
 set expandtab
 set shiftwidth=4
 set softtabstop=4
-set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
+" set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 set list  " 开启对于制表符（tab）、行尾空格符（trail）、行结束符（eol）等等特殊符号的回显
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 set backspace=2     " 解决插入模式下delete/backspce键失效问题
@@ -118,14 +118,13 @@ set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
 set encoding=utf-8
 
-set nu
 set title                " change the terminal's title
 set showcmd         " 在屏幕右下角显示未完成的指令输入
 set wildmenu                    " Show list instead of just completing
 set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
 set showmatch       " “设置匹配模式，类似当输入一个左括号时会匹配相应的那个右括号
 set smartcase       " Case insensitive searches become sensitive with capitals
-set relativenumber  " 设置相对显示number
+set relativenumber  " 设置相对显示number instead of 'set nu'
 
 set ignorecase
 set incsearch       " Incremental search
@@ -393,6 +392,27 @@ nnoremap <leader>tt :TagbarToggle<CR>
 " more see :help dash
 " ------------------------------------------------
 nmap <silent> <leader>ds <Plug>DashSearch
+
+" ------------------------------------------------
+" For bookmarks
+" Add/remove bookmark at current line	mm	:BookmarkToggle
+" Add/edit/remove annotation at current line	mi	:BookmarkAnnotate <TEXT>
+" Jump to next bookmark in buffer	mn	:BookmarkNext
+" Jump to previous bookmark in buffer	mp	:BookmarkPrev
+" Show all bookmarks (toggle)	ma	:BookmarkShowAll
+" Clear bookmarks in current buffer only	mc	:BookmarkClear
+" Clear bookmarks in all buffers	mx	:BookmarkClearAll
+" Move up bookmark at current line	[count]mkk	:BookmarkMoveUp [<COUNT>]
+" Move down bookmark at current line	[count]mjj	:BookmarkMoveDown [<COUNT>]
+" Move bookmark at current line to another line	[count]mg	:BookmarkMoveToLine <LINE>
+" Save all bookmarks to a file		:BookmarkSave <FILE_PATH>
+" Load bookmarks from a file		:BookmarkLoad <FILE_PATH>
+" more see :help bookmarks
+" ------------------------------------------------
+highlight BookmarkSign ctermbg=NONE ctermfg=160
+highlight BookmarkLine ctermbg=194 ctermfg=NONE
+let g:bookmark_sign = '♥'
+let g:bookmark_highlight_lines = 1
 
 " ------------------------------------------------
 " For dash.vim
