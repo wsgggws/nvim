@@ -86,11 +86,11 @@ autocmd BufReadPost *
 " For handsome
 " 有点小多，直接拿来用
 " ------------------------------------------------
-set complete-=i   " disable scanning included files
-set complete-=t   " disable searching tags
-set autoindent
-set smartindent
-set smarttab        " 根据文件中其他地方的缩进空格个数来确定一个 tab 是多少个空格
+" set complete-=i   " disable scanning included files
+" set complete-=t   " disable searching tags
+" set autoindent
+" set smartindent
+" set smarttab        " 根据文件中其他地方的缩进空格个数来确定一个 tab 是多少个空格
 set tabstop=4
 set expandtab
 set shiftwidth=4
@@ -183,7 +183,7 @@ set cmdheight=2
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
-set completeopt-=preview
+" set completeopt-=preview
 inoremap <silent><expr> <TAB>
     \ pumvisible() ? "\<C-n>" :
     \ <SID>check_back_space() ? "\<TAB>" :
@@ -437,6 +437,8 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " For others shortcuts
 " ------------------------------------------------
 nnoremap <space> za " zr zR zm zM
+nnoremap <leader>so :normal A # noqa<CR>
+vnoremap so :normal A # noqa<CR>
 noremap <leader>w :w<cr>
 noremap <leader>wq :wq<cr>
 noremap <leader>qu :q!<cr>
@@ -488,16 +490,16 @@ com! FormatJSONPy2Utf8 %!python -c "import json, sys, collections; print json.du
 " highlight Normal ctermbg=None
 " highlight clear SignColumn
 
-" set background=dark
-" colorscheme hybrid
-" highlight Normal ctermbg=None
-" highlight clear SignColumn
-
-let g:rehash256 = 1
-let g:gruvbox_contrast_dark = 'hard'
-colorscheme gruvbox
+set background=dark
+colorscheme hybrid
 highlight Normal ctermbg=None
 highlight clear SignColumn
+
+" let g:rehash256 = 1
+" let g:gruvbox_contrast_dark = 'hard'
+" colorscheme gruvbox
+" highlight Normal ctermbg=None
+" highlight clear SignColumn
 
 
 " ------------------------------------------------
