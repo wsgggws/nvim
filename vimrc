@@ -10,7 +10,6 @@ Plug 'Yggdroot/indentLine' "缩进层次性感线条
 Plug 'morhetz/gruvbox'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'w0ng/vim-hybrid'
-Plug 'tomasr/molokai'
 
 " About efficiency
 Plug 'jiangmiao/auto-pairs'
@@ -24,7 +23,6 @@ Plug 'tpope/vim-commentary' " gcc 注释单行，gc 注释选中的行
 Plug 'w0rp/ale' " 代码静态检查，代码格式修正
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'} " 代码补全
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' } "写python语言的各种操作
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " 写go语言各种操作...
 
 " About assistance
 Plug 'scrooloose/nerdtree' " 代码目录树，及结点的增删改查
@@ -50,7 +48,7 @@ filetype indent on
 scriptencoding utf-8
 let mapleader=","  " 使用','替换默认的'\'作为leader键
 let g:mapleader=","
-nmap <Leader>v :so ~/.vimrc<CR>
+nmap <Leader>v :so $MYVIMRC<CR>
 
 " ------------------------------------------------
 " For brightly
@@ -156,8 +154,8 @@ set ttimeoutlen=100
 " ,gt 快速定位该文件所有目录树结点
 " more see :help NerdTree
 " ------------------------------------------------
-nnoremap <leader>te :NERDTreeToggle<CR> " t, T, s,gs, i,gi, p, P, I, q, <ctrl>+w+w, m, :help
-nnoremap <leader>gt :NERDTreeFind<CR>
+nnoremap <leader>nt :NERDTreeToggle<CR> " t, T, s,gs, i,gi, p, P, I, q, <ctrl>+w+w, m, :help
+nnoremap <leader>nf :NERDTreeFind<CR>
 let g:nerdtree_tabs_open_on_gui_startup=0
 let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
@@ -270,9 +268,9 @@ let g:ale_cpp_cppcheck_options = ''
 nmap sp <Plug>(ale_previous_wrap)
 nmap sn <Plug>(ale_next_wrap)
 "<Leader>lc 触发/关闭语法检查
-nnoremap <leader>lc :ALEToggle<CR>
+nnoremap <leader>at :ALEToggle<CR>
 "<Leader>d查看错误或警告的详细信息
-nnoremap <leader>pe :ALEFix<cr>
+nnoremap <leader>af :ALEFix<cr>
 
 " ------------------------------------------------
 " For Fastflod
@@ -345,7 +343,7 @@ let g:Lf_CtagsFuncOpts = {
 let g:Lf_ShortcutF = '<C-P>'
 nmap <leader>fm :LeaderfMru<CR>
 nmap <leader>ff :LeaderfFunction<CR>
-nmap <leader>fw :LeaderfLine<CR>
+nmap <leader>fl :LeaderfLine<CR>
 " search word under cursor, the pattern is treated as regex, and enter normal mode directly
 map <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
 " search word under cursor, the pattern is treated as regex,
@@ -412,15 +410,13 @@ nmap <silent> <leader>ds <Plug>DashSearch
 " ------------------------------------------------
 highlight BookmarkSign ctermbg=NONE ctermfg=160
 highlight BookmarkLine ctermbg=194 ctermfg=NONE
-let g:bookmark_sign = '♥'
-let g:bookmark_highlight_lines = 1
 
 " ------------------------------------------------
 " For dash.vim
 " 使用 ,td 快速浏览及跳转TODO, XXX等关键词所在的行
 " more see :help dash
 " ------------------------------------------------
-nmap <leader>td <Plug>TaskList
+nmap <leader>tl <Plug>TaskList
 
 
 " ------------------------------------------------
@@ -444,10 +440,10 @@ noremap <leader>wq :wq<cr>
 noremap <leader>qu :q!<cr>
 cnoremap w!! w !sudo tee % >/dev/null
 
-nnoremap <C-S-L> :vertical resize +3<CR>  " 行动分屏窗口的大小，以左上角为参考hjkl
-nnoremap <C-S-H> :vertical resize -3<CR>
-nnoremap <C-S-J> :resize +3<CR>
-nnoremap <C-S-K> :resize -3<CR>
+" nnoremap <C-S-L> :vertical resize +3<CR>  " 行动分屏窗口的大小，以左上角为参考hjkl
+" nnoremap <C-S-H> :vertical resize -3<CR>
+" nnoremap <C-S-J> :resize +3<CR>
+" nnoremap <C-S-K> :resize -3<CR>
 noremap <leader>hh <C-w>h
 noremap <leader>jj  <C-w>j
 noremap <leader>kk <C-w>k
@@ -481,12 +477,6 @@ com! FormatJSONPy2Utf8 %!python -c "import json, sys, collections; print json.du
 " ------------------------------------------------
 " let g:rehash256 = 1
 " colorscheme dracula
-" highlight Normal ctermbg=None
-" highlight clear SignColumn
-
-" let g:rehash256 = 1
-" let g:molokai_original = 1
-" colorscheme molokai
 " highlight Normal ctermbg=None
 " highlight clear SignColumn
 
