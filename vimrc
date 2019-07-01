@@ -238,14 +238,14 @@ let g:ale_linters_explicit = 1 "除g:ale_linters指定，其他不可用
 let g:ale_linters = {
 \   'cpp': ['cppcheck','clang','gcc'],
 \   'c': ['cppcheck','clang', 'gcc'],
-\   'python': ['flake8', 'pylint'],
+\   'python': ['flake8', 'isort', 'pylint'],
 \   'bash': ['shellcheck'],
 \   'go': ['golint'],
 \   'javascript': ['eslint'],
 \}
 let g:ale_linters_ignore = {'python': ['pylint']}
 let g:ale_fixers = {
-\   'python': ['autopep8', 'black', 'isort', 'yapf'],
+\   'python': ['autopep8', 'black', 'yapf'],
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
 \}
@@ -267,9 +267,7 @@ let g:ale_c_cppcheck_options = ''
 let g:ale_cpp_cppcheck_options = ''
 nmap sp <Plug>(ale_previous_wrap)
 nmap sn <Plug>(ale_next_wrap)
-"<Leader>lc 触发/关闭语法检查
 nnoremap <leader>at :ALEToggle<CR>
-"<Leader>d查看错误或警告的详细信息
 nnoremap <leader>af :ALEFix<cr>
 
 " ------------------------------------------------
