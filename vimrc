@@ -23,6 +23,8 @@ Plug 'tpope/vim-commentary' " gcc 注释单行，gc 注释选中的行
 Plug 'w0rp/ale' " 代码静态检查，代码格式修正
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'} " 代码补全
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' } "写python语言的各种操作
+Plug 'mbbill/undotree' " :undotree 查看目前更新记录
+Plug 'farmergreg/vim-lastplace' " 重新打开文件时定位到上次关闭时的位置
 
 " About assistance
 Plug 'scrooloose/nerdtree' " 代码目录树，及结点的增删改查
@@ -73,22 +75,16 @@ if has('clipboard')
     set clipboard=unnamed
   endif
 endif
-autocmd InsertLeave,WinEnter * set cursorline
-autocmd InsertEnter,WinLeave * set nocursorline
-autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
 
 " ------------------------------------------------
 " For handsome
 " 有点小多，直接拿来用
 " ------------------------------------------------
-" set complete-=i   " disable scanning included files
-" set complete-=t   " disable searching tags
-" set autoindent
-" set smartindent
-" set smarttab        " 根据文件中其他地方的缩进空格个数来确定一个 tab 是多少个空格
+set complete-=i   " disable scanning included files
+set complete-=t   " disable searching tags
+set autoindent
+set smartindent
+set smarttab        " 根据文件中其他地方的缩进空格个数来确定一个 tab 是多少个空格
 set tabstop=4
 set expandtab
 set shiftwidth=4
@@ -110,7 +106,7 @@ set ruler
 set nobackup
 set noswapfile
 set undofile
-set undodir=~/.vim/.undo//
+set undodir=~/.vim/.undo// "需要mkdir这个目录
 set autochdir
 set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
 set termencoding=utf-8
