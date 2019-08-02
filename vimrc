@@ -36,6 +36,7 @@ Plug 'ludovicchabant/vim-gutentags' "ctag
 Plug 'Yggdroot/LeaderF', { 'do': './install.sh' } " 异步文件糊糊搜索及类似文本搜索与跳转
 Plug 'majutsushi/tagbar' " 代码函数变量预览
 Plug 'lfv89/vim-interestingwords' " 高亮感兴趣的当前单词
+Plug 'itchyny/vim-cursorword' "给光标下的单词增加下滑线
 Plug 'brooth/far.vim' " 批量修改
 Plug 'rizzatti/dash.vim' " 静态文档工具Dash查询当前单词
 Plug 'iamcco/markdown-preview.vim' " Vim写MarkDown并在浏览器同步并查看文档
