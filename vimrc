@@ -23,6 +23,8 @@ Plug 'tpope/vim-commentary' " gcc 注释单行，gc 注释选中的行
 Plug 'w0rp/ale' " 代码静态检查，代码格式修正
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'} " 代码补全
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' } "写python语言的各种操作
+Plug 'rust-lang/rust.vim'
+Plug 'timonv/vim-cargo'
 Plug 'mbbill/undotree' " :undotree 查看目前更新记录
 Plug 'farmergreg/vim-lastplace' " 重新打开文件时定位到上次关闭时的位置
 
@@ -470,15 +472,15 @@ com! FormatJSONPy2Utf8 %!python -c "import json, sys, collections; print json.du
 " highlight Normal ctermbg=None 可以去除灰层
 " higtlight clear SignColumn 可以使得SignColumn颜色主题与使用主题一致
 " ------------------------------------------------
-" let g:rehash256 = 1
-" colorscheme dracula
-" highlight Normal ctermbg=None
-" highlight clear SignColumn
-
-set background=dark
-colorscheme hybrid
+let g:rehash256 = 1
+colorscheme dracula
 highlight Normal ctermbg=None
 highlight clear SignColumn
+
+" set background=dark
+" colorscheme hybrid
+" highlight Normal ctermbg=None
+" highlight clear SignColumn
 
 " let g:rehash256 = 1
 " let g:gruvbox_contrast_dark = 'hard'
