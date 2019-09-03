@@ -23,8 +23,8 @@ Plug 'tpope/vim-commentary' " gcc 注释单行，gc 注释选中的行
 Plug 'w0rp/ale' " 代码静态检查，代码格式修正
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'} " 代码补全
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' } "写python语言的各种操作
-Plug 'rust-lang/rust.vim'
-Plug 'timonv/vim-cargo'
+Plug 'rust-lang/rust.vim' "Rust语言
+Plug 'timonv/vim-cargo' "Rust cargo 及cargo.toml文件编写
 Plug 'mbbill/undotree' " :undotree 查看目前更新记录
 Plug 'farmergreg/vim-lastplace' " 重新打开文件时定位到上次关闭时的位置
 

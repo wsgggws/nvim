@@ -12,7 +12,6 @@ Plug 'Yggdroot/indentLine' "缩进层次性感线条
 Plug 'morhetz/gruvbox'
 Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'w0ng/vim-hybrid'
-Plug 'tomasr/molokai'
 ```
 ![themes.gif](./gifs/themes.gif)
 
@@ -29,7 +28,10 @@ Plug 'tpope/vim-commentary' " gcc 注释单行，gc 注释选中的行
 Plug 'w0rp/ale' " 代码静态检查，代码格式修正
 Plug 'neoclide/coc.nvim', {'tag': '*', 'do': './install.sh'} " 代码补全
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' } "写python语言的各种操作
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' } " 写go语言各种操作...
+Plug 'rust-lang/rust.vim' "Rust语言
+Plug 'timonv/vim-cargo' "Rust cargo 及cargo.toml文件编写
+Plug 'mbbill/undotree' " :undotree 查看目前更新记录
+Plug 'farmergreg/vim-lastplace' " 重新打开文件时定位到上次关闭时的位置
 ```
 
 ```
@@ -77,6 +79,17 @@ alias vi='nvim'
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 - [vimrc](./vimrc) # cp vimrc ~/.vimrc 
 - vim ~/.vimrc # :PlugInstall # :CocInstall coc-python # coc-gocode ...
+
+## QA
+##### MacOS Neovim Command+v粘贴复制好的中文出现乱码
+- Item2 perference -> profiles -> Terminal -> Character encoding(UTF-8)
+- Zsh(这需要非常注意,否则Command+V粘贴复制好的中文(使用p/P命令不会)会乱码)
+    - export LC_ALL=en_US.UTF-8
+    - export LANG=en_US.UTF-8
+- vimrc
+    - set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+    - set termencoding=utf-8
+    - set encoding=utf-8
 
 ## Show it
 ![Show it](./gifs/nvim.gif)
