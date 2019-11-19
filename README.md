@@ -1,4 +1,4 @@
-# nvim-plugs
+# My-Neovim-Configurations
 Some vim plugs on neovim and its show on MacOS. I will share vimrc file, then talk and show some plugs about nvim on MacOS, so that it look likes a compute language(Python) IDE.
 
 
