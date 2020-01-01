@@ -7,44 +7,43 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify' " cowsay and 数字键打开历史文件
 Plug 'Yggdroot/indentLine' "缩进层次性感线条
+Plug 'lfv89/vim-interestingwords' " 高亮感兴趣的当前单词
+Plug 'dracula/vim', { 'as': 'dracula' } "这3种主题我很钟爱dracula
 Plug 'morhetz/gruvbox'
-Plug 'dracula/vim', { 'as': 'dracula' }
 Plug 'w0ng/vim-hybrid'
 
 " About efficiency
-Plug 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs' "自动匹配成对字符如括号等
 Plug 'tpope/vim-surround'  "cs.., ds., ys..
 Plug 'tpope/vim-repeat' " 使得'.' 操作能重复上次的 cs.., ds., ys..
-Plug 'easymotion/vim-easymotion'  " <leader><leader>f,t <leader><leader>j,k,e,w <leader><leader>s
-Plug 'terryma/vim-multiple-cursors'  " ctrl+n, ctrl+p, ctrl+x, Esc
-Plug 'honza/vim-snippets'  " ctrl+j, ctrl+k, Esc
+Plug 'easymotion/vim-easymotion'  " <leader><leader>f,t <leader><leader>j,k,e,w <leader><leader>s 快速移动到特定字符或者某单词句子首尾
+Plug 'terryma/vim-multiple-cursors'  " ctrl+n, ctrl+p, ctrl+x 同时编辑多个位置, 首先使用*标记当前需要更改的, next, pre, cancle
+Plug 'brooth/far.vim' " 批量修改
+Plug 'honza/vim-snippets'  " ctrl+j, ctrl+k, 输入代码片段的关键字后, 使用这两个快捷键前进后退
 Plug 'SirVer/ultisnips' " 代码片段 配合vim-snippets and coc-nvim
 Plug 'tpope/vim-commentary' " gcc 注释单行，gc 注释选中的行
-Plug 'w0rp/ale' " 代码静态检查，代码格式修正
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " 代码补全
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' } "写python语言的各种操作
-Plug 'rust-lang/rust.vim'
+Plug 'w0rp/ale' " 代码静态检查，代码格式修正, 见配置并需要安装各语言依赖, 如flake8
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " 代码补全, 见配置并需要安装各语言依赖, 如coc-python
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' } "写python语言的各种操作, 见配置a
+Plug 'rust-lang/rust.vim' "写Rust语言的
 Plug 'timonv/vim-cargo'
 Plug 'racer-rust/vim-racer'
-Plug 'mbbill/undotree' " :undotree 查看目前更新记录
-Plug 'farmergreg/vim-lastplace' " 重新打开文件时定位到上次关闭时的位置
-Plug 'elzr/vim-json'
+Plug 'elzr/vim-json' "查看JSON格式
+Plug 'iamcco/markdown-preview.vim' " Vim写MarkDown并在浏览器同步并查看文档
+Plug 'mbbill/undotree' " :undotree 查看目前更记录
+Plug 'rizzatti/dash.vim' " 静态文档工具Dash查询当前单词
 
 " About assistance
 Plug 'scrooloose/nerdtree' " 代码目录树，及结点的增删改查
+Plug 'majutsushi/tagbar' " 代码函数变量预览
+Plug 'farmergreg/vim-lastplace' " 重新打开文件时定位到上次关闭时的位置
 Plug 'Konfekt/FastFold' " 代码折叠
 Plug 'MattesGroeger/vim-bookmarks' " 书签
-Plug 'vim-scripts/TaskList.vim' ",td 中转到TODO, XXX等关键词所在的行
+Plug 'vim-scripts/TaskList.vim' "<leader>td 中转到TODO, XXX等关键词所在的行
 Plug 'mhinz/vim-signify' " Just for git, <leader>se <leader>sd <leader>st
-Plug 'ludovicchabant/vim-gutentags' "ctag
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'majutsushi/tagbar' " 代码函数变量预览
-Plug 'lfv89/vim-interestingwords' " 高亮感兴趣的当前单词
 Plug 'itchyny/vim-cursorword' "给光标下的单词增加下滑线
-Plug 'brooth/far.vim' " 批量修改
-Plug 'rizzatti/dash.vim' " 静态文档工具Dash查询当前单词
-Plug 'iamcco/markdown-preview.vim' " Vim写MarkDown并在浏览器同步并查看文档
 Plug 'iandingx/leetcode.vim' " Vim愉快地在leetcode刷题吧
 
 call plug#end()
@@ -58,29 +57,10 @@ let mapleader=","  " 使用','替换默认的'\'作为leader键
 let g:mapleader=","
 nmap <Leader>v :so $MYVIMRC<CR>
 
-" ------------------------------------------------
-" For brightly
-" 在Insert, Visula, Normal模式下有不同的光标
-" 使用系统粘贴板替换neovim的unnamepdplus
-" 重新进入vim后重新回到上次光标位置
-" ------------------------------------------------
-if empty($TMUX)
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-  let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-else
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-  let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
-endif
-
-if has('clipboard')
-  if has('unnamedplus')  " When possible use + register for copy-paste
-    set clipboard=unnamed,unnamedplus
-  else         " On mac and Windows, use * register for copy-paste
-    set clipboard=unnamed
-  endif
-endif
+let g:rehash256 = 1
+colorscheme dracula
+highlight Normal ctermbg=None
+highlight clear SignColumn
 
 " ------------------------------------------------
 " For handsome
@@ -338,27 +318,6 @@ command! -bang -nargs=* Rg
   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview(), <bang>0)
 
-
-" ------------------------------------------------
-" For gutentags
-" more see :help gutentags
-" ------------------------------------------------
-set tags=./.tags;,.tags
-let g:gutentags_modules = ['ctags', 'gtags_cscope']
-" gutentags 搜索工程目录的标志，碰到这些文件/目录名就停止向上一级目录递归
-let g:gutentags_project_root = ['.root', '.svn', '.git', '.hg', '.project']
-" 所生成的数据文件的名称
-let g:gutentags_ctags_tagfile = '.tags'
-" 将自动生成的 tags 文件全部放入 ~/.cache/tags 目录中，避免污染工程目录
-let s:vim_tags = expand('~/.cache/tags')
-let g:gutentags_cache_dir = s:vim_tags
-let g:gutentags_plus_switch = 1
-" 配置 ctags 的参数
-let g:gutentags_ctags_extra_args = ['--fields=+niazS', '--extra=+q']
-let g:gutentags_ctags_extra_args += ['--c++-kinds=+px']
-let g:gutentags_ctags_extra_args += ['--c-kinds=+px']
-
-
 " ------------------------------------------------
 " For tagbar
 " 使用 ,tt 打开或者关闭代码函数关键字等预览
@@ -410,6 +369,11 @@ let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 
+" ------------------------------------------------
+" For Rust
+" 使用gd, gs, gx时的跳转键
+" more see :help ultisnips and :help vim-snippets
+" ------------------------------------------------
 au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
@@ -421,7 +385,29 @@ let g:racer_insert_paren = 1
 
 
 " ------------------------------------------------
-" For others shortcuts
+" For custom shortcuts
+" ------------------------------------------------
+" 在Insert, Visula, Normal模式下有不同的光标
+if empty($TMUX)
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+  let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+else
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+  let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+endif
+
+" 使用系统粘贴板替换neovim的unnamepdplus
+if has('clipboard')
+  if has('unnamedplus')  " When possible use + register for copy-paste
+    set clipboard=unnamed,unnamedplus
+  else         " On mac and Windows, use * register for copy-paste
+    set clipboard=unnamed
+  endif
+endif
+
+" ------------------------------------------------
 " ------------------------------------------------
 nnoremap <space> za " zr zR zm zM
 nnoremap <leader>so :normal A # noqa<CR>
@@ -440,8 +426,6 @@ noremap <leader>jj  <C-w>j
 noremap <leader>kk <C-w>k
 noremap <leader>ll <C-w>l
 
-nnoremap [e  :<c-u>execute 'move -1-'. v:count1<cr>
-nnoremap ]e  :<c-u>execute 'move +'. v:count1<cr>
 nnoremap [<space>  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
 nnoremap ]<space>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
 nnoremap Y y$
@@ -453,7 +437,6 @@ vnoremap > >gv
 nmap <leader>ew :e %%
 nmap <leader>es :sp %%
 nmap <leader>ev :vsp %%
-nmap <leader>et :tabe %%
 
 nnoremap <silent> <leader>/ :nohlsearch<CR>
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
@@ -466,10 +449,10 @@ com! FormatJSONPy2Utf8 %!python -c "import json, sys, collections; print json.du
 " highlight Normal ctermbg=None 可以去除灰层
 " higtlight clear SignColumn 可以使得SignColumn颜色主题与使用主题一致
 " ------------------------------------------------
-let g:rehash256 = 1
-colorscheme dracula
-highlight Normal ctermbg=None
-highlight clear SignColumn
+" let g:rehash256 = 1
+" colorscheme dracula
+" highlight Normal ctermbg=None
+" highlight clear SignColumn
 
 " set background=dark
 " colorscheme hybrid
