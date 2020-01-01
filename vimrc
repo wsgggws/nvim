@@ -25,8 +25,10 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'} " 代码补全
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' } "写python语言的各种操作
 Plug 'rust-lang/rust.vim'
 Plug 'timonv/vim-cargo'
+Plug 'racer-rust/vim-racer'
 Plug 'mbbill/undotree' " :undotree 查看目前更新记录
 Plug 'farmergreg/vim-lastplace' " 重新打开文件时定位到上次关闭时的位置
+Plug 'elzr/vim-json'
 
 " About assistance
 Plug 'scrooloose/nerdtree' " 代码目录树，及结点的增删改查
@@ -35,7 +37,8 @@ Plug 'MattesGroeger/vim-bookmarks' " 书签
 Plug 'vim-scripts/TaskList.vim' ",td 中转到TODO, XXX等关键词所在的行
 Plug 'mhinz/vim-signify' " Just for git, <leader>se <leader>sd <leader>st
 Plug 'ludovicchabant/vim-gutentags' "ctag
-Plug 'Yggdroot/LeaderF', { 'do': './install.sh' } " 异步文件糊糊搜索及类似文本搜索与跳转
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'majutsushi/tagbar' " 代码函数变量预览
 Plug 'lfv89/vim-interestingwords' " 高亮感兴趣的当前单词
 Plug 'itchyny/vim-cursorword' "给光标下的单词增加下滑线
@@ -122,6 +125,7 @@ set wildmode=list:longest,full  " Command <Tab> completion, list matches, then l
 set showmatch       " “设置匹配模式，类似当输入一个左括号时会匹配相应的那个右括号
 set smartcase       " Case insensitive searches become sensitive with capitals
 set relativenumber  " 设置相对显示number instead of 'set nu'
+set number          " 在当前行显示当前行数
 
 set ignorecase
 set incsearch       " Incremental search
@@ -238,11 +242,13 @@ let g:ale_linters = {
 \   'cpp': ['cppcheck','clang','gcc'],
 \   'c': ['cppcheck','clang', 'gcc'],
 \   'python': ['flake8', 'isort', 'pylint'],
+\   'rust': [ 'rls' ],
 \   'bash': ['shellcheck'],
 \   'go': ['golint'],
 \   'javascript': ['eslint'],
 \}
 let g:ale_linters_ignore = {'python': ['pylint']}
+let g:ale_rust_rls_toolchain = 'nightly'
 let g:ale_fixers = {
 \   'python': ['autopep8', 'black', 'yapf'],
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
@@ -314,46 +320,24 @@ autocmd FileType apache setlocal commentstring=#\ %s
 
 
 " ------------------------------------------------
-" For LeaderF see https://github.com/Yggdroot/LeaderF/blob/master/doc/leaderf.txt#L189-L349
-" Ctrl+p 进行模糊搜索文件
-" ,fm 
-" ,ff 搜索函数，像targar效果一样
-" ,fw 搜索单词
-" ,b 搜索并打开已经打开过的文件
-" gf 在当前目录或者工程下搜索光标下的单词
-" more see :help leaderf
+"  For fzf.vim
 " ------------------------------------------------
-let g:Lf_RootMarker = ['.git', '.hg', '.svn', '~/']
-let g:Lf_WildIgnore = {
-            \ 'dir': ['.svn','.git','.hg', '__pycache__'],
-            \ 'file': ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
-            \}
-let g:Lf_MruFileExclude = ['*.sw?','~$*','*.bak','*.exe','*.o','*.so','*.py[co]']
-let g:Lf_Ctags = "/usr/local/bin/ctags"
-let g:Lf_WorkingDirectoryMode = 'A'
-let g:Lf_HideHelp = 1
-let g:Lf_ExternalCommand = 'find "%s" -type f'
-let g:Lf_CtagsFuncOpts = {
-            \ 'c': '--c-kinds=fp',
-            \ 'rust': '--rust-kinds=f',
-            \ }
-let g:Lf_ShortcutF = '<C-P>'
-nmap <leader>fm :LeaderfMru<CR>
-nmap <leader>ff :LeaderfFunction<CR>
-nmap <leader>fl :LeaderfLine<CR>
-" search word under cursor, the pattern is treated as regex, and enter normal mode directly
-map <C-F> :<C-U><C-R>=printf("Leaderf! rg -e %s ", expand("<cword>"))<CR>
-" search word under cursor, the pattern is treated as regex,
-" append the result to previous search results.
-noremap <C-G> :<C-U><C-R>=printf("Leaderf! rg --append -e %s ", expand("<cword>"))<CR>
-" search word under cursor literally only in current buffer
-noremap <C-B> :<C-U><C-R>=printf("Leaderf! rg -F --current-buffer -e %s ", expand("<cword>"))<CR>
-" search visually selected text literally, don't quit LeaderF after accepting an entry
-xnoremap gf :<C-U><C-R>=printf("Leaderf! rg -F --stayOpen -e %s ", leaderf#Rg#visual())<CR>
-" recall last search. If the result window is closed, reopen it.
-noremap go :<C-U>Leaderf! rg --stayOpen --recall<CR>
-highlight Lf_hl_match gui=bold guifg=Blue cterm=bold ctermfg=21
-highlight Lf_hl_matchRefine  gui=bold guifg=Magenta cterm=bold ctermfg=201
+"<Leader>f在当前目录搜索文件
+nnoremap <silent> <Leader>f :Files<CR>
+nnoremap <silent> <C-p> :Files<CR>
+"<Leader>b切换Buffer中的文件
+nnoremap <silent> <Leader>b :Buffers<CR>
+nnoremap <silent> <Leader>rg :Rg<CR>
+"<Leader>p在当前所有加载的Buffer中搜索包含目标词的所有行，:BLines只在当前Buffer中搜索
+nnoremap <silent> <Leader>l :BLines<CR>
+"<Leader>h在Vim打开的历史文件中搜索，相当于是在MRU中搜索，:History：命令历史查找
+nnoremap <silent> <Leader>h :History<CR>
+"调用Rg进行搜索，包含隐藏文件
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
+
 
 " ------------------------------------------------
 " For gutentags
@@ -426,6 +410,16 @@ let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 
+au FileType rust nmap gd <Plug>(rust-def)
+au FileType rust nmap gs <Plug>(rust-def-split)
+au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap <leader>gd <Plug>(rust-doc)
+set hidden
+let g:racer_cmd = "/Users/hjtian/.cargo/bin/racer"
+let g:racer_experimental_completer = 1
+let g:racer_insert_paren = 1
+
+
 " ------------------------------------------------
 " For others shortcuts
 " ------------------------------------------------
@@ -483,7 +477,7 @@ highlight clear SignColumn
 " highlight clear SignColumn
 
 " let g:rehash256 = 1
-" let g:gruvbox_contrast_dark = 'hard'
+" let g:gruvbox_contrast_dark = 'soft'
 " colorscheme gruvbox
 " highlight Normal ctermbg=None
 " highlight clear SignColumn
