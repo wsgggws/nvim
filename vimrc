@@ -8,6 +8,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'mhinz/vim-startify' " cowsay and 数字键打开历史文件
 Plug 'Yggdroot/indentLine' "缩进层次性感线条
 Plug 'lfv89/vim-interestingwords' " 高亮感兴趣的当前单词
+Plug 'kien/rainbow_parentheses.vim'
 Plug 'dracula/vim', { 'as': 'dracula' } "这3种主题我很钟爱dracula
 Plug 'morhetz/gruvbox'
 Plug 'w0ng/vim-hybrid'
@@ -130,6 +131,37 @@ set mousehide            " "输入隐藏鼠标
 set ttimeout             " 完整的按键码的超时时间
 set ttimeoutlen=100
 
+
+" ------------------------------------------------
+" For rainbow_parentheses.vim
+" http://vimawesome.com/plugin/rainbow-parentheses-vim   花里胡哨的彩虹括号^_^
+" http://www.wklken.me/posts/2015/06/07/vim-plugin-rainbowparentheses.html
+" ------------------------------------------------
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+" 不加入这行, 防止黑色括号出现, 很难识别
+" \ ['black',       'SeaGreen3'],
 
 " ------------------------------------------------
 " For NerdTree
