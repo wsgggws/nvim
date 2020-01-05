@@ -84,7 +84,7 @@ set backspace=indent,eol,start  " “缩进位置”，“行结束符”，“�
 set shiftround
 set cursorline
 set textwidth=127
-set nowrap
+set wrap
 set linebreak
 set wrapmargin=1
 set ruler
@@ -111,6 +111,7 @@ set number          " 在当前行显示当前行数
 set ignorecase
 set incsearch       " Incremental search
 set hlsearch        " High light search
+exec "nohlsearch"
 
 set scrolloff=8
 set sidescrolloff=15
@@ -179,7 +180,7 @@ let NERDTreeQuitOnOpen=0
 let NERDTreeMouseMode=2
 let NERDTreeShowHidden=0
 let NERDTreeKeepTreeInNewTab=1
-let NERDTreeWinSize=45
+let NERDTreeWinSize=40
 autocmd BufEnter * if 0 == len(filter(range(1, winnr('$')), 'empty(getbufvar(winbufnr(v:val), "&bt"))')) | qa! | endif
 
 
@@ -254,7 +255,7 @@ let g:ale_linters_explicit = 1 "除g:ale_linters指定，其他不可用
 let g:ale_linters = {
 \   'cpp': ['cppcheck','clang','gcc'],
 \   'c': ['cppcheck','clang', 'gcc'],
-\   'python': ['flake8', 'isort', 'pylint'],
+\   'python': ['flake8'],
 \   'rust': [ 'rls' ],
 \   'bash': ['shellcheck'],
 \   'go': ['golint'],
@@ -263,7 +264,7 @@ let g:ale_linters = {
 let g:ale_linters_ignore = {'python': ['pylint']}
 let g:ale_rust_rls_toolchain = 'nightly'
 let g:ale_fixers = {
-\   'python': ['autopep8', 'black', 'yapf'],
+\   'python': ['autopep8', 'black', 'isort'],
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \   'javascript': ['eslint'],
 \}
