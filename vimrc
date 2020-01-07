@@ -34,6 +34,8 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } } " Vim�
 Plug 'mbbill/undotree' " :undotree 查看目前更记录
 Plug 'rizzatti/dash.vim' " 静态文档工具Dash查询当前单词
 Plug 'elzr/vim-json' "查看JSON格式
+Plug 'mattn/emmet-vim'  " HTML
+Plug 'posva/vim-vue'  " Vuejs
 
 " About assistance
 Plug 'scrooloose/nerdtree' " 代码目录树，及结点的增删改查
