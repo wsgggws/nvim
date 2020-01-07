@@ -29,10 +29,11 @@ Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' } "写pyt
 Plug 'rust-lang/rust.vim' "写Rust语言的
 Plug 'timonv/vim-cargo'
 Plug 'racer-rust/vim-racer'
-Plug 'elzr/vim-json' "查看JSON格式
-Plug 'iamcco/markdown-preview.vim' " Vim写MarkDown并在浏览器同步并查看文档
+Plug 'iamcco/mathjax-support-for-mkdp'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } } " Vim写MarkDown并在浏览器同步并查看文档
 Plug 'mbbill/undotree' " :undotree 查看目前更记录
 Plug 'rizzatti/dash.vim' " 静态文档工具Dash查询当前单词
+Plug 'elzr/vim-json' "查看JSON格式
 
 " About assistance
 Plug 'scrooloose/nerdtree' " 代码目录树，及结点的增删改查
