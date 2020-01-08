@@ -137,6 +137,18 @@ set ttimeoutlen=100
 
 
 " ------------------------------------------------
+" For airline
+" ------------------------------------------------
+let g:airline#extensions#ale#enabled = 1
+let g:airline_theme = 'powerlineish'
+let g:airline#extensions#branch#enabled = 1
+let g:airline#extensions#ale#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tagbar#enabled = 1
+let g:airline_skip_empty_sections = 1
+
+
+" ------------------------------------------------
 " For rainbow_parentheses.vim
 " http://vimawesome.com/plugin/rainbow-parentheses-vim   花里胡哨的彩虹括号^_^
 " http://www.wklken.me/posts/2015/06/07/vim-plugin-rainbowparentheses.html
@@ -284,7 +296,6 @@ let g:ale_set_quickfix = 1
 let g:ale_open_list = 1 "打开quitfix对话框
 let g:ale_c_gcc_options = '-Wall -O2 -std=c99'
 let g:ale_cpp_gcc_options = '-Wall -O2 -std=c++14'
-let g:airline#extensions#ale#enabled = 1
 let g:ale_c_cppcheck_options = ''
 let g:ale_cpp_cppcheck_options = ''
 nmap sp <Plug>(ale_previous_wrap)
@@ -454,10 +465,10 @@ noremap <leader>wq :wq<cr>
 noremap <leader>qu :q!<cr>
 cnoremap w!! w !sudo tee % >/dev/null
 
-" nnoremap <C-S-L> :vertical resize +3<CR>  " 行动分屏窗口的大小，以左上角为参考hjkl
-" nnoremap <C-S-H> :vertical resize -3<CR>
-" nnoremap <C-S-J> :resize +3<CR>
-" nnoremap <C-S-K> :resize -3<CR>
+nnoremap <C-S-L> :vertical resize +3<CR>  " 行动分屏窗口的大小，以左上角为参考hjkl
+nnoremap <C-S-H> :vertical resize -3<CR>
+nnoremap <C-S-J> :resize +3<CR>
+nnoremap <C-S-K> :resize -3<CR>
 noremap <leader>hh <C-w>h
 noremap <leader>jj  <C-w>j
 noremap <leader>kk <C-w>k
