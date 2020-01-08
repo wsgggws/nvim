@@ -465,10 +465,10 @@ noremap <leader>wq :wq<cr>
 noremap <leader>qu :q!<cr>
 cnoremap w!! w !sudo tee % >/dev/null
 
-nnoremap <C-S-L> :vertical resize +3<CR>  " 行动分屏窗口的大小，以左上角为参考hjkl
-nnoremap <C-S-H> :vertical resize -3<CR>
-nnoremap <C-S-J> :resize +3<CR>
-nnoremap <C-S-K> :resize -3<CR>
+nmap <C-S-L> :vertical resize +3<CR>  " 行动分屏窗口的大小，以左上角为参考hjkl
+nmap <C-S-H> :vertical resize -3<CR>
+" nmap <C-S-J> :resize +3<CR>
+" nmap <C-S-K> :resize -3<CR>
 noremap <leader>hh <C-w>h
 noremap <leader>jj  <C-w>j
 noremap <leader>kk <C-w>k
