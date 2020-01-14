@@ -461,9 +461,7 @@ nnoremap <space> za " zr zR zm zM
 nnoremap <leader>so :normal A # noqa<CR>
 vnoremap so :normal A # noqa<CR>
 noremap <leader>w :w<cr>
-noremap <leader>wq :wq<cr>
-noremap <leader>qu :q!<cr>
-cnoremap w!! w !sudo tee % >/dev/null
+" cnoremap w!! w !sudo tee % >/dev/null
 
 noremap <leader>sl :vertical resize +3<CR>  " 行动分屏窗口的大小，以左上角为参考hjkl
 noremap <leader>sh :vertical resize -3<CR>
