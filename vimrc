@@ -17,7 +17,7 @@ Plug 'w0ng/vim-hybrid'
 Plug 'jiangmiao/auto-pairs' "自动匹配成对字符如括号等
 Plug 'tpope/vim-surround'  "cs.., ds., ys..
 Plug 'tpope/vim-repeat' " 使得'.' 操作能重复上次的 cs.., ds., ys..
-Plug 'easymotion/vim-easymotion'  " <leader><leader>f,t <leader><leader>j,k,e,w <leader><leader>s 快速移动到特定字符或者某单词句子首尾
+Plug 'easymotion/vim-easymotion'  " ss 快速移动到特定字符
 Plug 'terryma/vim-multiple-cursors'  " ctrl+n, ctrl+p, ctrl+x 同时编辑多个位置, 首先使用*标记当前需要更改的, next, pre, cancle
 Plug 'brooth/far.vim' " 批量修改
 Plug 'honza/vim-snippets'  " ctrl+j, ctrl+k, 输入代码片段的关键字后, 使用这两个快捷键前进后退
@@ -27,6 +27,7 @@ Plug 'w0rp/ale' " 代码静态检查，代码格式修正, 见配置并需要安
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " 代码补全, 见配置并需要安装各语言依赖, 如coc-python
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' } "写python语言的各种操作, 见配置a
 Plug 'rust-lang/rust.vim' "写Rust语言的
+Plug 'mattn/webapi-vim'
 Plug 'timonv/vim-cargo'
 Plug 'racer-rust/vim-racer'
 Plug 'iamcco/mathjax-support-for-mkdp'
@@ -35,6 +36,7 @@ Plug 'mbbill/undotree' " :undotree 查看目前更记录
 Plug 'rizzatti/dash.vim' " 静态文档工具Dash查询当前单词
 Plug 'elzr/vim-json' "查看JSON格式
 Plug 'mattn/emmet-vim'  " HTML
+Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'  " Vuejs
 
 " About assistance
@@ -56,6 +58,7 @@ call plug#end()
 " For init leader key
 " ------------------------------------------------
 filetype indent on
+set nocompatible
 scriptencoding utf-8
 let mapleader=","  " 使用','替换默认的'\'作为leader键
 let g:mapleader=","
@@ -74,11 +77,11 @@ set complete-=i   " disable scanning included files
 set complete-=t   " disable searching tags
 set autoindent
 set smartindent
+" autocmd BufRead,BufNewFile *.py set et ts=4 sw=4 sts=4
+autocmd FileType php,python,c,java,perl,shell,bash,vim,ruby,cpp,rust set ai et ts=4 sw=4 sts=4
+autocmd FileType javascript,html,css,xml,vue set ai et ts=2 sw=2 sts=2
+autocmd FileType go set ai noet ts=8 sw=8 sts=8
 set smarttab        " 根据文件中其他地方的缩进空格个数来确定一个 tab 是多少个空格
-set tabstop=4
-set expandtab
-set shiftwidth=4
-set softtabstop=4
 " set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 set list  " 开启对于制表符（tab）、行尾空格符（trail）、行结束符（eol）等等特殊符号的回显
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
@@ -91,6 +94,10 @@ set wrap
 set linebreak
 set wrapmargin=1
 set ruler
+set synmaxcol=1000
+set ttyfast " u got a fast terminal
+set lazyredraw " to avoid scrolling problems
+set noautochdir    " 注意这个自动切换目录会使rope找目录不正确，禁用，坑死我
 
 " edit
 set nobackup
@@ -140,12 +147,13 @@ set ttimeoutlen=100
 " For airline
 " ------------------------------------------------
 let g:airline#extensions#ale#enabled = 1
-let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'ayu_dark'
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
+
 
 
 " ------------------------------------------------
@@ -213,7 +221,7 @@ set cmdheight=2
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
-" set completeopt-=preview
+set completeopt=longest,menu
 inoremap <silent><expr> <TAB>
     \ pumvisible() ? "\<C-n>" :
     \ <SID>check_back_space() ? "\<TAB>" :
@@ -271,7 +279,7 @@ let g:ale_linters = {
 \   'cpp': ['cppcheck','clang','gcc'],
 \   'c': ['cppcheck','clang', 'gcc'],
 \   'python': ['flake8'],
-\   'rust': [ 'rls' ],
+\   'rust': [ 'cargo', 'rls', 'rustc' ],
 \   'bash': ['shellcheck'],
 \   'go': ['golint'],
 \   'javascript': ['eslint'],
@@ -280,10 +288,11 @@ let g:ale_linters_ignore = {'python': ['pylint']}
 let g:ale_rust_rls_toolchain = 'nightly'
 let g:ale_fixers = {
 \   'python': ['autopep8', 'black', 'isort'],
-\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\   'rust': ['rustfmt'],
 \   'javascript': ['eslint'],
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \}
-let g:ale_set_hightlights = 0
+let g:ale_set_hightlights = 1
 let g:ale_change_sign_column_color = 0
 let g:ale_sign_column_always = 0
 let g:ale_linters_explicit = 1
@@ -291,6 +300,7 @@ let g:ale_echo_delay = 20
 let g:ale_lint_delay = 500
 let g:ale_echo_msg_format = '[%linter%] %code: %%s'
 let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_on_enter = 0
 let g:ale_set_quickfix = 1
 let g:ale_open_list = 1 "打开quitfix对话框
@@ -406,6 +416,13 @@ highlight BookmarkLine ctermbg=194 ctermfg=NONE
 " ------------------------------------------------
 nmap <leader>tl <Plug>TaskList
 
+" ------------------------------------------------
+" For easymotion.vim
+" 使用 ss 快速搜索某个字符
+" more see :help easymotion
+" ------------------------------------------------
+nmap ss <Plug>(easymotion-s)
+
 
 " ------------------------------------------------
 " For ultisnips and coc-ultisnips and vim-snippets
@@ -422,14 +439,19 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " 使用gd, gs, gx时的跳转键
 " more see :help ultisnips and :help vim-snippets
 " ------------------------------------------------
+au FileType rust nmap <leader>af :RustFmt<cr>
+au FileType rust nmap <leader>r :RustRun<cr>
+au FileType rust nmap <leader>p :RustPlay<cr>
+au FileType rust nmap <leader>rt :RustTest<cr>
 au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
+au FileType rust nmap gt <Plug>(rust-def-tab)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
-set hidden
 let g:racer_cmd = "/Users/hjtian/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
 let g:racer_insert_paren = 1
+let g:rust_clip_command = 'pbcopy'
 
 
 " ------------------------------------------------
@@ -445,6 +467,7 @@ else
   let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
   let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
 endif
+
 
 " 使用系统粘贴板替换neovim的unnamepdplus
 if has('clipboard')
