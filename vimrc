@@ -64,8 +64,8 @@ let mapleader=","  " 使用','替换默认的'\'作为leader键
 let g:mapleader=","
 nmap <Leader>v :so $MYVIMRC<CR>
 
-let g:rehash256 = 1
-colorscheme dracula
+set background=dark
+colorscheme hybrid
 highlight Normal ctermbg=None
 highlight clear SignColumn
 
@@ -94,10 +94,6 @@ set wrap
 set linebreak
 set wrapmargin=1
 set ruler
-set synmaxcol=1000
-set ttyfast " u got a fast terminal
-set lazyredraw " to avoid scrolling problems
-set noautochdir    " 注意这个自动切换目录会使rope找目录不正确，禁用，坑死我
 
 " edit
 set nobackup
@@ -266,7 +262,6 @@ let g:pymode_breakpoint = 0
 let g:pymode_run = 1
 let g:pymode_run_bind = '<Leader>r'
 
-
 " ------------------------------------------------
 " For ale
 " 使用 flake8 做python3的代码检查，pylint检查太严格
@@ -292,7 +287,7 @@ let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \}
-let g:ale_set_hightlights = 1
+" let g:ale_set_hightlights = 1
 let g:ale_change_sign_column_color = 0
 let g:ale_sign_column_always = 0
 let g:ale_linters_explicit = 1
@@ -500,7 +495,6 @@ nnoremap ]<space>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
 nnoremap Y y$
 noremap j gj
 noremap k gk
-
 vnoremap < <gv
 vnoremap > >gv
 nmap <leader>ew :e %%
@@ -511,6 +505,8 @@ nnoremap <silent> <leader>/ :nohlsearch<CR>
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 com! FormatJSONPy2Utf8 %!python -c "import json, sys, collections; print json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), ensure_ascii=False, indent=2)"
 
+" select last paste in visual mode, gv选择原始复制的文本, gb选择上一次粘贴的文本
+nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . ']`'
 
 " ------------------------------------------------
 " For themes

@@ -85,7 +85,7 @@ alias vi='nvim'
 - curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
     https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 - [vimrc](./vimrc) # cp vimrc ~/.vimrc 
-- vim ~/.vimrc # :PlugInstall # :CocInstall coc-python # coc-gocode ...
+- vim ~/.vimrc # :PlugInstall # :CocInstall coc-python # coc-rls
 
 ## QA
 ##### MacOS Neovim Command+v粘贴复制好的中文出现乱码
