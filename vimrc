@@ -47,7 +47,7 @@ Plug 'Konfekt/FastFold' " 代码折叠
 Plug 'MattesGroeger/vim-bookmarks' " 书签
 Plug 'vim-scripts/TaskList.vim' "<leader>td 中转到TODO, XXX等关键词所在的行
 Plug 'mhinz/vim-signify' " Just for git, <leader>se <leader>sd <leader>st
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/vim-cursorword' "给光标下的单词增加下滑线
 Plug 'iandingx/leetcode.vim' " Vim愉快地在leetcode刷题吧
@@ -65,7 +65,8 @@ let g:mapleader=","
 nmap <Leader>v :so $MYVIMRC<CR>
 
 set background=dark
-colorscheme hybrid
+" colorscheme hybrid
+colorscheme dracula
 highlight Normal ctermbg=None
 highlight clear SignColumn
 
@@ -370,6 +371,8 @@ command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
   \   fzf#vim#with_preview(), <bang>0)
+let g:fzf_preview_window = 'right:50%'
+
 
 " ------------------------------------------------
 " For tagbar
