@@ -9,7 +9,7 @@ Plug 'mhinz/vim-startify' " cowsay and 数字键打开历史文件
 Plug 'Yggdroot/indentLine' "缩进层次性感线条
 Plug 'lfv89/vim-interestingwords' " 高亮感兴趣的当前单词
 Plug 'kien/rainbow_parentheses.vim'
-Plug 'dracula/vim', { 'as': 'dracula' } "这3种主题我很钟爱dracula
+Plug 'crusoexia/vim-dracula'
 Plug 'morhetz/gruvbox'
 Plug 'w0ng/vim-hybrid'
 
@@ -66,9 +66,12 @@ nmap <Leader>v :so $MYVIMRC<CR>
 
 set background=dark
 " colorscheme hybrid
+" colorscheme gruvbox
 colorscheme dracula
 highlight Normal ctermbg=None
 highlight clear SignColumn
+let g:dracula_italic = 1
+
 
 " ------------------------------------------------
 " For handsome
@@ -517,22 +520,6 @@ nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . ']`'
 " highlight Normal ctermbg=None 可以去除灰层
 " higtlight clear SignColumn 可以使得SignColumn颜色主题与使用主题一致
 " ------------------------------------------------
-" let g:rehash256 = 1
-" colorscheme dracula
-" highlight Normal ctermbg=None
-" highlight clear SignColumn
-
-" set background=dark
-" colorscheme hybrid
-" highlight Normal ctermbg=None
-" highlight clear SignColumn
-
-" let g:rehash256 = 1
-" let g:gruvbox_contrast_dark = 'soft'
-" colorscheme gruvbox
-" highlight Normal ctermbg=None
-" highlight clear SignColumn
-
 
 " ------------------------------------------------
 " For recommand and suggestion
