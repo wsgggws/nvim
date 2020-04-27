@@ -34,6 +34,7 @@ Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Vim写MarkDown并在浏览器同步并查看文档
 Plug 'mbbill/undotree' " :undotree 查看目前更记录
 Plug 'rizzatti/dash.vim' " 静态文档工具Dash查询当前单词
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'elzr/vim-json' "查看JSON格式
 Plug 'mattn/emmet-vim'  " HTML
 Plug 'pangloss/vim-javascript'
@@ -41,6 +42,8 @@ Plug 'posva/vim-vue'  " Vuejs
 
 " About assistance
 Plug 'scrooloose/nerdtree' " 代码目录树，及结点的增删改查
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'jistr/vim-nerdtree-tabs'
 Plug 'majutsushi/tagbar' " 代码函数变量预览
 Plug 'farmergreg/vim-lastplace' " 重新打开文件时定位到上次关闭时的位置
 Plug 'Konfekt/FastFold' " 代码折叠
@@ -203,7 +206,7 @@ let NERDTreeQuitOnOpen=0
 let NERDTreeMouseMode=2
 let NERDTreeShowHidden=0
 let NERDTreeKeepTreeInNewTab=1
-let NERDTreeWinSize=40
+let NERDTreeWinSize=52
 autocmd BufEnter * if 0 == len(filter(range(1, winnr('$')), 'empty(getbufvar(winbufnr(v:val), "&bt"))')) | qa! | endif
 
 
