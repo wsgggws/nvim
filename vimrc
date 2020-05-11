@@ -10,8 +10,7 @@ Plug 'Yggdroot/indentLine' "缩进层次性感线条
 Plug 'lfv89/vim-interestingwords' " 高亮感兴趣的当前单词
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'crusoexia/vim-dracula'
-Plug 'morhetz/gruvbox'
-Plug 'w0ng/vim-hybrid'
+Plug 'iCyMind/NeoSolarized'
 
 " About efficiency
 Plug 'jiangmiao/auto-pairs' "自动匹配成对字符如括号等
@@ -67,13 +66,24 @@ let mapleader=","  " 使用','替换默认的'\'作为leader键
 let g:mapleader=","
 nmap <Leader>v :so $MYVIMRC<CR>
 
-set background=dark
-" colorscheme hybrid
-" colorscheme gruvbox
-colorscheme dracula
+
+" set background=dark
+" colorscheme dracula
+" set background=light
+" let g:dracula_italic = 1
+
+set termguicolors
+set background=light
+colorscheme NeoSolarized
+let g:neosolarized_visibility = "high"
+let g:neosolarized_contrast = "high"
+let g:neosolarized_italic = 1
+
 highlight Normal ctermbg=None
 highlight clear SignColumn
-let g:dracula_italic = 1
+set t_8f=^[[38;2;%lu;%lu;%lum
+set t_8b=^[[48;2;%lu;%lu;%lum
+
 
 
 " ------------------------------------------------
@@ -150,13 +160,11 @@ set ttimeoutlen=100
 " For airline
 " ------------------------------------------------
 let g:airline#extensions#ale#enabled = 1
-let g:airline_theme = 'ayu_dark'
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
-
 
 
 " ------------------------------------------------
@@ -206,7 +214,7 @@ let NERDTreeQuitOnOpen=0
 let NERDTreeMouseMode=2
 let NERDTreeShowHidden=0
 let NERDTreeKeepTreeInNewTab=1
-let NERDTreeWinSize=52
+let NERDTreeWinSize=46
 autocmd BufEnter * if 0 == len(filter(range(1, winnr('$')), 'empty(getbufvar(winbufnr(v:val), "&bt"))')) | qa! | endif
 
 
@@ -452,7 +460,7 @@ au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap gt <Plug>(rust-def-tab)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
-let g:racer_cmd = "/Users/hjtian/.cargo/bin/racer"
+" let g:racer_cmd = "/Users/hjtianvip/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
 let g:racer_insert_paren = 1
 let g:rust_clip_command = 'pbcopy'
@@ -470,6 +478,11 @@ else
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
   let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
   let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+endif
+
+if $TERM_PROGRAM =~ "iTerm"
+    let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+    let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
 endif
 
 
