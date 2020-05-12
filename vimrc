@@ -78,13 +78,11 @@ colorscheme NeoSolarized
 let g:neosolarized_visibility = "high"
 let g:neosolarized_contrast = "high"
 let g:neosolarized_italic = 1
-
 highlight Normal ctermbg=None
 highlight clear SignColumn
+set t_Co=256
 set t_8f=^[[38;2;%lu;%lu;%lum
 set t_8b=^[[48;2;%lu;%lu;%lum
-
-
 
 " ------------------------------------------------
 " For handsome
@@ -165,6 +163,7 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
+let g:airline_theme='solarized'
 
 
 " ------------------------------------------------
@@ -529,6 +528,8 @@ com! FormatJSONPy2Utf8 %!python -c "import json, sys, collections; print json.du
 
 " select last paste in visual mode, gv选择原始复制的文本, gb选择上一次粘贴的文本
 nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . ']`'
+
+let g:go_version_warning = 0
 
 " ------------------------------------------------
 " For themes
