@@ -11,6 +11,7 @@ Plug 'lfv89/vim-interestingwords' " 高亮感兴趣的当前单词
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'crusoexia/vim-dracula'
 Plug 'iCyMind/NeoSolarized'
+Plug 'romainl/vim-cool'
 
 " About efficiency
 Plug 'jiangmiao/auto-pairs' "自动匹配成对字符如括号等
@@ -67,22 +68,20 @@ let g:mapleader=","
 nmap <Leader>v :so $MYVIMRC<CR>
 
 
-" set background=dark
-" colorscheme dracula
-" set background=light
-" let g:dracula_italic = 1
-
-set termguicolors
-set background=light
-colorscheme NeoSolarized
-let g:neosolarized_visibility = "high"
-let g:neosolarized_contrast = "high"
-let g:neosolarized_italic = 1
+set background=dark
+colorscheme dracula
+let g:dracula_italic = 1
 highlight Normal ctermbg=None
 highlight clear SignColumn
-set t_Co=256
-set t_8f=^[[38;2;%lu;%lu;%lum
-set t_8b=^[[48;2;%lu;%lu;%lum
+
+" set termguicolors
+" set background=light
+" colorscheme NeoSolarized
+" let g:neosolarized_visibility = "high"
+" let g:neosolarized_contrast = "high"
+" let g:neosolarized_italic = 1
+" set t_8f=^[[38;2;%lu;%lu;%lum
+" set t_8b=^[[48;2;%lu;%lu;%lum
 
 " ------------------------------------------------
 " For handsome
@@ -163,8 +162,12 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
-let g:airline_theme='solarized'
+let g:airline_theme='lucius'
 
+" ------------------------------------------------
+" For vim-cool
+" ------------------------------------------------
+let g:CoolTotalMatches = 1
 
 " ------------------------------------------------
 " For rainbow_parentheses.vim
@@ -213,7 +216,7 @@ let NERDTreeQuitOnOpen=0
 let NERDTreeMouseMode=2
 let NERDTreeShowHidden=0
 let NERDTreeKeepTreeInNewTab=1
-let NERDTreeWinSize=46
+let NERDTreeWinSize=40
 autocmd BufEnter * if 0 == len(filter(range(1, winnr('$')), 'empty(getbufvar(winbufnr(v:val), "&bt"))')) | qa! | endif
 
 
