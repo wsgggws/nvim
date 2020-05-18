@@ -10,8 +10,7 @@ Plug 'Yggdroot/indentLine' "缩进层次性感线条
 Plug 'lfv89/vim-interestingwords' " 高亮感兴趣的当前单词
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'crusoexia/vim-dracula'
-Plug 'iCyMind/NeoSolarized'
-Plug 'romainl/vim-cool'
+Plug 'morhetz/gruvbox'
 
 " About efficiency
 Plug 'jiangmiao/auto-pairs' "自动匹配成对字符如括号等
@@ -46,6 +45,7 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'jistr/vim-nerdtree-tabs'
 Plug 'majutsushi/tagbar' " 代码函数变量预览
 Plug 'farmergreg/vim-lastplace' " 重新打开文件时定位到上次关闭时的位置
+Plug 'romainl/vim-cool' " 当移动后取消所有search的高亮文本
 Plug 'Konfekt/FastFold' " 代码折叠
 Plug 'MattesGroeger/vim-bookmarks' " 书签
 Plug 'vim-scripts/TaskList.vim' "<leader>td 中转到TODO, XXX等关键词所在的行
@@ -68,11 +68,18 @@ let g:mapleader=","
 nmap <Leader>v :so $MYVIMRC<CR>
 
 
-set background=dark
-colorscheme dracula
-let g:dracula_italic = 1
+set termguicolors
+set background=light
+colorscheme gruvbox
 highlight Normal ctermbg=None
 highlight clear SignColumn
+
+" set background=dark
+" colorscheme dracula
+" let g:dracula_italic = 1
+" highlight Normal ctermbg=None
+" highlight clear SignColumn
+" let g:airline_theme='base16'
 
 " set termguicolors
 " set background=light
@@ -82,6 +89,7 @@ highlight clear SignColumn
 " let g:neosolarized_italic = 1
 " set t_8f=^[[38;2;%lu;%lu;%lum
 " set t_8b=^[[48;2;%lu;%lu;%lum
+" let g:airline_theme='solarized'
 
 " ------------------------------------------------
 " For handsome
@@ -162,7 +170,8 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
-let g:airline_theme='lucius'
+" let g:airline_theme='lucius'
+" let g:airline_theme='dracula'
 
 " ------------------------------------------------
 " For vim-cool
