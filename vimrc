@@ -18,7 +18,6 @@ Plug 'tpope/vim-surround'  "cs.., ds., ys..
 Plug 'tpope/vim-repeat' " 使得'.' 操作能重复上次的 cs.., ds., ys..
 Plug 'easymotion/vim-easymotion'  " ss 快速移动到特定字符
 Plug 'terryma/vim-multiple-cursors'  " ctrl+n, ctrl+p, ctrl+x 同时编辑多个位置, 首先使用*标记当前需要更改的, next, pre, cancle
-Plug 'brooth/far.vim' " 批量修改
 Plug 'honza/vim-snippets'  " ctrl+j, ctrl+k, 输入代码片段的关键字后, 使用这两个快捷键前进后退
 Plug 'SirVer/ultisnips' " 代码片段 配合vim-snippets and coc-nvim
 Plug 'tpope/vim-commentary' " gcc 注释单行，gc 注释选中的行
@@ -38,6 +37,7 @@ Plug 'elzr/vim-json' "查看JSON格式
 Plug 'mattn/emmet-vim'  " HTML
 Plug 'pangloss/vim-javascript'
 Plug 'posva/vim-vue'  " Vuejs
+Plug 'ekalinin/dockerfile.vim'
 
 " About assistance
 Plug 'scrooloose/nerdtree' " 代码目录树，及结点的增删改查
@@ -54,6 +54,7 @@ Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'itchyny/vim-cursorword' "给光标下的单词增加下滑线
 Plug 'iandingx/leetcode.vim' " Vim愉快地在leetcode刷题吧
+Plug 'michaeljsmith/vim-indent-object'
 
 call plug#end()
 
@@ -67,10 +68,10 @@ let mapleader=","  " 使用','替换默认的'\'作为leader键
 let g:mapleader=","
 nmap <Leader>v :so $MYVIMRC<CR>
 
-
 set termguicolors
 set background=light
 colorscheme gruvbox
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 highlight Normal ctermbg=None
 highlight clear SignColumn
 
@@ -80,16 +81,6 @@ highlight clear SignColumn
 " highlight Normal ctermbg=None
 " highlight clear SignColumn
 " let g:airline_theme='base16'
-
-" set termguicolors
-" set background=light
-" colorscheme NeoSolarized
-" let g:neosolarized_visibility = "high"
-" let g:neosolarized_contrast = "high"
-" let g:neosolarized_italic = 1
-" set t_8f=^[[38;2;%lu;%lu;%lum
-" set t_8b=^[[48;2;%lu;%lu;%lum
-" let g:airline_theme='solarized'
 
 " ------------------------------------------------
 " For handsome
@@ -170,8 +161,6 @@ let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
-" let g:airline_theme='lucius'
-" let g:airline_theme='dracula'
 
 " ------------------------------------------------
 " For vim-cool
@@ -481,20 +470,20 @@ let g:rust_clip_command = 'pbcopy'
 " For custom shortcuts
 " ------------------------------------------------
 " 在Insert, Visula, Normal模式下有不同的光标
-if empty($TMUX)
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-  let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-else
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-  let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
-endif
+" if empty($TMUX)
+"   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+"   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+"   let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+" else
+"   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+"   let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+"   let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+" endif
 
-if $TERM_PROGRAM =~ "iTerm"
-    let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
-    let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
-endif
+" if $TERM_PROGRAM =~ "iTerm"
+"     let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
+"     let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
+" endif
 
 
 " 使用系统粘贴板替换neovim的unnamepdplus
