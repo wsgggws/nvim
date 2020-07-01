@@ -5,10 +5,12 @@ Plug 'junegunn/vim-plug' "for :hlep vim-plug
 " About themes
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+
 Plug 'mhinz/vim-startify' " cowsay and 数字键打开历史文件
 Plug 'Yggdroot/indentLine' "缩进层次性感线条
-Plug 'lfv89/vim-interestingwords' " 高亮感兴趣的当前单词
+
 Plug 'kien/rainbow_parentheses.vim'
+
 Plug 'crusoexia/vim-dracula'
 Plug 'morhetz/gruvbox'
 
@@ -16,45 +18,61 @@ Plug 'morhetz/gruvbox'
 Plug 'jiangmiao/auto-pairs' "自动匹配成对字符如括号等
 Plug 'tpope/vim-surround'  "cs.., ds., ys..
 Plug 'tpope/vim-repeat' " 使得'.' 操作能重复上次的 cs.., ds., ys..
-Plug 'easymotion/vim-easymotion'  " ss 快速移动到特定字符
 Plug 'terryma/vim-multiple-cursors'  " ctrl+n, ctrl+p, ctrl+x 同时编辑多个位置, 首先使用*标记当前需要更改的, next, pre, cancle
-Plug 'honza/vim-snippets'  " ctrl+j, ctrl+k, 输入代码片段的关键字后, 使用这两个快捷键前进后退
-Plug 'SirVer/ultisnips' " 代码片段 配合vim-snippets and coc-nvim
+
 Plug 'tpope/vim-commentary' " gcc 注释单行，gc 注释选中的行
+
 Plug 'w0rp/ale' " 代码静态检查，代码格式修正, 见配置并需要安装各语言依赖, 如flake8
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " 代码补全, 见配置并需要安装各语言依赖, 如coc-python
+
+Plug 'honza/vim-snippets'  " ctrl+j, ctrl+k, 输入代码片段的关键字后, 使用这两个快捷键前进后退
+Plug 'SirVer/ultisnips' " 代码片段 配合vim-snippets and coc-nvim
+
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' } "写python语言的各种操作, 见配置a
+
 Plug 'rust-lang/rust.vim' "写Rust语言的
 Plug 'mattn/webapi-vim'
 Plug 'timonv/vim-cargo'
 Plug 'racer-rust/vim-racer'
+
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Vim写MarkDown并在浏览器同步并查看文档
-Plug 'mbbill/undotree' " :undotree 查看目前更记录
-Plug 'rizzatti/dash.vim' " 静态文档工具Dash查询当前单词
+
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'elzr/vim-json' "查看JSON格式
-Plug 'mattn/emmet-vim'  " HTML
+
 Plug 'pangloss/vim-javascript'
-Plug 'posva/vim-vue'  " Vuejs
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'jparise/vim-graphql'
+
 Plug 'ekalinin/dockerfile.vim'
 
 " About assistance
 Plug 'scrooloose/nerdtree' " 代码目录树，及结点的增删改查
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'jistr/vim-nerdtree-tabs'
+
 Plug 'majutsushi/tagbar' " 代码函数变量预览
+
+Plug 'easymotion/vim-easymotion'  " ss 快速移动到特定字符
+
 Plug 'farmergreg/vim-lastplace' " 重新打开文件时定位到上次关闭时的位置
 Plug 'romainl/vim-cool' " 当移动后取消所有search的高亮文本
 Plug 'Konfekt/FastFold' " 代码折叠
 Plug 'MattesGroeger/vim-bookmarks' " 书签
 Plug 'vim-scripts/TaskList.vim' "<leader>td 中转到TODO, XXX等关键词所在的行
 Plug 'mhinz/vim-signify' " Just for git, <leader>se <leader>sd <leader>st
+
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+
 Plug 'itchyny/vim-cursorword' "给光标下的单词增加下滑线
+Plug 'lfv89/vim-interestingwords' " 高亮感兴趣的当前单词
+Plug 'mbbill/undotree' " :undotree 查看目前更记录
 Plug 'iandingx/leetcode.vim' " Vim愉快地在leetcode刷题吧
-Plug 'michaeljsmith/vim-indent-object'
+Plug 'rizzatti/dash.vim' " 静态文档工具Dash查询当前单词
+
 
 call plug#end()
 
@@ -90,7 +108,6 @@ set complete-=i   " disable scanning included files
 set complete-=t   " disable searching tags
 set autoindent
 set smartindent
-" autocmd BufRead,BufNewFile *.py set et ts=4 sw=4 sts=4
 autocmd FileType php,python,c,java,perl,shell,bash,vim,ruby,cpp,rust set ai et ts=4 sw=4 sts=4
 autocmd FileType javascript,html,css,xml,vue set ai et ts=2 sw=2 sts=2
 autocmd FileType go set ai noet ts=8 sw=8 sts=8
@@ -130,12 +147,11 @@ set number          " 在当前行显示当前行数
 set ignorecase
 set incsearch       " Incremental search
 set hlsearch        " High light search
-exec "nohlsearch"
 
 set scrolloff=8
 set sidescrolloff=15
 set sidescroll=1
-set cmdheight=2          " 命令行（在状态行下）的高度，默认为1，这里是2
+set cmdheight=1         " 命令行（在状态行下）的高度，默认为1，这里是2
 set laststatus=2         " 总是显示状态行
 
 set autoread
@@ -204,7 +220,8 @@ au Syntax * RainbowParenthesesLoadBraces
 " ,gt 快速定位该文件所有目录树结点
 " more see :help NerdTree
 " ------------------------------------------------
-nnoremap <leader>nt :NERDTreeToggle<CR> " t, T, s,gs, i,gi, p, P, I, q, <ctrl>+w+w, m, :help
+" t, T, s,gs, i,gi, p, P, I, q, <ctrl>+w+w, m, :help
+nnoremap <leader>nt :NERDTreeToggle<CR> 
 nnoremap <leader>nf :NERDTreeFind<CR>
 let g:nerdtree_tabs_open_on_gui_startup=0
 let NERDTreeShowBookmarks=1
@@ -228,7 +245,6 @@ autocmd BufEnter * if 0 == len(filter(range(1, winnr('$')), 'empty(getbufvar(win
 set hidden
 set nobackup
 set nowritebackup
-set cmdheight=2
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes
@@ -258,6 +274,9 @@ function! s:show_documentation()
   endif
 endfunction
 
+let g:coc_global_extensions = [
+  \ 'coc-tsserver'
+  \ ]
 
 " ------------------------------------------------
 " For python-mode
@@ -302,7 +321,7 @@ let g:ale_fixers = {
 \   'javascript': ['eslint'],
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \}
-" let g:ale_set_hightlights = 1
+let g:ale_set_hightlights = 1
 let g:ale_change_sign_column_color = 0
 let g:ale_sign_column_always = 0
 let g:ale_linters_explicit = 1
@@ -330,6 +349,8 @@ set foldmethod=indent
 set foldopen+=jump
 set foldlevelstart=99
 nmap zuz <Plug>(FastFoldUpdate)
+" za:打开或者关闭当前折叠, zR:打开所有折叠, zM:关闭所有折叠, zr zm 使用不多
+nnoremap <space> za 
 let g:fastfold_savehook = 1
 let g:fastfold_fold_command_suffixes =  ['x','X','a','A','o','O','c','C']
 let g:fastfold_fold_movement_commands = [']z', '[z', 'zj', 'zk']
@@ -346,6 +367,7 @@ let g:r_syntax_folding = 1
 let g:rust_fold = 1
 let g:php_folding = 1
 let g:python_folding = 1
+
 
 
 " ------------------------------------------------
@@ -404,27 +426,27 @@ nmap <silent> <leader>ds <Plug>DashSearch
 
 " ------------------------------------------------
 " For bookmarks
-" Add/remove bookmark at current line	mm	:BookmarkToggle
-" Add/edit/remove annotation at current line	mi	:BookmarkAnnotate <TEXT>
-" Jump to next bookmark in buffer	mn	:BookmarkNext
-" Jump to previous bookmark in buffer	mp	:BookmarkPrev
-" Show all bookmarks (toggle)	ma	:BookmarkShowAll
-" Clear bookmarks in current buffer only	mc	:BookmarkClear
-" Clear bookmarks in all buffers	mx	:BookmarkClearAll
-" Move up bookmark at current line	[count]mkk	:BookmarkMoveUp [<COUNT>]
-" Move down bookmark at current line	[count]mjj	:BookmarkMoveDown [<COUNT>]
-" Move bookmark at current line to another line	[count]mg	:BookmarkMoveToLine <LINE>
-" Save all bookmarks to a file		:BookmarkSave <FILE_PATH>
-" Load bookmarks from a file		:BookmarkLoad <FILE_PATH>
-" more see :help bookmarks
 " ------------------------------------------------
+nmap <Leader>mm <Plug>BookmarkToggle
+nmap <Leader>mi <Plug>BookmarkAnnotate
+nmap <Leader>ma <Plug>BookmarkShowAll
+nmap <Leader>mj <Plug>BookmarkNext
+nmap <Leader>mk <Plug>BookmarkPrev
+nmap <Leader>mc <Plug>BookmarkClear
+nmap <Leader>mx <Plug>BookmarkClearAll
+nmap <Leader>kk <Plug>BookmarkMoveUp
+nmap <Leader>jj <Plug>BookmarkMoveDown
+nmap <Leader>mg <Plug>BookmarkMoveToLine
+let g:bookmark_no_default_key_mappings = 1
+let g:bookmark_sign = '♥'
+let g:bookmark_highlight_lines = 1
 highlight BookmarkSign ctermbg=NONE ctermfg=160
 highlight BookmarkLine ctermbg=194 ctermfg=NONE
 
 " ------------------------------------------------
-" For dash.vim
-" 使用 ,td 快速浏览及跳转TODO, XXX等关键词所在的行
-" more see :help dash
+" For TaskList.vim
+" 使用 ,tl 快速浏览及跳转TODO, XXX等关键词所在的行
+" more see :help TaskList
 " ------------------------------------------------
 nmap <leader>tl <Plug>TaskList
 
@@ -435,6 +457,16 @@ nmap <leader>tl <Plug>TaskList
 " ------------------------------------------------
 nmap ss <Plug>(easymotion-s)
 
+" ------------------------------------------------
+" For interestingwords.vim
+" 使用 ,k ,K n N 快速高亮某个字符
+" more see :help interestingwords
+" ------------------------------------------------
+nnoremap <silent> <leader>k :call InterestingWords('n')<cr>
+nnoremap <silent> <leader>K :call UncolorAllWords()<cr>
+nnoremap <silent> n :call WordNavigation('forward')<cr>
+nnoremap <silent> N :call WordNavigation('backward')<cr>
+
 
 " ------------------------------------------------
 " For ultisnips and coc-ultisnips and vim-snippets
@@ -444,7 +476,6 @@ nmap ss <Plug>(easymotion-s)
 let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
-
 
 " ------------------------------------------------
 " For Rust
@@ -460,30 +491,19 @@ au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
 au FileType rust nmap gt <Plug>(rust-def-tab)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
-" let g:racer_cmd = "/Users/hjtianvip/.cargo/bin/racer"
 let g:racer_experimental_completer = 1
 let g:racer_insert_paren = 1
 let g:rust_clip_command = 'pbcopy'
 
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
 
-" ------------------------------------------------
-" For custom shortcuts
-" ------------------------------------------------
-" 在Insert, Visula, Normal模式下有不同的光标
-" if empty($TMUX)
-"   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-"   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-"   let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-" else
-"   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-"   let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-"   let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
-" endif
-
-" if $TERM_PROGRAM =~ "iTerm"
-"     let &t_SI = "\<Esc>]50;CursorShape=1\x7" " Vertical bar in insert mode
-"     let &t_EI = "\<Esc>]50;CursorShape=0\x7" " Block in normal mode
-" endif
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
 
 
 " 使用系统粘贴板替换neovim的unnamepdplus
@@ -497,11 +517,11 @@ endif
 
 " ------------------------------------------------
 " ------------------------------------------------
-nnoremap <space> za " zr zR zm zM
+" nnoremap <space> za " zr zR zm zM
 nnoremap <leader>so :normal A # noqa<CR>
 vnoremap so :normal A # noqa<CR>
 noremap <leader>w :w<cr>
-" cnoremap w!! w !sudo tee % >/dev/null
+cnoremap w!! w !sudo tee % >/dev/null
 
 noremap <leader>sl :vertical resize +3<CR>  " 行动分屏窗口的大小，以左上角为参考hjkl
 noremap <leader>sh :vertical resize -3<CR>
@@ -523,7 +543,6 @@ nmap <leader>ew :e %%
 nmap <leader>es :sp %%
 nmap <leader>ev :vsp %%
 
-nnoremap <silent> <leader>/ :nohlsearch<CR>
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 com! FormatJSONPy2Utf8 %!python -c "import json, sys, collections; print json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), ensure_ascii=False, indent=2)"
 
