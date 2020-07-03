@@ -13,6 +13,7 @@ Plug 'kien/rainbow_parentheses.vim'
 
 Plug 'crusoexia/vim-dracula'
 Plug 'morhetz/gruvbox'
+Plug 'w0ng/vim-hybrid'
 
 " About efficiency
 Plug 'jiangmiao/auto-pairs' "自动匹配成对字符如括号等
@@ -25,8 +26,8 @@ Plug 'tpope/vim-commentary' " gcc 注释单行，gc 注释选中的行
 Plug 'w0rp/ale' " 代码静态检查，代码格式修正, 见配置并需要安装各语言依赖, 如flake8
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " 代码补全, 见配置并需要安装各语言依赖, 如coc-python
 
-Plug 'honza/vim-snippets'  " ctrl+j, ctrl+k, 输入代码片段的关键字后, 使用这两个快捷键前进后退
 Plug 'SirVer/ultisnips' " 代码片段 配合vim-snippets and coc-nvim
+Plug 'honza/vim-snippets'  " ctrl+j, ctrl+k, 输入代码片段的关键字后, 使用这两个快捷键前进后退
 
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' } "写python语言的各种操作, 见配置a
 
@@ -93,12 +94,19 @@ let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 highlight Normal ctermbg=None
 highlight clear SignColumn
 
+" set termguicolors
 " set background=dark
 " colorscheme dracula
 " let g:dracula_italic = 1
 " highlight Normal ctermbg=None
 " highlight clear SignColumn
-" let g:airline_theme='base16'
+
+" set termguicolors
+" set background=dark
+" colorscheme hybrid
+" highlight Normal ctermbg=None
+" highlight clear SignColumn
+" let g:airline_theme='hybrid'
 
 " ------------------------------------------------
 " For handsome
@@ -151,7 +159,7 @@ set hlsearch        " High light search
 set scrolloff=8
 set sidescrolloff=15
 set sidescroll=1
-set cmdheight=1         " 命令行（在状态行下）的高度，默认为1，这里是2
+set cmdheight=2         " 命令行（在状态行下）的高度，默认为1，这里是2
 set laststatus=2         " 总是显示状态行
 
 set autoread
@@ -367,7 +375,6 @@ let g:r_syntax_folding = 1
 let g:rust_fold = 1
 let g:php_folding = 1
 let g:python_folding = 1
-
 
 
 " ------------------------------------------------
