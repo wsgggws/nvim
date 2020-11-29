@@ -41,12 +41,6 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Vim写
 
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'jparise/vim-graphql'
-
 Plug 'ekalinin/dockerfile.vim'
 
 " About assistance
@@ -71,8 +65,10 @@ Plug 'junegunn/fzf.vim'
 Plug 'itchyny/vim-cursorword' "给光标下的单词增加下滑线
 Plug 'lfv89/vim-interestingwords' " 高亮感兴趣的当前单词
 Plug 'mbbill/undotree' " :undotree 查看目前更记录
-Plug 'iandingx/leetcode.vim' " Vim愉快地在leetcode刷题吧
 Plug 'rizzatti/dash.vim' " 静态文档工具Dash查询当前单词
+
+Plug 'junegunn/vim-easy-align'
+
 
 
 call plug#end()
@@ -87,12 +83,12 @@ let mapleader=","  " 使用','替换默认的'\'作为leader键
 let g:mapleader=","
 nmap <Leader>v :so $MYVIMRC<CR>
 
-set termguicolors
-set background=light
-colorscheme gruvbox
-let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-highlight Normal ctermbg=None
-highlight clear SignColumn
+" set termguicolors
+" set background=light
+" colorscheme gruvbox
+" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
+" highlight Normal ctermbg=None
+" highlight clear SignColumn
 
 " set termguicolors
 " set background=dark
@@ -102,11 +98,11 @@ highlight clear SignColumn
 " highlight clear SignColumn
 
 " set termguicolors
-" set background=dark
-" colorscheme hybrid
-" highlight Normal ctermbg=None
-" highlight clear SignColumn
-" let g:airline_theme='hybrid'
+set background=dark
+colorscheme hybrid
+highlight Normal ctermbg=None
+highlight clear SignColumn
+let g:airline_theme='hybrid'
 
 " ------------------------------------------------
 " For handsome
@@ -159,7 +155,7 @@ set hlsearch        " High light search
 set scrolloff=8
 set sidescrolloff=15
 set sidescroll=1
-set cmdheight=2         " 命令行（在状态行下）的高度，默认为1，这里是2
+" set cmdheight=2         " 命令行（在状态行下）的高度，默认为1，这里是2
 set laststatus=2         " 总是显示状态行
 
 set autoread
@@ -501,16 +497,6 @@ au FileType rust nmap <leader>gd <Plug>(rust-doc)
 let g:racer_experimental_completer = 1
 let g:racer_insert_paren = 1
 let g:rust_clip_command = 'pbcopy'
-
-autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
-autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
-if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
-  let g:coc_global_extensions += ['coc-prettier']
-endif
-
-if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
-  let g:coc_global_extensions += ['coc-eslint']
-endif
 
 
 " 使用系统粘贴板替换neovim的unnamepdplus
