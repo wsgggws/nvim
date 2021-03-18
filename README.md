@@ -61,3 +61,8 @@ alias vi='nvim'
     - set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
     - set termencoding=utf-8
     - set encoding=utf-8
+
+##### 多个Python环境时，如何指定Coc的Python环境
+```
+Run :CocCommand python.setInterpreter to get current python, it could be not your current python in $PATH.
+```

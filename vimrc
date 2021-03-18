@@ -11,9 +11,7 @@ Plug 'Yggdroot/indentLine' "缩进层次性感线条
 
 Plug 'kien/rainbow_parentheses.vim'
 
-Plug 'crusoexia/vim-dracula'
 Plug 'morhetz/gruvbox'
-Plug 'w0ng/vim-hybrid'
 
 " About efficiency
 Plug 'jiangmiao/auto-pairs' "自动匹配成对字符如括号等
@@ -41,6 +39,12 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Vim写
 
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
+Plug 'pangloss/vim-javascript'
+Plug 'leafgarland/typescript-vim'
+Plug 'peitalin/vim-jsx-typescript'
+Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
+Plug 'jparise/vim-graphql'
+
 Plug 'ekalinin/dockerfile.vim'
 
 " About assistance
@@ -65,10 +69,8 @@ Plug 'junegunn/fzf.vim'
 Plug 'itchyny/vim-cursorword' "给光标下的单词增加下滑线
 Plug 'lfv89/vim-interestingwords' " 高亮感兴趣的当前单词
 Plug 'mbbill/undotree' " :undotree 查看目前更记录
+Plug 'iandingx/leetcode.vim' " Vim愉快地在leetcode刷题吧
 Plug 'rizzatti/dash.vim' " 静态文档工具Dash查询当前单词
-
-Plug 'junegunn/vim-easy-align'
-
 
 
 call plug#end()
@@ -83,26 +85,12 @@ let mapleader=","  " 使用','替换默认的'\'作为leader键
 let g:mapleader=","
 nmap <Leader>v :so $MYVIMRC<CR>
 
-" set termguicolors
-" set background=light
-" colorscheme gruvbox
-" let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-" highlight Normal ctermbg=None
-" highlight clear SignColumn
-
-" set termguicolors
-" set background=dark
-" colorscheme dracula
-" let g:dracula_italic = 1
-" highlight Normal ctermbg=None
-" highlight clear SignColumn
-
-" set termguicolors
-set background=dark
-colorscheme hybrid
+set termguicolors
+set background=light
+colorscheme gruvbox
+let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 highlight Normal ctermbg=None
 highlight clear SignColumn
-let g:airline_theme='hybrid'
 
 " ------------------------------------------------
 " For handsome
@@ -113,10 +101,11 @@ set complete-=t   " disable searching tags
 set autoindent
 set smartindent
 autocmd FileType php,python,c,java,perl,shell,bash,vim,ruby,cpp,rust set ai et ts=4 sw=4 sts=4
+let g:pymode_options_max_line_length=120
+autocmd FileType python set colorcolumn=120
 autocmd FileType javascript,html,css,xml,vue set ai et ts=2 sw=2 sts=2
 autocmd FileType go set ai noet ts=8 sw=8 sts=8
 set smarttab        " 根据文件中其他地方的缩进空格个数来确定一个 tab 是多少个空格
-" set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
 set list  " 开启对于制表符（tab）、行尾空格符（trail）、行结束符（eol）等等特殊符号的回显
 set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
 set backspace=2     " 解决插入模式下delete/backspce键失效问题
@@ -155,7 +144,7 @@ set hlsearch        " High light search
 set scrolloff=8
 set sidescrolloff=15
 set sidescroll=1
-" set cmdheight=2         " 命令行（在状态行下）的高度，默认为1，这里是2
+set cmdheight=2         " 命令行（在状态行下）的高度，默认为1，这里是2
 set laststatus=2         " 总是显示状态行
 
 set autoread
@@ -498,6 +487,16 @@ let g:racer_experimental_completer = 1
 let g:racer_insert_paren = 1
 let g:rust_clip_command = 'pbcopy'
 
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
+if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
+  let g:coc_global_extensions += ['coc-prettier']
+endif
+
+if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
+  let g:coc_global_extensions += ['coc-eslint']
+endif
+
 
 " 使用系统粘贴板替换neovim的unnamepdplus
 if has('clipboard')
@@ -537,12 +536,9 @@ nmap <leader>es :sp %%
 nmap <leader>ev :vsp %%
 
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
-com! FormatJSONPy2Utf8 %!python -c "import json, sys, collections; print json.dumps(json.load(sys.stdin, object_pairs_hook=collections.OrderedDict), ensure_ascii=False, indent=2)"
 
 " select last paste in visual mode, gv选择原始复制的文本, gb选择上一次粘贴的文本
 nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . ']`'
-
-let g:go_version_warning = 0
 
 " ------------------------------------------------
 " For themes
