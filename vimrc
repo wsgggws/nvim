@@ -71,6 +71,8 @@ Plug 'lfv89/vim-interestingwords' " 高亮感兴趣的当前单词
 Plug 'mbbill/undotree' " :undotree 查看目前更记录
 Plug 'iandingx/leetcode.vim' " Vim愉快地在leetcode刷题吧
 Plug 'rizzatti/dash.vim' " 静态文档工具Dash查询当前单词
+Plug 'voldikss/vim-floaterm'
+Plug 'tpope/vim-eunuch'
 
 
 call plug#end()
@@ -496,6 +498,14 @@ endif
 if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
   let g:coc_global_extensions += ['coc-eslint']
 endif
+
+let g:floaterm_width = 0.9
+let g:floaterm_height = 0.9
+let g:floaterm_keymap_new    = '<F7>'
+let g:floaterm_keymap_prev   = '<F8>'
+let g:floaterm_keymap_next   = '<F9>'
+let g:floaterm_keymap_toggle = '<F12>'
+let g:floaterm_keymap_new = '<Leader>tf'
 
 
 " 使用系统粘贴板替换neovim的unnamepdplus
