@@ -39,12 +39,6 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Vim写
 
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-Plug 'pangloss/vim-javascript'
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'jparise/vim-graphql'
-
 Plug 'ekalinin/dockerfile.vim'
 
 " About assistance
@@ -73,7 +67,6 @@ Plug 'iandingx/leetcode.vim' " Vim愉快地在leetcode刷题吧
 Plug 'rizzatti/dash.vim' " 静态文档工具Dash查询当前单词
 Plug 'voldikss/vim-floaterm'
 Plug 'tpope/vim-eunuch'
-
 
 call plug#end()
 
