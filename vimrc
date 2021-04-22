@@ -2,71 +2,60 @@ call plug#begin('~/.vim/plugged')
 
 Plug 'junegunn/vim-plug' "for :hlep vim-plug
 
-" About themes
+" themes 主题相关
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
-Plug 'mhinz/vim-startify' " cowsay and 数字键打开历史文件
 Plug 'Yggdroot/indentLine' "缩进层次性感线条
-
+Plug 'mhinz/vim-startify' " cowsay and 数字键打开历史文件
 Plug 'kien/rainbow_parentheses.vim'
-
-Plug 'morhetz/gruvbox'
-
-" About efficiency
-Plug 'jiangmiao/auto-pairs' "自动匹配成对字符如括号等
-Plug 'tpope/vim-surround'  "cs.., ds., ys..
-Plug 'tpope/vim-repeat' " 使得'.' 操作能重复上次的 cs.., ds., ys..
-Plug 'terryma/vim-multiple-cursors'  " ctrl+n, ctrl+p, ctrl+x 同时编辑多个位置, 首先使用*标记当前需要更改的, next, pre, cancle
-
-Plug 'tpope/vim-commentary' " gcc 注释单行，gc 注释选中的行
-
-Plug 'w0rp/ale' " 代码静态检查，代码格式修正, 见配置并需要安装各语言依赖, 如flake8
-Plug 'neoclide/coc.nvim', {'branch': 'release'} " 代码补全, 见配置并需要安装各语言依赖, 如coc-python
-
-Plug 'SirVer/ultisnips' " 代码片段 配合vim-snippets and coc-nvim
-Plug 'honza/vim-snippets'  " ctrl+j, ctrl+k, 输入代码片段的关键字后, 使用这两个快捷键前进后退
-
-Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' } "写python语言的各种操作, 见配置a
-
-Plug 'rust-lang/rust.vim' "写Rust语言的
-Plug 'mattn/webapi-vim'
-Plug 'timonv/vim-cargo'
-Plug 'racer-rust/vim-racer'
-
-Plug 'iamcco/mathjax-support-for-mkdp'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  } " Vim写MarkDown并在浏览器同步并查看文档
-
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-
-Plug 'ekalinin/dockerfile.vim'
-
-" About assistance
 Plug 'scrooloose/nerdtree' " 代码目录树，及结点的增删改查
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'jistr/vim-nerdtree-tabs'
-
 Plug 'majutsushi/tagbar' " 代码函数变量预览
-
-Plug 'easymotion/vim-easymotion'  " ss 快速移动到特定字符
-
+Plug 'itchyny/vim-cursorword' "给光标下的单词增加下滑线
+Plug 'lfv89/vim-interestingwords' " 高亮感兴趣的当前单词
+Plug 'mbbill/undotree' " :undotree 查看目前更记录
 Plug 'farmergreg/vim-lastplace' " 重新打开文件时定位到上次关闭时的位置
 Plug 'romainl/vim-cool' " 当移动后取消所有search的高亮文本
 Plug 'Konfekt/FastFold' " 代码折叠
 Plug 'MattesGroeger/vim-bookmarks' " 书签
+Plug 'morhetz/gruvbox'
+Plug 'w0ng/vim-hybrid'
+Plug 'joshdick/onedark.vim'
+Plug 'voldikss/vim-floaterm'
+
+" efficiency 效率相关
+Plug 'jiangmiao/auto-pairs' "自动匹配成对字符如括号等
+Plug 'tpope/vim-surround'  "cs.., ds., ys..
+Plug 'tpope/vim-repeat' " 使得'.' 操作能重复上次的 cs.., ds., ys..
+Plug 'terryma/vim-multiple-cursors'  " ctrl+n, ctrl+p, ctrl+x 同时编辑多个位置, 首先使用*标记当前需要更改的, next, pre, cancle
+Plug 'tpope/vim-commentary' " gcc 注释单行，gc 注释选中的行
+Plug 'SirVer/ultisnips' " 代码片段 配合vim-snippets and coc-nvim
+Plug 'honza/vim-snippets'  " ctrl+j, ctrl+k, 输入代码片段的关键字后, 使用这两个快捷键前进后退
+Plug 'easymotion/vim-easymotion'  " ss 快速移动到特定字符
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'rizzatti/dash.vim' " 静态文档工具Dash查询当前单词
+Plug 'tpope/vim-eunuch'
+
+Plug 'w0rp/ale' " 代码静态检查，代码格式修正, 见配置并需要安装各语言依赖, 如flake8
+Plug 'neoclide/coc.nvim', {'branch': 'release'} " 代码补全, 见配置并需要安装各语言依赖, 如coc-python
+
+" language 计算机语言相关
+Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' } " Python
+
+Plug 'rust-lang/rust.vim' "Rust
+Plug 'mattn/webapi-vim'
+Plug 'timonv/vim-cargo'
+Plug 'racer-rust/vim-racer'
+
+Plug 'iamcco/mathjax-support-for-mkdp' " markdown
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+
+
 Plug 'vim-scripts/TaskList.vim' "<leader>td 中转到TODO, XXX等关键词所在的行
 Plug 'mhinz/vim-signify' " Just for git, <leader>se <leader>sd <leader>st
 
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-
-Plug 'itchyny/vim-cursorword' "给光标下的单词增加下滑线
-Plug 'lfv89/vim-interestingwords' " 高亮感兴趣的当前单词
-Plug 'mbbill/undotree' " :undotree 查看目前更记录
-Plug 'iandingx/leetcode.vim' " Vim愉快地在leetcode刷题吧
-Plug 'rizzatti/dash.vim' " 静态文档工具Dash查询当前单词
-Plug 'voldikss/vim-floaterm'
-Plug 'tpope/vim-eunuch'
 
 call plug#end()
 
@@ -80,9 +69,8 @@ let mapleader=","  " 使用','替换默认的'\'作为leader键
 let g:mapleader=","
 nmap <Leader>v :so $MYVIMRC<CR>
 
-set termguicolors
-set background=light
-colorscheme gruvbox
+" set termguicolors
+colorscheme onedark
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 highlight Normal ctermbg=None
 highlight clear SignColumn
@@ -162,7 +150,7 @@ set ttimeoutlen=100
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
-let g:airline#extensions#tabline#enabled = 1
+" let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
 
@@ -204,8 +192,8 @@ au Syntax * RainbowParenthesesLoadBraces
 
 " ------------------------------------------------
 " For NerdTree
-" ,te  打开或者关闭目录树, 使用m键可以 增删改查 文件目录结点：）
-" ,gt 快速定位该文件所有目录树结点
+" ,nt 打开或者关闭目录树, 使用m键可以 增删改查 文件目录结点
+" ,nf 快速定位该文件所有目录树结点
 " more see :help NerdTree
 " ------------------------------------------------
 " t, T, s,gs, i,gi, p, P, I, q, <ctrl>+w+w, m, :help
