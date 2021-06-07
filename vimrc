@@ -70,7 +70,8 @@ let g:mapleader=","
 nmap <Leader>v :so $MYVIMRC<CR>
 
 " set termguicolors
-colorscheme onedark
+" colorscheme onedark
+colorscheme hybrid
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 highlight Normal ctermbg=None
 highlight clear SignColumn
@@ -200,14 +201,14 @@ au Syntax * RainbowParenthesesLoadBraces
 nnoremap <leader>nt :NERDTreeToggle<CR> 
 nnoremap <leader>nf :NERDTreeFind<CR>
 let g:nerdtree_tabs_open_on_gui_startup=0
-let NERDTreeShowBookmarks=1
+let NERDTreeShowBookmarks=0
 let NERDTreeIgnore=['\.py[cd]$', '\~$', '\.swo$', '\.swp$', '^\.git$', '^\.hg$', '^\.svn$', '\.bzr$']
 let NERDTreeChDirMode=0
 let NERDTreeQuitOnOpen=0
 let NERDTreeMouseMode=2
 let NERDTreeShowHidden=0
 let NERDTreeKeepTreeInNewTab=1
-let NERDTreeWinSize=40
+let NERDTreeWinSize=36
 autocmd BufEnter * if 0 == len(filter(range(1, winnr('$')), 'empty(getbufvar(winbufnr(v:val), "&bt"))')) | qa! | endif
 
 
@@ -287,14 +288,12 @@ let g:ale_linters = {
 \   'rust': [ 'cargo', 'rls', 'rustc' ],
 \   'bash': ['shellcheck'],
 \   'go': ['golint'],
-\   'javascript': ['eslint'],
 \}
 let g:ale_linters_ignore = {'python': ['pylint']}
 let g:ale_rust_rls_toolchain = 'nightly'
 let g:ale_fixers = {
 \   'python': ['autopep8', 'black', 'isort'],
 \   'rust': ['rustfmt'],
-\   'javascript': ['eslint'],
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \}
 let g:ale_set_hightlights = 1
@@ -369,7 +368,7 @@ autocmd FileType apache setlocal commentstring=#\ %s
 " ------------------------------------------------
 "<Leader>f在当前目录搜索文件
 nnoremap <silent> <Leader>f :Files<CR>
-nnoremap <silent> <C-p> :Files<CR>
+nnoremap <silent> <C-p> :GFiles<CR>
 "<Leader>b切换Buffer中的文件
 nnoremap <silent> <Leader>b :Buffers<CR>
 nnoremap <silent> <Leader>rg :Rg<CR>
@@ -377,13 +376,12 @@ nnoremap <silent> <Leader>rg :Rg<CR>
 nnoremap <silent> <Leader>l :BLines<CR>
 "<Leader>h在Vim打开的历史文件中搜索，相当于是在MRU中搜索，:History：命令历史查找
 nnoremap <silent> <Leader>h :History<CR>
-"调用Rg进行搜索，包含隐藏文件
+" 调用Rg进行搜索，包含隐藏文件
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
   \   'rg --column --line-number --no-heading --color=always --smart-case '.shellescape(<q-args>), 1,
-  \   fzf#vim#with_preview(), <bang>0)
+  \   fzf#vim#with_preview({'dir': systemlist('git rev-parse --show-toplevel')[0]}), <bang>0)
 let g:fzf_preview_window = 'right:50%'
-
 
 " ------------------------------------------------
 " For tagbar
@@ -391,6 +389,7 @@ let g:fzf_preview_window = 'right:50%'
 " more see :help tagbar
 " ------------------------------------------------
 nnoremap <leader>tt :TagbarToggle<CR>
+
 
 " ------------------------------------------------
 " For dash.vim
@@ -470,15 +469,6 @@ let g:racer_experimental_completer = 1
 let g:racer_insert_paren = 1
 let g:rust_clip_command = 'pbcopy'
 
-autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
-autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
-if isdirectory('./node_modules') && isdirectory('./node_modules/prettier')
-  let g:coc_global_extensions += ['coc-prettier']
-endif
-
-if isdirectory('./node_modules') && isdirectory('./node_modules/eslint')
-  let g:coc_global_extensions += ['coc-eslint']
-endif
 
 let g:floaterm_width = 0.9
 let g:floaterm_height = 0.9
