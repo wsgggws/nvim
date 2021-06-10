@@ -6,22 +6,25 @@ Plug 'junegunn/vim-plug' "for :hlep vim-plug
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Yggdroot/indentLine' "缩进层次性感线条
-Plug 'mhinz/vim-startify' " cowsay and 数字键打开历史文件
-Plug 'kien/rainbow_parentheses.vim'
-Plug 'scrooloose/nerdtree' " 代码目录树，及结点的增删改查
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'jistr/vim-nerdtree-tabs'
-Plug 'majutsushi/tagbar' " 代码函数变量预览
 Plug 'itchyny/vim-cursorword' "给光标下的单词增加下滑线
 Plug 'lfv89/vim-interestingwords' " 高亮感兴趣的当前单词
-Plug 'mbbill/undotree' " :undotree 查看目前更记录
-Plug 'farmergreg/vim-lastplace' " 重新打开文件时定位到上次关闭时的位置
+Plug 'kien/rainbow_parentheses.vim'
 Plug 'romainl/vim-cool' " 当移动后取消所有search的高亮文本
 Plug 'Konfekt/FastFold' " 代码折叠
-Plug 'MattesGroeger/vim-bookmarks' " 书签
 Plug 'morhetz/gruvbox'
 Plug 'w0ng/vim-hybrid'
 Plug 'joshdick/onedark.vim'
+
+
+Plug 'easymotion/vim-easymotion'  " ss 快速移动到特定字符
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+Plug 'MattesGroeger/vim-bookmarks' " 书签
+Plug 'majutsushi/tagbar' " 代码函数变量预览
+Plug 'mhinz/vim-startify' " cowsay and 数字键打开历史文件
+Plug 'farmergreg/vim-lastplace' " 重新打开文件时定位到上次关闭时的位置
+Plug 'vim-scripts/TaskList.vim' "<leader>td 中转到TODO, XXX等关键词所在的行
+Plug 'rizzatti/dash.vim' " 静态文档工具Dash查询当前单词
 Plug 'voldikss/vim-floaterm'
 
 " efficiency 效率相关
@@ -29,17 +32,19 @@ Plug 'jiangmiao/auto-pairs' "自动匹配成对字符如括号等
 Plug 'tpope/vim-surround'  "cs.., ds., ys..
 Plug 'tpope/vim-repeat' " 使得'.' 操作能重复上次的 cs.., ds., ys..
 Plug 'terryma/vim-multiple-cursors'  " ctrl+n, ctrl+p, ctrl+x 同时编辑多个位置, 首先使用*标记当前需要更改的, next, pre, cancle
+Plug 'mbbill/undotree' " :undotree 查看目前更记录
 Plug 'tpope/vim-commentary' " gcc 注释单行，gc 注释选中的行
 Plug 'SirVer/ultisnips' " 代码片段 配合vim-snippets and coc-nvim
 Plug 'honza/vim-snippets'  " ctrl+j, ctrl+k, 输入代码片段的关键字后, 使用这两个快捷键前进后退
-Plug 'easymotion/vim-easymotion'  " ss 快速移动到特定字符
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
-Plug 'rizzatti/dash.vim' " 静态文档工具Dash查询当前单词
-Plug 'tpope/vim-eunuch'
-
 Plug 'w0rp/ale' " 代码静态检查，代码格式修正, 见配置并需要安装各语言依赖, 如flake8
 Plug 'neoclide/coc.nvim', {'branch': 'release'} " 代码补全, 见配置并需要安装各语言依赖, 如coc-python
+
+
+Plug 'scrooloose/nerdtree' " 代码目录树，及结点的增删改查
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'jistr/vim-nerdtree-tabs'
+Plug 'mhinz/vim-signify' " Just for git, <leader>se <leader>sd <leader>st
+Plug 'tpope/vim-eunuch'
 
 " language 计算机语言相关
 Plug 'python-mode/python-mode', { 'for': 'python', 'branch': 'develop' } " Python
@@ -51,10 +56,6 @@ Plug 'racer-rust/vim-racer'
 
 Plug 'iamcco/mathjax-support-for-mkdp' " markdown
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
-
-
-Plug 'vim-scripts/TaskList.vim' "<leader>td 中转到TODO, XXX等关键词所在的行
-Plug 'mhinz/vim-signify' " Just for git, <leader>se <leader>sd <leader>st
 
 
 call plug#end()
@@ -103,7 +104,6 @@ set wrapmargin=1
 set ruler
 
 " edit
-set nobackup
 set noswapfile
 set undofile
 set undodir=~/.vim/.undo// "需要mkdir这个目录
@@ -151,7 +151,7 @@ set ttimeoutlen=100
 let g:airline#extensions#ale#enabled = 1
 let g:airline#extensions#branch#enabled = 1
 let g:airline#extensions#ale#enabled = 1
-" let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tagbar#enabled = 1
 let g:airline_skip_empty_sections = 1
 
@@ -197,8 +197,7 @@ au Syntax * RainbowParenthesesLoadBraces
 " ,nf 快速定位该文件所有目录树结点
 " more see :help NerdTree
 " ------------------------------------------------
-" t, T, s,gs, i,gi, p, P, I, q, <ctrl>+w+w, m, :help
-nnoremap <leader>nt :NERDTreeToggle<CR> 
+nnoremap <leader>nt :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
 let g:nerdtree_tabs_open_on_gui_startup=0
 let NERDTreeShowBookmarks=0
@@ -224,17 +223,19 @@ set nobackup
 set nowritebackup
 set updatetime=300
 set shortmess+=c
-set signcolumn=yes
+set signcolumn=number
 set completeopt=longest,menu
 inoremap <silent><expr> <TAB>
-    \ pumvisible() ? "\<C-n>" :
-    \ <SID>check_back_space() ? "\<TAB>" :
-    \ coc#refresh()
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
 function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
+
 
 " Remap keys for gotos
 nmap <silent> gd <Plug>(coc-definition)
@@ -242,18 +243,41 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 
+" Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>
+
 function! s:show_documentation()
   if (index(['vim','help'], &filetype) >= 0)
     execute 'h '.expand('<cword>')
+  elseif (coc#rpc#ready())
+    call CocActionAsync('doHover')
   else
-    call CocAction('doHover')
+    execute '!' . &keywordprg . " " . expand('<cword>')
   endif
 endfunction
 
+" Highlight the symbol and its references when holding the cursor.
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
 let g:coc_global_extensions = [
-  \ 'coc-tsserver'
+  \ 'coc-snippets',
+  \ 'coc-sh',
+  \ 'coc-rust-analyzer',
+  \ 'coc-rls',
+  \ 'coc-prettier',
+  \ 'coc-json',
+  \ 'coc-jedi',
+  \ 'coc-clangd',
+  \ 'coc-calc',
   \ ]
+
+command! -nargs=0 Prettier :CocCommand prettier.formatFile
+vmap <leader>cf  <Plug>(coc-format-selected)
+nmap <leader>cf  <Plug>(coc-format-selected)
+" append result on current expression
+nmap <Leader>ca <Plug>(coc-calc-result-append)
+" replace result on current expression
+nmap <Leader>cr <Plug>(coc-calc-result-replace)
 
 " ------------------------------------------------
 " For python-mode
@@ -271,7 +295,7 @@ let g:pymode_folding = 0
 let g:pymode_rope = 0
 let g:pymode_breakpoint = 0
 let g:pymode_run = 1
-let g:pymode_run_bind = '<Leader>r'
+let g:pymode_run_bind = '<Leader>pr'
 
 " ------------------------------------------------
 " For ale
@@ -288,12 +312,14 @@ let g:ale_linters = {
 \   'rust': [ 'cargo', 'rls', 'rustc' ],
 \   'bash': ['shellcheck'],
 \   'go': ['golint'],
+\   'javascript': ['eslint'],
 \}
 let g:ale_linters_ignore = {'python': ['pylint']}
 let g:ale_rust_rls_toolchain = 'nightly'
 let g:ale_fixers = {
 \   'python': ['autopep8', 'black', 'isort'],
 \   'rust': ['rustfmt'],
+\   'javascript': ['eslint'],
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \}
 let g:ale_set_hightlights = 1
@@ -389,6 +415,8 @@ let g:fzf_preview_window = 'right:50%'
 " more see :help tagbar
 " ------------------------------------------------
 nnoremap <leader>tt :TagbarToggle<CR>
+" let g:tagbar_position="left"
+let g:tagbar_width=36
 
 
 " ------------------------------------------------
@@ -456,14 +484,13 @@ let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 " 使用gd, gs, gx时的跳转键
 " more see :help ultisnips and :help vim-snippets
 " ------------------------------------------------
-au FileType rust nmap <leader>af :RustFmt<cr>
-au FileType rust nmap <leader>r :RustRun<cr>
-au FileType rust nmap <leader>p :RustPlay<cr>
+au FileType rust nmap <leader>rf :RustFmt<cr>
+au FileType rust nmap <leader>rr :RustRun<cr>
+au FileType rust nmap <leader>rp :RustPlay<cr>
 au FileType rust nmap <leader>rt :RustTest<cr>
 au FileType rust nmap gd <Plug>(rust-def)
 au FileType rust nmap gs <Plug>(rust-def-split)
 au FileType rust nmap gx <Plug>(rust-def-vertical)
-au FileType rust nmap gt <Plug>(rust-def-tab)
 au FileType rust nmap <leader>gd <Plug>(rust-doc)
 let g:racer_experimental_completer = 1
 let g:racer_insert_paren = 1
@@ -472,11 +499,7 @@ let g:rust_clip_command = 'pbcopy'
 
 let g:floaterm_width = 0.9
 let g:floaterm_height = 0.9
-let g:floaterm_keymap_new    = '<F7>'
-let g:floaterm_keymap_prev   = '<F8>'
-let g:floaterm_keymap_next   = '<F9>'
 let g:floaterm_keymap_toggle = '<F12>'
-let g:floaterm_keymap_new = '<Leader>tf'
 
 
 " 使用系统粘贴板替换neovim的unnamepdplus
@@ -488,38 +511,29 @@ if has('clipboard')
   endif
 endif
 
-" ------------------------------------------------
-" ------------------------------------------------
-" nnoremap <space> za " zr zR zm zM
 nnoremap <leader>so :normal A # noqa<CR>
 vnoremap so :normal A # noqa<CR>
 noremap <leader>w :w<cr>
 cnoremap w!! w !sudo tee % >/dev/null
 
-noremap <leader>sl :vertical resize +3<CR>  " 行动分屏窗口的大小，以左上角为参考hjkl
-noremap <leader>sh :vertical resize -3<CR>
-noremap <leader>sj :resize +3<CR>
-noremap <leader>sk :resize -3<CR>
 noremap <leader>hh <C-w>h
 noremap <leader>jj  <C-w>j
 noremap <leader>kk <C-w>k
 noremap <leader>ll <C-w>l
 
-nnoremap [<space>  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
-nnoremap ]<space>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
-nnoremap Y y$
 noremap j gj
 noremap k gk
 vnoremap < <gv
 vnoremap > >gv
-nmap <leader>ew :e %%
-nmap <leader>es :sp %%
-nmap <leader>ev :vsp %%
 
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
 
+
+nnoremap [<space>  :<c-u>put! =repeat(nr2char(10), v:count1)<cr>'[
+nnoremap ]<space>  :<c-u>put =repeat(nr2char(10), v:count1)<cr>
 " select last paste in visual mode, gv选择原始复制的文本, gb选择上一次粘贴的文本
 nnoremap <expr> gb '`[' . strpart(getregtype(), 0, 1) . ']`'
+
 
 " ------------------------------------------------
 " For themes
