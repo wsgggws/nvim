@@ -268,7 +268,11 @@ let g:coc_global_extensions = [
   \ 'coc-json',
   \ 'coc-jedi',
   \ 'coc-clangd',
+  \ 'coc-syntax',
+  \ 'coc-cmake',
+  \ 'coc-yaml',
   \ 'coc-calc',
+  \ 'coc-markdownlint',
   \ ]
 
 command! -nargs=0 Prettier :CocCommand prettier.formatFile
