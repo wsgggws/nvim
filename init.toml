@@ -1,0 +1,191 @@
+#=============================================================================
+# dark_powered.toml --- dark powered configuration example for SpaceVim
+# Copyright (c) 2016-2021 Wang Shidong & Contributors
+# Author: Wang Shidong < wsdjeg at 163.com >
+# URL: https://spacevim.org
+# License: GPLv3
+#=============================================================================
+
+# All SpaceVim option below [option] section
+[options]
+    # set spacevim theme. by default colorscheme layer is not loaded,
+    # if you want to use more colorscheme, please load the colorscheme
+    # layer
+    # Disable guicolors in basic mode, many terminal do not support 24bit
+    # true colors
+
+    autocomplete_method = "deoplete"
+    # autocomplete_method = "coc"
+    autocomplete_parens = true
+    bootstrap_after = 'myspacevim#after'
+    bootstrap_before = 'myspacevim#before'
+    buffer_index_type = 4
+    checkinstall = true
+    # code_runner_focus = true
+    colorscheme = "gruvbox"
+    colorscheme_bg = "light"
+    data_dir = "~/.cache"
+    default_custom_leader = "<Space>"
+    default_indent = 4
+    # enable_bepo_layout = false
+    enable_vimfilter_welcome = false
+    enable_cursorcolumn = 0
+    enable_cursorline = 0
+    # enable_debug = false
+    enable_googlesuggest = true
+    enable_guicolors = true
+    # enable_key_frequency = true
+    enable_projects_cache = true
+    enable_statusline_bfpath = true
+    enable_statusline_mode = true
+    enable_statusline_tag = true
+    enable_tabline_ft_icon = true
+    # enable_ycm = false
+    # error_symbol = "✖"
+    # escape_key_binding = ""
+    # file_searching_tools = ['find', 'find -not -iwholename "*.git*" ']
+    filemanager = "nerdtree"
+    filetree_direction = "left"
+    # guifont = ""
+    home_files_number = 8
+    # info_symbol = "🛈 "
+    # keep_server_alive
+    # language
+    # lint_engine = "ale"
+    # lint_on_the_fly = false
+    # max_column = 120
+    # plugin_bundle_dir = "~/.cache/vimplugs"
+    # plugin_manager_processes
+    # project_auto_root = true
+    # project_rooter_outermost = false
+    # project_rooter_patterns
+    projects_cache_num = 5
+    # realtime_leader_guide = true
+    relativenumber = false
+    # retry_cnt = 3
+    # search_tools
+    sidebar_width = 38
+    snippet_engine = 'ultisnips'
+    vimcompatible = true
+    # statusline_iseparator = "arrow"
+    # statusline_left_sections
+    # statusline_separator = "arrow"
+    # statusline_unicode = true
+    # terminal_cursor_shape = 2
+    # vim_help_language = "en"
+    # warning_symbol
+    # windisk_encoding
+    # windows_index_type
+    # windows_leader
+    # windows_smartclose
+    disabled_plugins = ["commentary.vim"]
+
+    # for layer checkers
+    lint_on_save = 1
+    show_cursor_error = 1
+
+    # for layer core
+    enable_filetree_gitstatus = true
+    enable_filetree_filetypeicon = true
+    enable_vimfiler_gitstatus = true
+
+
+
+[[layers]]
+  name = "autocomplete"
+  # auto_completion_return_key_behavior = "complete"
+  # auto_completion_tab_key_behavior = "cycle"
+  auto_completion_enable_snippets_in_popup = false
+
+[[layers]]
+  name = 'shell'
+  default_position = 'right'
+  default_height = 30
+
+[[layers]]
+  name = "checkers"
+
+[[layers]]
+  name = "colorscheme"
+
+[[laryers]]
+  name = 'core#statusline'
+
+[[laryers]]
+  name = 'core#tabline'
+
+[[laryers]]
+  name = 'cscope'
+  auto_update = true
+  open_quickfix = 0
+
+[[layers]]
+  name = "debug"
+  debugger_plugin = 'vebugger'
+
+[[layers]]
+  name = "format"
+
+[[layers]]
+  name = "incsearch"
+
+[[layers]]
+  name = "foldsearch"
+
+[[layers]]
+  name = "indentmove"
+
+[[layers]]
+  name = "git"
+  git_plugin = "fugitive"
+
+[[layers]]
+  name = "lang#toml"
+
+[[layers]]
+  name = "lang#sh"
+
+[[layers]]
+  name = "lang#rust"
+
+[[layers]]
+  name = 'lang#c'
+  enable_clang_syntax_highlight = true
+
+[[layers]]
+  name = "lang#go"
+
+[[layers]]
+  name = "lang#python"
+  format_on_save = true
+  python_file_head = []
+  python_interpreter = "/usr/local/bin/python3"
+  enabled_linters = ['flake8']
+
+[[layers]]
+  name = "lang#markdown"
+
+[[layers]]
+  name = "lang#latex"
+
+[[layers]]
+  name = 'lang#vim'
+
+[[layers]]
+  name = "fzf"
+
+[[layers]]
+  name = "tools"
+
+[[layers]]
+  name = "tmux"
+
+[[layers]]
+  name = "test"
+
+[[layers]]
+  name = "ui"
+
+[[custom_plugins]]
+  name = "tpope/vim-commentary"
+  merged = 0
