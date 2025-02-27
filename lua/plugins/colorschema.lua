@@ -42,10 +42,10 @@ return {
 			-- local colorscheme = "gruvbox-material",
 			if os.getenv("TERM_PROGRAM") == "WezTerm" then
 				-- colorscheme = "solarized"
-				-- colorscheme = "dracula"
+				colorscheme = "dracula"
 				-- colorscheme = "gruvbox"
 				-- colorscheme = "tokyonight-night"
-				colorscheme = "catppuccin"
+				-- colorscheme = "catppuccin"
 			end
 			return {
 				colorscheme = colorscheme,

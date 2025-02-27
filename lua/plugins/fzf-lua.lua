@@ -6,8 +6,8 @@ return {
 	-- dependencies = { "echasnovski/mini.icons" },
 	opts = {
 		winopts = {
-			height = 0.98, -- window height
-			width = 0.95,
+			height = 0.90, -- window height
+			width = 0.90,
 		},
 	},
 }

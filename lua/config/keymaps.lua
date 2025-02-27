@@ -10,9 +10,3 @@ vim.api.nvim_set_keymap("n", "<c-s-j>", "<cmd>res +2<CR>", { noremap = true, sil
 vim.api.nvim_set_keymap("n", "<c-s-k>", "<cmd>res -2<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<c-s-h>", "<cmd>vertical resize -2<CR>", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "<c-s-l>", "<cmd>vertical resize +2<CR>", { noremap = true, silent = true })
-
--- for plugin markdown
-vim.api.nvim_set_keymap("n", "<leader>vm", "<Plug>MarkdownPreviewToggle", { desc = "View Markdown Toggle" })
-
--- for undotree
-vim.api.nvim_set_keymap("n", "<leader>uu", "<cmd>UndotreeToggle<cr>", { desc = "Undotree Toggle" })

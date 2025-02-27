@@ -1,11 +1,11 @@
-local opt = vim.opt
+-- local opt = vim.opt
 
-opt.tabstop = 4
-opt.softtabstop = 4
-opt.shiftwidth = 4
-opt.autoindent = true
-opt.smartindent = true
-opt.termguicolors = true
+-- opt.tabstop = 4
+-- opt.softtabstop = 4
+-- opt.shiftwidth = 4
+-- opt.autoindent = true
+-- opt.smartindent = true
+-- opt.termguicolors = true
 
 -- opt.background = "dark"
 -- if os.getenv("TERM_PROGRAM") == "iTerm.app" then
@@ -18,7 +18,6 @@ opt.termguicolors = true
 vim.wo.colorcolumn = "120"
 
 -- for winresizer
-vim.g.winresizer_vert_resize = 3
+vim.g.winresizer_vert_resize = 2
 
--- for open-browser
-vim.g.netrw_nogx = 1
+vim.g.snacks_animate = false
