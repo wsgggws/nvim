@@ -21,8 +21,7 @@ return {
 			invert_selection = true,
 			invert_intend_guides = true,
 			overrides = {
-				Normal = os.getenv("TERM_PROGRAM") == "WezTerm" and { fg = nil, bg = "#ebdbb2" }
-					or { fg = "#ebdbb2", bg = nil },
+				Normal = { fg = nil, bg = "#ebdbb2" },
 			},
 		},
 	},
@@ -35,21 +34,15 @@ return {
 	},
 	{
 		"LazyVim/LazyVim",
-		opts = function()
-			local colorscheme = "gruvbox"
-			-- local colorscheme = "tokyonight-day",
-			-- local colorscheme = "catppuccin-mocha",
-			-- local colorscheme = "gruvbox-material",
-			if os.getenv("TERM_PROGRAM") == "WezTerm" then
-				-- colorscheme = "solarized"
-				-- colorscheme = "dracula"
-				-- colorscheme = "gruvbox"
-				-- colorscheme = "tokyonight-night"
-				colorscheme = "catppuccin"
-			end
-			return {
-				colorscheme = colorscheme,
-			}
-		end,
+		opts = {
+			colorscheme = "gruvbox",
+			-- colorscheme = "tokyonight-day",
+			-- colorscheme = "catppuccin-mocha",
+			-- colorscheme = "gruvbox-material",
+			-- colorscheme = "solarized"
+			-- colorscheme = "dracula"
+			-- colorscheme = "tokyonight-night"
+			-- colorscheme = "catppuccin"
+		},
 	},
 }
