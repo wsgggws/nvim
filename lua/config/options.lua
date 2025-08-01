@@ -7,14 +7,6 @@
 -- opt.smartindent = true
 -- opt.termguicolors = true
 
--- opt.background = "dark"
--- if os.getenv("TERM_PROGRAM") == "iTerm.app" then
--- 	opt.background = "light"
--- end
--- if os.getenv("TERM_PROGRAM") == "ghostty" then
--- 	opt.background = "dark"
--- end
-
 vim.wo.colorcolumn = "120"
 
 -- for winresizer

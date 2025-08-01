@@ -9,7 +9,7 @@ return {
 	{
 		"folke/tokyonight.nvim",
 		opts = {
-			-- style = "ni",
+			style = "night",
 		},
 	},
 	{
@@ -35,14 +35,15 @@ return {
 	{
 		"LazyVim/LazyVim",
 		opts = {
-			colorscheme = "gruvbox",
+			-- colorscheme = "gruvbox",
 			-- colorscheme = "tokyonight-day",
 			-- colorscheme = "catppuccin-mocha",
 			-- colorscheme = "gruvbox-material",
 			-- colorscheme = "solarized"
 			-- colorscheme = "dracula"
-			-- colorscheme = "tokyonight-night"
-			-- colorscheme = "catppuccin"
+			-- colorscheme = "tokyonight-night",
+			-- colorscheme = "tokyonight",
+			colorscheme = "catppuccin",
 		},
 	},
 }
