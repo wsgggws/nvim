@@ -40,7 +40,7 @@ return {
 			-- colorscheme = "catppuccin-mocha",
 			-- colorscheme = "gruvbox-material",
 			-- colorscheme = "solarized"
-			-- colorscheme = "dracula"
+			-- colorscheme = "dracula",
 			colorscheme = "tokyonight-night",
 			-- colorscheme = "tokyonight",
 			-- colorscheme = "catppuccin",
