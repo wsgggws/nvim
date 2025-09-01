@@ -25,10 +25,10 @@ return {
 	-- 		},
 	-- 	},
 	-- },
-	-- {
-	-- 	"dracula/vim",
-	-- 	name = "dracula",
-	-- },
+	{
+		"dracula/vim",
+		name = "dracula",
+	},
 	-- {
 	-- 	"maxmx03/solarized.nvim",
 	-- },
@@ -40,8 +40,8 @@ return {
 			-- colorscheme = "catppuccin-mocha",
 			-- colorscheme = "gruvbox-material",
 			-- colorscheme = "solarized"
-			-- colorscheme = "dracula",
-			colorscheme = "tokyonight-night",
+			colorscheme = "dracula",
+			-- colorscheme = "tokyonight-night",
 			-- colorscheme = "tokyonight",
 			-- colorscheme = "catppuccin",
 		},
