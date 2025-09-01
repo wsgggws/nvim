@@ -13,5 +13,3 @@ vim.wo.colorcolumn = "120"
 vim.g.winresizer_vert_resize = 2
 
 vim.g.snacks_animate = false
-
-vim.g.lazyvim_python_ruff = "ruff"
