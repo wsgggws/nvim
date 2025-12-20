@@ -34,3 +34,7 @@ vim.api.nvim_set_keymap(
 	[[:lua _G.toggle_fmt_skip(vim.fn.line("."), vim.fn.line("."))<CR>]],
 	{ noremap = true, silent = true }
 )
+
+vim.keymap.set("n", "<leader>ct", "<cmd>TrimWhitespace<cr>", {
+	desc = "Trim trailing whitespace",
+})

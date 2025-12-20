@@ -1,20 +1,37 @@
 return {
-	"charludo/projectmgr.nvim",
-	lazy = false, -- important!
-	config = function()
-		require("projectmgr").setup({
-			-- autogit = {
-			-- 	enabled = true,
-			-- 	command = "git pull --ff-only > .git/fastforward.log 2>&1",
-			-- },
-			session = { enabled = true, file = ".git/Session.vim" },
-		})
+	"ahmedkhalf/project.nvim",
+	event = "VeryLazy",
+	opts = {
+		-- 自动检测项目根
+		detection_methods = { "pattern" },
+
+		-- 常见项目标识
+		patterns = {
+			".git",
+			"Makefile",
+			"package.json",
+			"pyproject.toml",
+			"go.mod",
+			"Cargo.toml",
+		},
+		exclude_dirs = {
+			vim.fn.stdpath("data") .. "/lazy/*",
+		},
+		-- 不切换 buffer / 不关 terminal
+		silent_chdir = true,
+		scope_chdir = "global",
+	},
+	config = function(_, opts)
+		require("project_nvim").setup(opts)
 	end,
+
 	keys = {
 		{
 			"<leader>fp",
-			"<CMD>ProjectMgr<CR>",
-			desc = "Open Projects",
+			function()
+				require("snacks").picker.projects()
+			end,
+			desc = "Project switch",
 		},
 	},
 }

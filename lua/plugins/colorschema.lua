@@ -1,11 +1,13 @@
 return {
-	-- {
-	-- 	"catppuccin/nvim",
-	-- 	name = "catppuccin",
-	-- 	opts = {
-	-- 		flavour = "mocha",
-	-- 	},
-	-- },
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		opts = {
+			flavour = "mocha",
+			transparent_background = true,
+			term_colors = true,
+		},
+	},
 	-- {
 	-- 	"folke/tokyonight.nvim",
 	-- 	opts = {
@@ -29,6 +31,13 @@ return {
 	-- 	"dracula/vim",
 	-- 	name = "dracula",
 	-- },
+	{
+		"Mofiqul/dracula.nvim",
+		name = "dracula",
+		opts = {
+			transparent_bg = true,
+		},
+	},
 	-- {
 	-- 	"p00f/alabaster.nvim",
 	-- 	name = "alabaster",
