@@ -25,7 +25,6 @@ local function update_autoformat()
 		web3_user = true,
 		server_pvp = true,
 	}
-
 	vim.g.autoformat = not disable_autoformat_projects[project]
 end
 
@@ -33,18 +32,6 @@ end
 vim.api.nvim_create_autocmd("User", {
 	pattern = "LazyVimStarted",
 	callback = update_autoformat,
-})
-
--- 2️⃣ Project 切换：保存 & 恢复 session
-vim.api.nvim_create_autocmd("DirChanged", {
-	callback = function()
-		-- persistence 会自动保存离开的 session
-		-- 我们只需要 restore 新 project 的 session
-		-- 🔥 强制按 cwd 恢复 session
-		require("persistence").load({ force = true })
-		-- session 恢复完成后，再决定 autoformat
-		vim.schedule(update_autoformat)
-	end,
 })
 
 vim.api.nvim_create_user_command("TrimWhitespace", function()
