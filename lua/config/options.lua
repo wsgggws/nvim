@@ -13,3 +13,8 @@ vim.wo.colorcolumn = "120"
 vim.g.winresizer_vert_resize = 2
 
 vim.g.snacks_animate = false
+
+-- Set to "basedpyright" to use basedpyright instead of pyright.
+vim.g.lazyvim_python_lsp = "pyright"
+-- Set to "ruff_lsp" to use the old LSP implementation version.
+vim.g.lazyvim_python_ruff = "pyright"
