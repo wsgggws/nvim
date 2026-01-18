@@ -1,5 +1,6 @@
--- local opt = vim.opt
+local opt = vim.opt
 
+opt.cursorline = false
 -- opt.tabstop = 4
 -- opt.softtabstop = 4
 -- opt.shiftwidth = 4
@@ -7,7 +8,7 @@
 -- opt.smartindent = true
 -- opt.termguicolors = true
 
-vim.wo.colorcolumn = "120"
+-- vim.wo.colorcolumn = "120"
 
 -- for winresizer
 vim.g.winresizer_vert_resize = 2
