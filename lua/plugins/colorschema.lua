@@ -1,17 +1,17 @@
 return {
-	{
-		"catppuccin/nvim",
-		name = "catppuccin",
-		opts = {
-			flavour = "mocha",
-			transparent_background = true,
-			term_colors = true,
-		},
-	},
+	-- {
+	-- 	"catppuccin/nvim",
+	-- 	name = "catppuccin",
+	-- 	opts = {
+	-- 		flavour = "latte", -- latte, frappe, macchiato, mocha
+	-- 		-- transparent_background = true,
+	-- 		term_colors = true,
+	-- 	},
+	-- },
 	-- {
 	-- 	"folke/tokyonight.nvim",
 	-- 	opts = {
-	-- 		style = "night",
+	-- 		style = "day",
 	-- 	},
 	-- },
 	-- {
@@ -27,17 +27,17 @@ return {
 	-- 		},
 	-- 	},
 	-- },
-	-- {
-	-- 	"dracula/vim",
-	-- 	name = "dracula",
-	-- },
 	{
-		"Mofiqul/dracula.nvim",
+		"dracula/vim",
 		name = "dracula",
-		opts = {
-			transparent_bg = true,
-		},
 	},
+	-- {
+	-- 	"Mofiqul/dracula.nvim",
+	-- 	name = "dracula",
+	-- 	opts = {
+	-- 		transparent_bg = true,
+	-- 	},
+	-- },
 	-- {
 	-- 	"p00f/alabaster.nvim",
 	-- 	name = "alabaster",
@@ -53,11 +53,11 @@ return {
 			-- colorscheme = "catppuccin-mocha",
 			-- colorscheme = "gruvbox-material",
 			-- colorscheme = "solarized"
-			-- colorscheme = "dracula",
+			colorscheme = "dracula",
 			-- colorscheme = "alabaster",
 			-- colorscheme = "tokyonight-night",
 			-- colorscheme = "tokyonight",
-			colorscheme = "catppuccin",
+			-- colorscheme = "catppuccin",
 		},
 	},
 }

@@ -4,7 +4,7 @@ return {
 	config = true,
 	opts = {
 		terminal = {
-			split_width_percentage = 0.41,
+			split_width_percentage = 0.39,
 		},
 	},
 	keys = {
