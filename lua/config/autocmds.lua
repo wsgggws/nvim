@@ -26,6 +26,10 @@ vim.api.nvim_create_autocmd("User", {
 	pattern = "LazyVimStarted",
 	callback = update_autoformat,
 })
+-- 2️⃣ 切换目录时也更新（适用于在 Neovim 内 cd 到其他 project 的情况）
+vim.api.nvim_create_autocmd("DirChanged", {
+	callback = update_autoformat,
+})
 
 vim.api.nvim_create_user_command("TrimWhitespace", function()
 	local view = vim.fn.winsaveview()
