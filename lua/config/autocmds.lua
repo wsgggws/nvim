@@ -17,6 +17,7 @@ local function update_autoformat()
 		bitslots_game = true,
 		web3_user = true,
 		server_pvp = true,
+		lb_lark_cmdline = true,
 	}
 	vim.g.autoformat = not disable_autoformat_projects[project]
 end
