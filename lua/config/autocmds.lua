@@ -31,6 +31,10 @@ vim.api.nvim_create_autocmd("User", {
 vim.api.nvim_create_autocmd("DirChanged", {
 	callback = update_autoformat,
 })
+-- 2️⃣ 每次进入 buffer 都检查（覆盖所有场景：打开文件、切换 tmux 回来后、切换 tab/window 等）
+vim.api.nvim_create_autocmd("BufEnter", {
+	callback = update_autoformat,
+})
 
 vim.api.nvim_create_user_command("TrimWhitespace", function()
 	local view = vim.fn.winsaveview()

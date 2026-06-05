@@ -38,3 +38,40 @@ vim.api.nvim_set_keymap(
 vim.keymap.set("n", "<leader>ct", "<cmd>TrimWhitespace<cr>", {
 	desc = "Trim trailing whitespace",
 })
+
+vim.api.nvim_set_keymap("n", "<leader>pr", "", {
+	noremap = true,
+	silent = true,
+	desc = "Reset CWD & restart pyright",
+	callback = function()
+		-- 1️⃣ 找到项目根目录
+		local buf_path = vim.api.nvim_buf_get_name(0)
+		local root = buf_path ~= "" and vim.fn.fnamemodify(buf_path, ":h") or vim.fn.getcwd()
+		local markers = { ".git", "pyproject.toml", "setup.py", "setup.cfg", "pyrightconfig.json" }
+		while root ~= "/" do
+			local found = false
+			for _, marker in ipairs(markers) do
+				if
+					vim.fn.filereadable(root .. "/" .. marker) == 1
+					or vim.fn.isdirectory(root .. "/" .. marker) == 1
+				then
+					found = true
+					break
+				end
+			end
+			if found then
+				break
+			end
+			root = vim.fn.fnamemodify(root, ":h")
+		end
+		if root ~= "/" then
+			vim.fn.chdir(root)
+		end
+
+		for _, client in ipairs(vim.lsp.get_clients({ name = "pyright" })) do
+			---@diagnostic disable-next-line: missing-fields
+			client.stop(true)
+		end
+		vim.notify(string.format("🔄 pyright restarted on 📂 %s", vim.fn.getcwd()), vim.log.levels.INFO)
+	end,
+})
