@@ -2,6 +2,7 @@
   "extras": [
     "lazyvim.plugins.extras.ai.claudecode",
     "lazyvim.plugins.extras.coding.mini-comment",
+    "lazyvim.plugins.extras.coding.mini-snippets",
     "lazyvim.plugins.extras.dap.core",
     "lazyvim.plugins.extras.editor.fzf",
     "lazyvim.plugins.extras.editor.mini-diff",
@@ -21,6 +22,7 @@
     "lazyvim.plugins.extras.lang.yaml",
     "lazyvim.plugins.extras.test.core",
     "lazyvim.plugins.extras.ui.dashboard-nvim",
+    "lazyvim.plugins.extras.ui.indent-blankline",
     "lazyvim.plugins.extras.ui.treesitter-context",
     "lazyvim.plugins.extras.util.dot",
     "lazyvim.plugins.extras.util.gitui",
