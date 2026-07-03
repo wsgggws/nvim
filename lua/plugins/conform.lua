@@ -7,6 +7,7 @@ return {
 			-- https://docs.astral.sh/ruff/editors/setup/#vim  (With the conform.nvim plugin for Neovim.)
 			["python"] = { "ruff_fix", "ruff_format", "ruff_organize_imports" },
 			["go"] = { "goimports", "gofmt" },
+			["rust"] = { "rustfmt" },
 		},
 	},
 }

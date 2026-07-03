@@ -10,15 +10,26 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 
 local function update_autoformat()
 	local project = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
+	local ok, local_config = pcall(require, "config.local")
 
 	local disable_autoformat_projects = {
-		server_lucky_admin = true,
-		server_tg_lb = true,
-		bitslots_game = true,
-		web3_user = true,
-		server_pvp = true,
-		lb_lark_cmdline = true,
+		-- Keep private project names in lua/config/local.lua.
 	}
+
+	if ok then
+		disable_autoformat_projects =
+			vim.tbl_extend("force", disable_autoformat_projects, local_config.disable_autoformat_projects or {})
+
+		if type(local_config.autoformat) == "function" then
+			vim.g.autoformat = local_config.autoformat({
+				cwd = vim.fn.getcwd(),
+				project = project,
+				default = not disable_autoformat_projects[project],
+			})
+			return
+		end
+	end
+
 	vim.g.autoformat = not disable_autoformat_projects[project]
 end
 

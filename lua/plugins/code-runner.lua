@@ -27,7 +27,7 @@ return {
 			java = "cd $dir && javac $fileName && java $fileNameWithoutExt",
 			cpp = "cd $dir && g++ $fileName -o $fileNameWithoutExt && $dir/$fileNameWithoutExt",
 			sh = "bash",
-			rust = "cd $dir && rustc $fileName && $dir$fileNameWithoutExt",
+			rust = "cd $dir && if [ -f Cargo.toml ]; then cargo run; else rustc $fileName && ./$fileNameWithoutExt; fi",
 		},
 	},
 	ft = { "lua", "python", "c", "cpp", "go", "rust" },
