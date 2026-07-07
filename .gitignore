@@ -8,3 +8,4 @@ foo.*
 data
 lazyvim.json
 lua/config/local.lua
+lazy-lock.json
