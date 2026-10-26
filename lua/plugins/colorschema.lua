@@ -1,31 +1,29 @@
 return {
--- theme: sheepskin
+	-- Keep all three themes installed; only change LazyVim's colorscheme below.
 	{
 		dir = vim.fn.expand("~/github/sheepskin.nvim"),
-		lazy = false,
-		priority = 1000,
+		lazy = true,
 	},
--- theme: catppuccin
--- 	{
--- 		"catppuccin/nvim",
--- 		name = "catppuccin",
--- 		opts = {
--- 			flavour = "mocha", -- latte, frappe, macchiato, mocha
--- 			term_colors = true,
--- 			-- transparent_background = true,
--- 		},
--- 	},
--- theme: dracula
--- 	{
--- 		"dracula/vim",
--- 		name = "dracula",
--- 	},
--- theme: end
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		lazy = true,
+		opts = {
+			flavour = "mocha", -- latte, frappe, macchiato, mocha
+			term_colors = true,
+			-- transparent_background = true,
+		},
+	},
+	{
+		"dracula/vim",
+		name = "dracula",
+		lazy = true,
+	},
 	{
 		"LazyVim/LazyVim",
 		opts = {
-			colorscheme = "sheepskin",
-			-- colorscheme = "dracula",
+			-- colorscheme = "sheepskin",
+			colorscheme = "dracula",
 			-- colorscheme = "catppuccin",
 		},
 	},
