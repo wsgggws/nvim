@@ -1,7 +1,10 @@
 return {
+-- BEGIN QingShan plugin
+  { dir = "/Users/thj/github/QingShan.nvim", name = "QingShan.nvim", lazy = true },
+-- END QingShan plugin
 	-- Keep all three themes installed; only change LazyVim's colorscheme below.
 	{
-		dir = vim.fn.expand("~/github/sheepskin.nvim"),
+		dir = vim.fn.expand("~/github/HuangPao.nvim"),
 		lazy = true,
 	},
 	{
@@ -22,8 +25,9 @@ return {
 	{
 		"LazyVim/LazyVim",
 		opts = {
-			-- colorscheme = "sheepskin",
-			colorscheme = "dracula",
+			-- colorscheme = "huangpao",
+			colorscheme = "qingshan",
+			-- colorscheme = "dracula",
 			-- colorscheme = "catppuccin",
 		},
 	},
