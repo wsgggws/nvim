@@ -1,21 +1,31 @@
 return {
+-- theme: sheepskin
 	{
-		"catppuccin/nvim",
-		name = "catppuccin",
-		opts = {
-			flavour = "mocha", -- latte, frappe, macchiato, mocha
-			term_colors = true,
-			-- transparent_background = true,
-		},
+		dir = vim.fn.expand("~/github/sheepskin.nvim"),
+		lazy = false,
+		priority = 1000,
 	},
-	{
-		"dracula/vim",
-		name = "dracula",
-	},
+-- theme: catppuccin
+-- 	{
+-- 		"catppuccin/nvim",
+-- 		name = "catppuccin",
+-- 		opts = {
+-- 			flavour = "mocha", -- latte, frappe, macchiato, mocha
+-- 			term_colors = true,
+-- 			-- transparent_background = true,
+-- 		},
+-- 	},
+-- theme: dracula
+-- 	{
+-- 		"dracula/vim",
+-- 		name = "dracula",
+-- 	},
+-- theme: end
 	{
 		"LazyVim/LazyVim",
 		opts = {
-			colorscheme = "dracula",
+			colorscheme = "sheepskin",
+			-- colorscheme = "dracula",
 			-- colorscheme = "catppuccin",
 		},
 	},
